@@ -1,1 +1,1 @@
-# easyUploader
+# easy-uploader
