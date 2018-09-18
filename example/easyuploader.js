@@ -9,6 +9,8 @@
         // default options object
         var defaultOptions = {
             "el": "#file",
+            "method": "post",
+            "maxFileSize": "2M",
         }
 
         // extend options
