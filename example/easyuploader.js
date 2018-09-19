@@ -11,6 +11,7 @@
             "el": "#file",
             "method": "post",
             "maxFileSize": "2M",
+            "url": "",
         }
 
         // extend options

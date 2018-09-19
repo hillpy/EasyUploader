@@ -12,7 +12,9 @@
     </div>
     <script src="./easyuploader.js"></script>
     <script>
-        new easyUploader();
+        var easyUploader = new easyUploader({
+            "url": "./upload.php",
+        });
     </script>
 </body>
 </html>
