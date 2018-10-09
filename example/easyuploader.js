@@ -1,8 +1,12 @@
 (function() {
     "use strict";
 
+    var _this = '';
+
     var easyUploader = function(options) {
-        if (!(this instanceof easyUploader)) {
+        _this = this;
+
+        if (!(_this instanceof easyUploader)) {
             return new easyUploader(options);
         }
 
@@ -19,13 +23,13 @@
         }
 
         var fileObj = "",
-            elObj = ""; 
+            elObj = "";
 
         // extend options
-        this.options = this.extend(defaultOptions, options);
+        _this.options = _this.extend(defaultOptions, options);
 
         // init
-        this.init();
+        _this.init();
     }
 
     /**
@@ -38,15 +42,15 @@
         init: function() {
             console.log('init function');
             // render input
-            this.createInput();
+            _this.createInput();
             
             // bind event 
-            this.bindElToInput();
+            _this.bindElToInput();
 
             // add listen input
-            this.addListenInput();
+            _this.addListenInput();
 
-            // if (this.options.autoUpload) {
+            // if (_this.options.autoUpload) {
                 
             // }
         },
@@ -65,17 +69,16 @@
         createInput: function() {
             var input = document.createElement("input");
             input.type = "file";
-            input.name = this.options.name;
-            input.id = this.options.id;
+            input.name = _this.options.name;
+            input.id = _this.options.id;
             input.setAttribute("style", "display: none;");
             document.querySelector("body").appendChild(input);
-            this.fileObj = document.querySelector("#" + this.options.id);
+            _this.fileObj = document.querySelector("#" + _this.options.id);
         },
         /**
          * bind event
          */
         bindElToInput: function() {
-            var _this = this;
             _this.elObj = document.querySelector(_this.options.el);
             _this.elObj.addEventListener("click", function() {
                 _this.fileObj.click();
@@ -85,7 +88,6 @@
          * listen input file
          */
         addListenInput: function() {
-            var _this = this;
             _this.fileObj.addEventListener("change", function() {
                 console.log(_this.fileObj.files[0]);
             });
