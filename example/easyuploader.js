@@ -20,6 +20,13 @@
             "maxFileSize": "2M",
             "url": "",
             "autoUpload": true,
+            "compress": true,
+            "resize": {
+                "width": 800,
+                "height": 800
+            },
+            "compress": true,
+            "compressRatio": 0.9
         }
 
         var fileObj = "",
