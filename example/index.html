@@ -8,11 +8,16 @@
 </head>
 <body>
     <div>
-        <input type="file" name="file" id="file">
+        <button id="btn">上传文件</button>
     </div>
+
+    <!-- <div>
+        <input type="file" name="file" id="file">
+    </div> -->
     <script src="./easyuploader.js"></script>
     <script>
         var easyUploader = new easyUploader({
+            "el": "#btn",
             "url": "./upload.php",
         });
     </script>
