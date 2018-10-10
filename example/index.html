@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #btn {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            border: 0;
+            background: #ddd;
+        }
+
+        #file_frame {
+            width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        hr {
+            margin: 5px 0;
+        }
+
+        img {
+            display: inline-block;
+            max-width: 100%;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -12,14 +48,41 @@
     </div>
 
     <!-- <div>
-        <input type="file" name="file" id="file">
+        <input type="file" name="file" id="file-1">
     </div> -->
+
+    <div id="file_frame">
+        <h3>上传结果文件</h3>
+        <hr>
+    </div>
     <script src="./easyuploader.js"></script>
     <script>
+        var fileFrameObj = document.querySelector("#file_frame"),
+            img = document.createElement('img');
+
         var easyUploader = new easyUploader({
             "el": "#btn",
             "url": "./upload.php",
-            "compress": true
+            "compress": true,
+            onUploadProgress: function(e) {
+                console.log("上传进度为：" + ((e.loaded / e.total) * 100).toFixed(2) + "%");
+            },
+            onUploadStart: function(e) {
+                console.log('即将上传。。');
+            },
+            onUploadComplete: function(data) {
+                alert(data.msg);
+                if (data.code == 1) {
+                    fileData = data.data;
+                    if (fileData.file_type.indexOf('image/') >= 0) {
+                        img.src = fileData.path;
+                        fileFrameObj.appendChild(img);
+                    }
+                }
+            },
+            onUploadError: function(statusCode) {
+                console.log(statusCode);
+            }
         });
     </script>
 </body>

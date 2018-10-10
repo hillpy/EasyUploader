@@ -34,6 +34,10 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
     $res['code'] = 1;
     $res['msg'] = '上传成功';
+    $res['data'] = array(
+        'file_type'=>$type,
+        'path'=>$uploadDir . $fileName
+    );
     echo json_encode($res);
 } else {
     exit('禁止访问');

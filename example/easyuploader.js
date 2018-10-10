@@ -4,6 +4,7 @@
     var _this = '',
         fileType = '',
         fileName = '',
+        fileSize = '',
         canvas = document.createElement('canvas'),
         context = canvas.getContext('2d'),
         formData = new FormData();
@@ -17,12 +18,13 @@
 
         // default options object
         var defaultOptions = {
-            "el": "#file",
-            "file": "#file",
+            "el": "",
             "name": "file",
             "id": "file",
+            "file": "#file",
             "method": "post",
             "url": "",
+            "resType": "json",
             "autoUpload": true,
             "compress": true,
             "resize": {
@@ -51,10 +53,15 @@
          * init function
          */
         init: function() {
-            // render input
-            _this.createInput();
-            // bind event 
-            _this.bindElToInput();
+            if (_this.options.el) {
+                // render input
+                _this.createInput();
+                // bind event
+                _this.bindElToInput();
+            } else {
+                _this.fileObj = document.querySelector(_this.options.file);
+            }
+
             // add listen input
             _this.addListenInput();
         },
@@ -93,12 +100,16 @@
          */
         addListenInput: function() {
             _this.fileObj.addEventListener("change", function() {
-                _this.fileObj.files[0];
                 fileType = _this.fileObj.files[0].type;
                 fileName = _this.fileObj.files[0].name;
-                
-                if (fileType.indexOf("image/") >= 0) {
-                    _this.drawAndRenderCanvas();
+                fileSize = _this.fileObj.files[0].size;
+
+                if (_this.checkFile()) {
+                    if (fileType.indexOf("image/") >= 0) {
+                        _this.drawAndRenderCanvas();
+                    } else {
+                        console.log('handle other filetype');
+                    }
                 }
             });
         },
@@ -152,25 +163,59 @@
                 var xhr = new XMLHttpRequest();
                 xhr.open(_this.options.method, _this.options.url, true);
                 xhr.upload.addEventListener("progress", function(e) {
-                    console.log("上传进度为：" + ((e.loaded / e.total) * 100).toFixed(2) + "%");
+                    _this.options.onUploadProgress && _this.options.onUploadProgress(e);
                 });
-                xhr.upload.addEventListener("loadstart", function() {
-                    console.log("上传开始"); //只出现一次
+                xhr.upload.addEventListener("loadstart", function(e) {
+                    _this.options.onUploadStart && _this.options.onUploadStart(e);
                 });
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4) {
                         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                            var data = JSON.parse(xhr.responseText);
-                            alert(data.msg);
+                            _this.options.onUploadComplete && _this.options.onUploadComplete(_this.handleRes(xhr.responseText));
                         } else {
-                            console.log("请求失败: " + xhr.status);
+                            _this.options.onUploadError && _this.options.onUploadError(xhr.status);
                         }
-                        _this.fileObj.value = '';
+                        _this.fileObj.value = "";
                     }
                 };
                 //xhr.setRequestHeader("Content-type", "multipart/form-data");
                 xhr.send(formData);
             }, fileType, _this.options.compressRatio);
+        },
+        /**
+         * checkfile:size，type
+         */
+        checkFile: function() {
+            // B
+            var maxFileSize = _this.options.maxFileSize;
+            if (maxFileSize.indexOf("B") > 0) {
+                maxFileSize = maxFileSize.replace(/B/g, "");
+            } else if (maxFileSize.indexOf("K") > 0) {
+                maxFileSize = maxFileSize.replace(/K/g, "") * 1024;
+            } else if (maxFileSize.indexOf("M") > 0) {
+                maxFileSize = maxFileSize.replace(/M/g, "") * 1024 * 1024;
+            } else if (maxFileSize.indexOf("G") > 0) {
+                maxFileSize = maxFileSize.replace(/G/g, "") * 1024 * 1024 * 1024;
+            } else if (maxFileSize.indexOf("T") > 0) {
+                maxFileSize = maxFileSize.replace(/T/g, "") * 1024 * 1024 * 1024 * 1024;
+            }
+
+            if (fileSize > maxFileSize) {
+                alert("文件太大，最大允许为" + _this.options.maxFileSize);
+                return false;
+            }
+
+            return true;
+        },
+        handleRes: function(res) {
+            var resType = _this.options.resType.toLowerCase();
+            if (resType == "json") {
+                return JSON.parse(res);
+            } else if (resType == 'text') {
+                return res;
+            } else {
+                return res;
+            }
         }
     }
 
