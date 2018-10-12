@@ -1,18 +1,8 @@
 (function() {
     "use strict";
 
-    var _this = '',
-        fileType = '',
-        fileName = '',
-        fileSize = '',
-        canvas = document.createElement('canvas'),
-        context = canvas.getContext('2d'),
-        formData = new FormData();
-
     var easyUploader = function(options) {
-        _this = this;
-
-        if (!(_this instanceof easyUploader)) {
+        if (!(this instanceof easyUploader)) {
             return new easyUploader(options);
         }
 
@@ -35,14 +25,21 @@
             "maxFileSize": "2M"
         }
 
-        var fileObj = "",
-            elObj = "";
+        // common param
+        this.fileObj = "";
+        this.elObj = "";
+        this.fileType = "";
+        this.fileName = "";
+        this.fileSize = "";
+        this.canvas = document.createElement("canvas");
+        this.context = this.canvas.getContext("2d");
+        this.formData = new FormData();
 
         // extend options
-        _this.options = _this.extend(defaultOptions, options);
+        this.options = this.extend(defaultOptions, options);
 
         // init
-        _this.init();
+        this.init();
     }
 
     /**
@@ -53,17 +50,17 @@
          * init function
          */
         init: function() {
-            if (_this.options.el) {
+            if (this.options.el) {
                 // render input
-                _this.createInput();
+                this.createInput();
                 // bind event
-                _this.bindElToInput();
+                this.bindElToInput();
             } else {
-                _this.fileObj = document.querySelector(_this.options.file);
+                this.fileObj = document.querySelector(this.options.file);
             }
 
             // add listen input
-            _this.addListenInput();
+            this.addListenInput();
         },
         /**
          * extend object function
@@ -93,16 +90,17 @@
         createInput: function() {
             var input = document.createElement("input");
             input.type = "file";
-            input.name = _this.options.name;
-            input.id = _this.options.id;
+            input.name = this.options.name;
+            input.id = this.options.id;
             input.setAttribute("style", "display: none; !important");
             document.querySelector("body").appendChild(input);
-            _this.fileObj = document.querySelector("#" + _this.options.id);
+            this.fileObj = document.querySelector("#" + this.options.id);
         },
         /**
          * bind event
          */
         bindElToInput: function() {
+            var _this = this;
             _this.elObj = document.querySelector(_this.options.el);
             _this.elObj.addEventListener("click", function() {
                 _this.fileObj.click();
@@ -112,13 +110,13 @@
          * listen input file
          */
         addListenInput: function() {
+            var _this = this;
             _this.fileObj.addEventListener("change", function() {
-                fileType = _this.fileObj.files[0].type;
-                fileName = _this.fileObj.files[0].name;
-                fileSize = _this.fileObj.files[0].size;
-
+                _this.fileType = _this.fileObj.files[0].type;
+                _this.fileName = _this.fileObj.files[0].name;
+                _this.fileSize = _this.fileObj.files[0].size;
                 if (_this.checkFile()) {
-                    if (fileType.indexOf("image/") >= 0) {
+                    if (_this.fileType.indexOf("image/") >= 0) {
                         _this.drawAndRenderCanvas();
                     } else {
                         console.log('handle other filetype');
@@ -131,9 +129,10 @@
          * render Canvas
          */
         drawAndRenderCanvas: function() {
-            var reader = new FileReader,
+            var _this = this,
+                reader = new FileReader,
                 image = new Image();
-            
+
             reader.readAsDataURL(_this.fileObj.files[0]);
             reader.onload = function(e) {
                 image.src = this.result;
@@ -143,22 +142,22 @@
                 if (_this.options.compress) {
                     if (image.width > _this.options.resize.maxWidth || image.height > _this.options.resize.maxHeight) {
                         if (image.width > image.height) {
-                            canvas.width = _this.options.resize.maxWidth;
-                            canvas.height = (image.height / image.width) * _this.options.resize.maxWidth;
+                            _this.canvas.width = _this.options.resize.maxWidth;
+                            _this.canvas.height = (image.height / image.width) * _this.options.resize.maxWidth;
                         } else {
-                            canvas.width = (image.width / image.height) * _this.options.resize.maxHeight;
-                            canvas.height = _this.options.resize.maxHeight;
+                            _this.canvas.width = (image.width / image.height) * _this.options.resize.maxHeight;
+                            _this.canvas.height = _this.options.resize.maxHeight;
                         }
                     }
                 } else {
-                    canvas.width = image.width;
-                    canvas.height = image.height;
+                    _this.canvas.width = image.width;
+                    _this.canvas.height = image.height;
                     _this.options.compressRatio = 1;
                 }
 
-                context.drawImage(image, 0, 0, canvas.width, canvas.height);
-                canvas.setAttribute("style", "display: none !important;");
-                document.querySelector("body").appendChild(canvas);
+                _this.context.drawImage(image, 0, 0, _this.canvas.width, _this.canvas.height);
+                _this.canvas.setAttribute("style", "display: none !important;");
+                document.querySelector("body").appendChild(_this.canvas);
                 _this.options.autoUpload && _this.uploadCanvas();
             }
         },
@@ -166,13 +165,15 @@
          * uploader canvas image
          */
         uploadCanvas: function() {
+            var _this = this;
+
             if (!_this.fileObj.files[0]) {
                 alert("请先选择文件");
                 return;
             }
 
-            canvas.toBlob(function(blob) {
-                formData.append(_this.options.name, blob, fileName);
+            _this.canvas.toBlob(function(blob) {
+                _this.formData.append(_this.options.name, blob, _this.fileName);
                 var xhr = new XMLHttpRequest();
                 xhr.open(_this.options.method, _this.options.url, true);
                 xhr.upload.addEventListener("progress", function(e) {
@@ -192,15 +193,15 @@
                     }
                 };
                 //xhr.setRequestHeader("Content-type", "multipart/form-data");
-                xhr.send(formData);
-            }, fileType, _this.options.compressRatio);
+                xhr.send(_this.formData);
+            }, _this.fileType, _this.options.compressRatio);
         },
         /**
          * checkfile:size，type
          */
         checkFile: function() {
             // B
-            var maxFileSize = _this.options.maxFileSize;
+            var maxFileSize = this.options.maxFileSize;
             if (maxFileSize.indexOf("B") > 0) {
                 maxFileSize = maxFileSize.replace(/B/g, "");
             } else if (maxFileSize.indexOf("K") > 0) {
@@ -213,15 +214,19 @@
                 maxFileSize = maxFileSize.replace(/T/g, "") * 1024 * 1024 * 1024 * 1024;
             }
 
-            if (fileSize > maxFileSize) {
-                alert("文件太大，最大允许为" + _this.options.maxFileSize);
+            if (this.fileSize > maxFileSize) {
+                alert("文件太大，最大允许为" + this.options.maxFileSize);
+                this.fileObj.value = "";
                 return false;
             }
 
             return true;
         },
+        /**
+         * handle ajax result
+         */
         handleRes: function(res) {
-            var resType = _this.options.resType.toLowerCase();
+            var resType = this.options.resType.toLowerCase();
             if (resType == "json") {
                 return JSON.parse(res);
             } else if (resType == 'text') {
