@@ -64,6 +64,12 @@
             "el": "#btn",
             "url": "./upload.php",
             "compress": true,
+            "resize": {
+                "maxWidth": 1000,
+                "maxHeight": 1000
+            },
+            "compressRatio": 0.9,
+            "maxFileSize": "500K",
             onUploadProgress: function(e) {
                 console.log("上传进度为：" + ((e.loaded / e.total) * 100).toFixed(2) + "%");
             },

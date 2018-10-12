@@ -70,7 +70,20 @@
          */
         extend: function(obj, newObj) {
             for (var key in newObj) {
-                obj[key] = newObj[key];
+                if (!(key in obj)) {
+                    obj[key] = newObj[key];
+                } else if (obj[key].constructor == newObj[key].constructor) {
+                    if (obj[key].constructor === Object) {
+                        var childObj =obj[key],
+                            childNewObj = newObj[key];
+                        for (var k in childNewObj) {
+                            childObj[k] = childNewObj[k]
+                        }
+                        obj[key] = childObj;
+                    } else {
+                        obj[key] = newObj[key];
+                    }
+                }
             }
             return obj;
         },
