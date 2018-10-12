@@ -17,13 +17,32 @@
             box-sizing: border-box;
         }
 
+        .example-frame {
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+
+        .title {
+            background: #ddd;
+            line-height: 2;
+            margin-bottom: 10px;
+        }
+
         #btn {
             display: inline-block;
             width: 100px;
             height: 30px;
             line-height: 30px;
             border: 0;
-            background: #ddd;
+            background: #aaa;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #file2 {
+            cursor: pointer;
+            outline: none;
         }
 
         #file_frame {
@@ -43,10 +62,12 @@
     </style>
 </head>
 <body>
-    <div>
+    <div class="example-frame">
+        <div class="title">绑定元素节点上传</div>
         <button id="btn">上传文件</button>
     </div>
-    <div>
+    <div class="example-frame">
+        <div class="title">绑定input type="file"节点上传</div>
         <input type="file" name="file" id="file2">
     </div>
     <div id="file_frame">
