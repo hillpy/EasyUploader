@@ -77,13 +77,15 @@
     <script src="./easyuploader.js"></script>
     <script>
         var fileFrameObj = document.querySelector("#file_frame"),
-            img = document.createElement('img');
+            img = document.createElement('img'),
+            div = document.createElement('div');
 
         var easyUploader1 = new easyUploader({
             "el": "#btn",
             "name": "file",
             "id": "file1",
             "url": "./upload.php",
+            "autoUpload": true,
             "compress": true,
             "resize": {
                 "maxWidth": 1000,
@@ -104,6 +106,9 @@
                     if (fileData.file_type.indexOf('image/') >= 0) {
                         img.src = fileData.path;
                         fileFrameObj.appendChild(img);
+                    } else {
+                        div.innerHTML = "文件路径：" + fileData.path;
+                        fileFrameObj.appendChild(div);
                     }
                 }
             },
@@ -116,6 +121,7 @@
             "name": "file",
             "file": "#file2",
             "url": "./upload.php",
+            "autoUpload": true,
             "compress": true,
             "resize": {
                 "maxWidth": 1000,
@@ -136,6 +142,9 @@
                     if (fileData.file_type.indexOf('image/') >= 0) {
                         img.src = fileData.path;
                         fileFrameObj.appendChild(img);
+                    } else {
+                        div.innerHTML = "文件路径：" + fileData.path;
+                        fileFrameObj.appendChild(div);
                     }
                 }
             },

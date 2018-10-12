@@ -15,7 +15,7 @@
             "method": "post",
             "url": "",
             "resType": "json",
-            "autoUpload": true,
+            "autoUpload": false,
             "compress": true,
             "resize": {
                 "maxWidth": 800,
@@ -40,6 +40,17 @@
 
         // init
         this.init();
+
+        /**
+         * upload function
+         */
+        this.upload = function() {
+            if (this.fileType.indexOf("image/") >= 0) {
+                this.uploadCanvas();
+            } else {
+                this.uploadFile(this.fileObj.files[0]);
+            }
+        }
     }
 
     /**
@@ -119,7 +130,7 @@
                     if (_this.fileType.indexOf("image/") >= 0) {
                         _this.drawAndRenderCanvas();
                     } else {
-                        console.log('handle other filetype');
+                        _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0]);
                     }
                 }
             });
@@ -173,28 +184,38 @@
             }
 
             _this.canvas.toBlob(function(blob) {
-                _this.formData.append(_this.options.name, blob, _this.fileName);
-                var xhr = new XMLHttpRequest();
-                xhr.open(_this.options.method, _this.options.url, true);
-                xhr.upload.addEventListener("progress", function(e) {
-                    _this.options.onUploadProgress && _this.options.onUploadProgress(e);
-                });
-                xhr.upload.addEventListener("loadstart", function(e) {
-                    _this.options.onUploadStart && _this.options.onUploadStart(e);
-                });
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4) {
-                        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                            _this.options.onUploadComplete && _this.options.onUploadComplete(_this.handleRes(xhr.responseText));
-                        } else {
-                            _this.options.onUploadError && _this.options.onUploadError(xhr.status);
-                        }
-                        _this.fileObj.value = "";
-                    }
-                };
-                //xhr.setRequestHeader("Content-type", "multipart/form-data");
-                xhr.send(_this.formData);
+                _this.uploadFile(blob);
             }, _this.fileType, _this.options.compressRatio);
+        },
+        uploadFile: function(value) {
+            var _this = this;
+
+            if (!_this.fileObj.files[0]) {
+                alert("请先选择文件");
+                return;
+            }
+
+            _this.formData.append(_this.options.name, value, _this.fileName);
+            var xhr = new XMLHttpRequest();
+            xhr.open(_this.options.method, _this.options.url, true);
+            xhr.upload.addEventListener("progress", function(e) {
+                _this.options.onUploadProgress && _this.options.onUploadProgress(e);
+            });
+            xhr.upload.addEventListener("loadstart", function(e) {
+                _this.options.onUploadStart && _this.options.onUploadStart(e);
+            });
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                        _this.options.onUploadComplete && _this.options.onUploadComplete(_this.handleRes(xhr.responseText));
+                    } else {
+                        _this.options.onUploadError && _this.options.onUploadError(xhr.status);
+                    }
+                    _this.fileObj.value = "";
+                }
+            };
+            //xhr.setRequestHeader("Content-type", "multipart/form-data");
+            xhr.send(_this.formData);
         },
         /**
          * checkfile:size，type
