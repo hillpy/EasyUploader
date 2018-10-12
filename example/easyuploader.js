@@ -159,6 +159,9 @@
                             _this.canvas.width = (image.width / image.height) * _this.options.resize.maxHeight;
                             _this.canvas.height = _this.options.resize.maxHeight;
                         }
+                    } else {
+                        _this.canvas.width = image.width;
+                        _this.canvas.height = image.height;
                     }
                 } else {
                     _this.canvas.width = image.width;
