@@ -11,6 +11,7 @@
             "el": "",
             "name": "file",
             "id": "file",
+            "accept": "",
             "file": "#file",
             "method": "post",
             "url": "",
@@ -103,6 +104,7 @@
             input.type = "file";
             input.name = this.options.name;
             input.id = this.options.id;
+            input.accept = this.options.accept;
             input.setAttribute("style", "display: none; !important");
             document.querySelector("body").appendChild(input);
             this.fileObj = document.querySelector("#" + this.options.id);

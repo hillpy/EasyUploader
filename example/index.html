@@ -64,7 +64,7 @@
 <body>
     <div class="example-frame">
         <div class="title">绑定元素节点上传</div>
-        <button id="btn">上传文件</button>
+        <button id="btn">上传图片</button>
     </div>
     <div class="example-frame">
         <div class="title">绑定input type="file"节点上传</div>
@@ -84,6 +84,7 @@
             "el": "#btn",
             "name": "file",
             "id": "file1",
+            "accept": "image/*",
             "url": "./upload.php",
             "autoUpload": true,
             "compress": true,
