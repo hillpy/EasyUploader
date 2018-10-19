@@ -23,7 +23,8 @@
                 "maxHeight": 800
             },
             "compressQuality": 0.9,
-            "maxFileSize": "2M"
+            "maxFileSize": "2M",
+            "tipClass": ""
         }
 
         // common param
@@ -138,6 +139,19 @@
             });
         },
         /**
+         * render tip dom when error
+         */
+        renderTipDom: function(text) {
+            var div = document.createElement("div");
+            div.innerHTML = text;
+            if (this.options.tipClass) {
+                div.className = this.options.tipClass;
+            } else {
+                div.setAttribute("style", "padding: 16px 20px;font-size: 16px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: absolute;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;");
+            }
+            document.querySelector("body").appendChild(div);
+        },
+        /**
          * drawImage
          * render Canvas
          */
@@ -184,7 +198,7 @@
             var _this = this;
 
             if (!_this.fileObj.files[0]) {
-                alert("请先选择文件");
+                this.renderTipDom("请先选择文件")
                 return;
             }
 
@@ -192,11 +206,14 @@
                 _this.uploadFile(blob);
               }, _this.fileType, _this.options.compressQuality);
         },
+        /**
+         * uploader file
+         */
         uploadFile: function(value) {
             var _this = this;
 
             if (!_this.fileObj.files[0]) {
-                alert("请先选择文件");
+                this.renderTipDom("请先选择文件");
                 return;
             }
 
@@ -241,7 +258,7 @@
             }
 
             if (this.fileSize > maxFileSize) {
-                alert("文件太大，最大允许为" + this.options.maxFileSize);
+                this.renderTipDom("文件太大，最大允许为" + this.options.maxFileSize);
                 this.fileObj.value = "";
                 return false;
             }
