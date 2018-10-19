@@ -22,7 +22,7 @@
                 "maxWidth": 800,
                 "maxHeight": 800
             },
-            "compressRatio": 0.9,
+            "compressQuality": 0.9,
             "maxFileSize": "2M"
         }
 
@@ -168,7 +168,7 @@
                 } else {
                     _this.canvas.width = image.width;
                     _this.canvas.height = image.height;
-                    _this.options.compressRatio = 1;
+                    _this.options.compressQuality = 1;
                 }
 
                 _this.context.drawImage(image, 0, 0, _this.canvas.width, _this.canvas.height);
@@ -190,7 +190,7 @@
 
             _this.canvas.toBlob(function(blob) {
                 _this.uploadFile(blob);
-            }, _this.fileType, _this.options.compressRatio);
+              }, _this.fileType, _this.options.compressQuality);
         },
         uploadFile: function(value) {
             var _this = this;
