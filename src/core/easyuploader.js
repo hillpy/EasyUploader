@@ -204,7 +204,7 @@
 
             _this.canvas.toBlob(function(blob) {
                 _this.uploadFile(blob);
-              }, _this.fileType, _this.options.compressQuality);
+            }, _this.fileType, _this.options.compressQuality);
         },
         /**
          * uploader file
