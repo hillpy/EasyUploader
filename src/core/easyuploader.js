@@ -147,6 +147,30 @@ easyUploader.prototype = {
             div.setAttribute("style", "padding: 16px 20px;font-size: 16px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: absolute;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;");
         }
         document.querySelector("body").appendChild(div);
+        setTimeout(function() {
+            var opacity = div.style.opacity;
+            if (opacity > 0) {
+                opacity = (opacity - 0.2).toFixed(1)
+                if (opacity < 0) {
+                    opacity = 0;
+                }
+                var hideTip = setInterval(function() {
+                    div.style.opacity = opacity;
+                    div.style.filter = 'Alpha((opacity = ' + opacity * 100 + '))';
+                    if (opacity <= 0) {
+                        div.remove();
+                        clearInterval(hideTip);
+                    } else {
+                        opacity = (opacity - 0.1).toFixed(1);
+                        if (opacity < 0) {
+                            opacity = 0;
+                        }
+                    }
+                }, 10);
+            } else {
+                div.remove()
+            }
+        }, 1500);
     },
     /**
      * drawImage
