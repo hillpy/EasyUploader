@@ -1,1 +1,1 @@
-require("./core/easyuploader");
+import './core/easyuploader'
