@@ -11,6 +11,10 @@
             padding: 0;
         }
 
+        html {
+            font-size: 10px;
+        }
+
         body {
             width: 100%;
             padding: 10px;
@@ -26,6 +30,7 @@
             background: #ddd;
             line-height: 2;
             margin-bottom: 10px;
+            font-size: 1.6rem;
         }
 
         #btn {
@@ -38,6 +43,23 @@
             color: #fff;
             cursor: pointer;
             outline: none;
+            font-size: 1.4rem;
+        }
+
+        #drop_area {
+            width: 40vw;
+            height: 20vw;
+            line-height: 20vw;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            text-align: center;
+            color: #ddd;
+            user-select: none;
+            font-size: 1.2rem;
+            font-weight: 100;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         #file2 {
@@ -49,6 +71,7 @@
             width: 100%;
             margin: 20px 0;
             overflow: hidden;
+            font-size: 1.6rem;
         }
 
         hr {
@@ -69,6 +92,10 @@
     <div class="example-frame">
         <div class="title">绑定input type="file"节点上传</div>
         <input type="file" name="file" id="file2">
+    </div>
+    <div class="example-frame">
+        <div class="title">拖曳上传</div>
+        <div id="drop_area">请将文件拖进此处</div>
     </div>
     <div id="file_frame">
         <h3>上传结果文件</h3>
