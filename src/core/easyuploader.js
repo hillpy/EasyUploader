@@ -144,7 +144,7 @@ easyUploader.prototype = {
         if (this.options.tipClass) {
             div.className = this.options.tipClass;
         } else {
-            div.setAttribute("style", "padding: 16px 20px;font-size: 16px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: absolute;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;");
+            div.setAttribute("style", "max-width: 80%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: absolute;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;");
         }
         document.querySelector("body").appendChild(div);
         setTimeout(function() {
