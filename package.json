@@ -4,7 +4,8 @@
   "description": "一个文件上传插件",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "dev": "rollup -c rollup.config.dev.js",
+    "build": "rollup -c rollup.config.prod.js"
   },
   "repository": {
     "type": "git",
