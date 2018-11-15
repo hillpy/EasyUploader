@@ -354,7 +354,8 @@ easyUploader.prototype = {
     /**
      * 获取随机字符串
      */
-    getNonce: function(length = 16) {
+    getNonce: function(length) {
+        length || (length = 16);
         var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890",
             nonce = '';
         for (var i = 0; i < length; i++) {
