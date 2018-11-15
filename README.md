@@ -8,14 +8,17 @@
 ## 如何运行
 
 1. 克隆本项目
+
     ```
         git clone https://github.com/hillpy/easyUploader.git
     ```
 2. 安装node依赖包
+
     ```
         npm install
     ```
 3. 开启rollup监听及web服务（需php环境），url：localhost:1180
+
     ```
         npm run dev
     ```
