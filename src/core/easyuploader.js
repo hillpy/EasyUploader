@@ -10,7 +10,7 @@ var easyUploader = function(options) {
         // 创建的input name
         "name": "file",
         // 创建的input id
-        "id": "file",
+        "id": "",
         // 创建的input accept
         "accept": "",
 
@@ -119,6 +119,7 @@ easyUploader.prototype = {
      * 创建input(type=file)
      */
     createInput: function() {
+        this.options.id || (this.options.id = "easyuploader_" + this.getNonce());
         var input = document.createElement("input");
         input.type = "file";
         input.name = this.options.name;
@@ -203,7 +204,7 @@ easyUploader.prototype = {
                 }
                 var hideTip = setInterval(function() {
                     div.style.opacity = opacity;
-                    div.style.filter = 'Alpha((opacity = ' + opacity * 100 + '))';
+                    div.style.filter = "Alpha((opacity = " + opacity * 100 + "))";
                     if (opacity <= 0) {
                         div.remove();
                         clearInterval(hideTip);
@@ -317,7 +318,7 @@ easyUploader.prototype = {
         // B
         var maxFileSize = this.options.maxFileSize,
             hasLetter = false,
-            letterStr = 'B';
+            letterStr = "B";
         if (maxFileSize.indexOf("B") > 0) {
             maxFileSize = maxFileSize.replace(/B/g, "");
             hasLetter = true;
@@ -348,6 +349,18 @@ easyUploader.prototype = {
         }
 
         return true;
+    },
+    
+    /**
+     * 获取随机字符串
+     */
+    getNonce: function(length = 16) {
+        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890",
+            nonce = '';
+        for (var i = 0; i < length; i++) {
+            nonce += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return nonce;
     },
     
     /**

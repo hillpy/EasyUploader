@@ -91,7 +91,7 @@
     </div>
     <div class="example-frame">
         <div class="title">绑定input type="file"节点上传</div>
-        <input type="file" name="file" id="file100">
+        <input type="file" name="file" id="easyuploader_file">
     </div>
     <div class="example-frame">
         <div class="title">拖曳上传</div>
@@ -109,8 +109,6 @@
 
         var easyUploader1 = new easyUploader({
             "el": "#btn",
-            "name": "file",
-            "id": "file1",
             "accept": "image/*",
 
             "url": "./upload.php",
@@ -147,8 +145,7 @@
         });
 
         var easyUploader2 = new easyUploader({
-            "name": "file",
-            "file": "#file100",
+            "file": "#easyuploader_file",
 
             "url": "./upload.php",
             "autoUpload": true,
@@ -184,56 +181,53 @@
         });
 
         var easyUploader3 = new easyUploader({
-                "el": "#drop_area",
-                "name": "file",
-                "id": "file2",
-                "accept": "image/*",
+            "el": "#drop_area",
 
-                "url": "./upload.php",
-                "autoUpload": true,
-                "compress": true,
-                "resize": {
-                    "maxWidth": 1000,
-                    "maxHeight": 1000
-                },
-                "compressQuality": 0.9,
-                "maxFileSize": "2M",
-                "drag": true,
-                onDrop: function(e) {
-                    console.log("drop");
-                },
-                onDragOver: function(e) {
-                    console.log("dragover");
-                },
-                onDragEnter: function(e) {
-                    console.log("dragenter");
-                },
-                onDragLeave: function(e) {
-                    console.log("dragleave");
-                },
-                onUploadProgress: function (e) {
-                    console.log("上传进度为：" + ((e.loaded / e.total) * 100).toFixed(2) + "%");
-                },
-                onUploadStart: function (e) {
-                    console.log('即将上传。。');
-                },
-                onUploadComplete: function (data) {
-                    alert(data.msg);
-                    if (data.code == 1) {
-                        fileData = data.data;
-                        if (fileData.file_type.indexOf('image/') >= 0) {
-                            img.src = fileData.path;
-                            fileFrameObj.appendChild(img);
-                        } else {
-                            div.innerHTML = "文件路径：" + fileData.path;
-                            fileFrameObj.appendChild(div);
-                        }
+            "url": "./upload.php",
+            "autoUpload": true,
+            "compress": true,
+            "resize": {
+                "maxWidth": 1000,
+                "maxHeight": 1000
+            },
+            "compressQuality": 0.9,
+            "maxFileSize": "2M",
+            "drag": true,
+            onDrop: function(e) {
+                console.log("drop");
+            },
+            onDragOver: function(e) {
+                console.log("dragover");
+            },
+            onDragEnter: function(e) {
+                console.log("dragenter");
+            },
+            onDragLeave: function(e) {
+                console.log("dragleave");
+            },
+            onUploadProgress: function (e) {
+                console.log("上传进度为：" + ((e.loaded / e.total) * 100).toFixed(2) + "%");
+            },
+            onUploadStart: function (e) {
+                console.log('即将上传。。');
+            },
+            onUploadComplete: function (data) {
+                alert(data.msg);
+                if (data.code == 1) {
+                    fileData = data.data;
+                    if (fileData.file_type.indexOf('image/') >= 0) {
+                        img.src = fileData.path;
+                        fileFrameObj.appendChild(img);
+                    } else {
+                        div.innerHTML = "文件路径：" + fileData.path;
+                        fileFrameObj.appendChild(div);
                     }
-                },
-                onUploadError: function (statusCode) {
-                    console.log(statusCode);
                 }
-            });
+            },
+            onUploadError: function (statusCode) {
+                console.log(statusCode);
+            }
+        });
     </script>
 </body>
 </html>
