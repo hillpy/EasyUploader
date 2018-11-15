@@ -3,28 +3,47 @@ var easyUploader = function(options) {
         return new easyUploader(options);
     }
 
-    // default options object
+    // 默认配置对象
     var defaultOptions = {
+        // 绑定到元素节点
         "el": "",
+        // 创建的input name
         "name": "file",
+        // 创建的input id
         "id": "file",
+        // 创建的input accept
         "accept": "",
+
+        // 绑定到file
         "file": "#file",
+
+        // http上传方式
         "method": "post",
+        // 文件上传地址
         "url": "",
+        // 上传结果返回类型
         "resType": "json",
+        // 是否自动上传
         "autoUpload": false,
+        // 上传文件最大容量
+        "maxFileSize": "2M",
+        // 提示层样式
+        "tipClass": "",
+        // 是否启用拖拽上传
+        "drag": false,
+
+        // 是否自动压缩（仅图片有效））
         "compress": true,
+        // 重置尺寸（仅图片有效）
         "resize": {
             "maxWidth": 800,
             "maxHeight": 800
         },
-        "compressQuality": 0.9,
-        "maxFileSize": "2M",
-        "tipClass": ""
+        // 压缩质量（仅图片有效，图片格式必须为jpg、webp，必须为0-1小数，默认0.92）
+        "compressQuality": 0.92,
     }
 
-    // common param
+    // 公共参数
     this.fileObj = "";
     this.elObj = "";
     this.fileType = "";
@@ -34,14 +53,14 @@ var easyUploader = function(options) {
     this.context = this.canvas.getContext("2d");
     this.formData = new FormData();
 
-    // extend options
+    // 扩展配置选项
     this.options = this.extend(defaultOptions, options);
 
-    // init
+    // 初始化
     this.init();
 
     /**
-     * upload function
+     * 上传函数
      */
     this.upload = function() {
         if (this.fileType.indexOf("image/") >= 0) {
@@ -53,27 +72,28 @@ var easyUploader = function(options) {
 }
 
 /**
- * extend easyUploader
+ * 扩展 easyUploader
  */
 easyUploader.prototype = {
     /**
-     * init function
+     * 初始化
      */
     init: function() {
         if (this.options.el) {
-            // render input
+            this.elObj = document.querySelector(this.options.el);
             this.createInput();
-            // bind event
             this.bindElToInput();
+            this.options.drag && this.addListenDrag(this.elObj);
         } else {
             this.fileObj = document.querySelector(this.options.file);
+            this.options.drag && this.addListenDrag(this.fileObj);
         }
 
-        // add listen input
         this.addListenInput();
     },
+    
     /**
-     * extend object function
+     * 扩展对象
      */
     extend: function(obj, newObj) {
         for (var key in newObj) {
@@ -94,8 +114,9 @@ easyUploader.prototype = {
         }
         return obj;
     },
+
     /**
-     * create input dom
+     * 创建input(type=file)
      */
     createInput: function() {
         var input = document.createElement("input");
@@ -107,18 +128,19 @@ easyUploader.prototype = {
         document.querySelector("body").appendChild(input);
         this.fileObj = document.querySelector("#" + this.options.id);
     },
+
     /**
-     * bind event
+     * 元素点击事件绑定到文件对象点击事件
      */
     bindElToInput: function() {
         var _this = this;
-        _this.elObj = document.querySelector(_this.options.el);
         _this.elObj.addEventListener("click", function() {
             _this.fileObj.click();
         })
     },
+    
     /**
-     * listen input file
+     * 监听文件对象值变化
      */
     addListenInput: function() {
         var _this = this;
@@ -135,8 +157,33 @@ easyUploader.prototype = {
             }
         });
     },
+    
     /**
-     * render tip dom when error
+     * 添加拖曳事件监听
+     */
+    addListenDrag: function(obj) {
+        var _this = this;
+        obj.addEventListener("drop", function(e) {
+            e.preventDefault();
+            _this.options.onDrop && _this.options.onDrop(e);
+            _this.fileObj.files = e.dataTransfer.files;
+        });
+        obj.addEventListener("dragover", function(e) {
+            e.preventDefault();
+            _this.options.onDragOver && _this.options.onDragOver(e);
+        });
+        obj.addEventListener("dragenter", function(e) {
+            e.preventDefault();
+            _this.options.onDragEnter && _this.options.onDragEnter(e);
+        });
+        obj.addEventListener("dragleave", function(e) {
+            e.preventDefault();
+            _this.options.onDragLeave && _this.options.onDragLeave(e);
+        });
+    },
+    
+    /**
+     * 渲染提示层到dom
      */
     renderTipDom: function(text) {
         var div = document.createElement("div");
@@ -172,9 +219,9 @@ easyUploader.prototype = {
             }
         }, 1500);
     },
+    
     /**
-     * drawImage
-     * render Canvas
+     * 重绘image并渲染画布
      */
     drawAndRenderCanvas: function() {
         var _this = this,
@@ -212,8 +259,9 @@ easyUploader.prototype = {
             _this.options.autoUpload && _this.uploadCanvas();
         }
     },
+    
     /**
-     * uploader canvas image
+     * 上传canvas中的图片文件
      */
     uploadCanvas: function() {
         var _this = this;
@@ -227,8 +275,9 @@ easyUploader.prototype = {
             _this.uploadFile(blob);
         }, _this.fileType, _this.options.compressQuality);
     },
+
     /**
-     * uploader file
+     * 上传文件
      */
     uploadFile: function(value) {
         var _this = this;
@@ -260,8 +309,9 @@ easyUploader.prototype = {
         //xhr.setRequestHeader("Content-type", "multipart/form-data");
         xhr.send(_this.formData);
     },
+
     /**
-     * checkfile:size，type
+     * 校验文件（尺寸、类型）
      */
     checkFile: function() {
         // B
@@ -286,8 +336,9 @@ easyUploader.prototype = {
 
         return true;
     },
+    
     /**
-     * handle ajax result
+     * 处理结果格式
      */
     handleRes: function(res) {
         var resType = this.options.resType.toLowerCase();
