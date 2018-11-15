@@ -315,21 +315,34 @@ easyUploader.prototype = {
      */
     checkFile: function() {
         // B
-        var maxFileSize = this.options.maxFileSize;
+        var maxFileSize = this.options.maxFileSize,
+            hasLetter = false,
+            letterStr = 'B';
         if (maxFileSize.indexOf("B") > 0) {
             maxFileSize = maxFileSize.replace(/B/g, "");
-        } else if (maxFileSize.indexOf("K") > 0) {
+            hasLetter = true;
+            letterStr = "";
+        }
+        if (maxFileSize.indexOf("K") > 0) {
             maxFileSize = maxFileSize.replace(/K/g, "") * 1024;
+            hasLetter = true;
+            letterStr = "";
         } else if (maxFileSize.indexOf("M") > 0) {
             maxFileSize = maxFileSize.replace(/M/g, "") * 1024 * 1024;
+            hasLetter = true;
+            letterStr = "";
         } else if (maxFileSize.indexOf("G") > 0) {
             maxFileSize = maxFileSize.replace(/G/g, "") * 1024 * 1024 * 1024;
+            hasLetter = true;
+            letterStr = "";
         } else if (maxFileSize.indexOf("T") > 0) {
             maxFileSize = maxFileSize.replace(/T/g, "") * 1024 * 1024 * 1024 * 1024;
+            hasLetter = true;
+            letterStr = "";
         }
 
         if (this.fileSize > maxFileSize) {
-            this.renderTipDom("文件太大，最大允许为" + this.options.maxFileSize);
+            this.renderTipDom("文件太大，最大允许为" + this.options.maxFileSize + letterStr);
             this.fileObj.value = "";
             return false;
         }
