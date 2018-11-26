@@ -33,13 +33,26 @@
             font-size: 1.6rem;
         }
 
-        #btn {
+        #btn1, #btn2 {
             display: inline-block;
             width: 100px;
             height: 30px;
             line-height: 30px;
             border: 0;
             background: #aaa;
+            color: #fff;
+            cursor: pointer;
+            outline: none;
+            font-size: 1.4rem;
+        }
+
+        #upload_btn2 {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            border: 0;
+            background: rgb(29, 153, 10);
             color: #fff;
             cursor: pointer;
             outline: none;
@@ -87,7 +100,12 @@
 <body>
     <div class="example-frame">
         <div class="title">绑定元素节点上传</div>
-        <button id="btn">上传图片</button>
+        <button id="btn1">上传图片</button>
+    </div>
+    <div class="example-frame">
+        <div class="title">选择文件后手动点击上传</div>
+        <button id="btn2">＋</button>
+        <button id="upload_btn2">开始上传</button>
     </div>
     <div class="example-frame">
         <div class="title">绑定input type="file"节点上传</div>
@@ -105,10 +123,11 @@
     <script>
         var fileFrameObj = document.querySelector("#file_frame"),
             img = document.createElement('img'),
-            div = document.createElement('div');
+            div = document.createElement('div'),
+            uploadBtn2 = document.querySelector("#upload_btn2");
 
         var easyUploader1 = new easyUploader({
-            "el": "#btn",
+            "el": "#btn1",
             "accept": "image/*",
 
             "url": "./upload.php",
@@ -145,6 +164,46 @@
         });
 
         var easyUploader2 = new easyUploader({
+            "el": "#btn2",
+
+            "url": "./upload.php",
+            "autoUpload": false,
+            "compress": true,
+            "resize": {
+                "maxWidth": 1000,
+                "maxHeight": 1000
+            },
+            "compressQuality": 0.9,
+            "maxFileSize": "2M",
+            onUploadProgress: function(e) {
+                console.log("上传进度为：" + ((e.loaded / e.total) * 100).toFixed(2) + "%");
+            },
+            onUploadStart: function(e) {
+                console.log('即将上传。。');
+            },
+            onUploadComplete: function(data) {
+                alert(data.msg);
+                if (data.code == 1) {
+                    fileData = data.data;
+                    if (fileData.file_type.indexOf('image/') >= 0) {
+                        img.src = fileData.path;
+                        fileFrameObj.appendChild(img);
+                    } else {
+                        div.innerHTML = "文件路径：" + fileData.path;
+                        fileFrameObj.appendChild(div);
+                    }
+                }
+            },
+            onUploadError: function(statusCode) {
+                console.log(statusCode);
+            }
+        });
+
+        uploadBtn2.addEventListener("click", function() {
+            easyUploader2.upload();
+        });
+
+        var easyUploader3 = new easyUploader({
             "file": "#easyuploader_file",
 
             "url": "./upload.php",
@@ -180,7 +239,7 @@
             }
         });
 
-        var easyUploader3 = new easyUploader({
+        var easyUploader4 = new easyUploader({
             "el": "#drop_area",
 
             "url": "./upload.php",

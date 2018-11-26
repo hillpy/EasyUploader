@@ -49,6 +49,7 @@ var easyUploader = function(options) {
     this.fileType = "";
     this.fileName = "";
     this.fileSize = "";
+    this.fileObjClickStatus = true;
     this.canvas = document.createElement("canvas");
     this.context = this.canvas.getContext("2d");
     this.formData = new FormData();
@@ -58,17 +59,6 @@ var easyUploader = function(options) {
 
     // 初始化
     this.init();
-
-    /**
-     * 上传函数
-     */
-    this.upload = function() {
-        if (this.fileType.indexOf("image/") >= 0) {
-            this.uploadCanvas();
-        } else {
-            this.uploadFile(this.fileObj.files[0]);
-        }
-    }
 }
 
 /**
@@ -89,7 +79,8 @@ easyUploader.prototype = {
             this.options.drag && this.addListenDrag(this.fileObj);
         }
 
-        this.addListenInput();
+        this.listenFileObjClick();
+        this.listenFileObjChange();
     },
     
     /**
@@ -137,13 +128,37 @@ easyUploader.prototype = {
         var _this = this;
         _this.elObj.addEventListener("click", function() {
             _this.fileObj.click();
-        })
+        });
     },
-    
+
+    /**
+     * 启用点击
+     */
+    enableFileObjClick: function() {
+        this.fileObjClickStatus = true;
+    },
+
+    /**
+     * 禁用点击
+     */
+    disableFileObjClick: function() {
+        this.fileObjClickStatus = false;
+    },
+
+    /**
+     * 监听文件对象点击
+     */
+    listenFileObjClick: function() {
+        var _this = this;
+        _this.fileObj.addEventListener("click", function(e) {
+            _this.fileObjClickStatus || e.preventDefault();
+        });
+    },
+
     /**
      * 监听文件对象值变化
      */
-    addListenInput: function() {
+    listenFileObjChange: function() {
         var _this = this;
         _this.fileObj.addEventListener("change", function() {
             _this.fileType = _this.fileObj.files[0].type;
@@ -258,6 +273,17 @@ easyUploader.prototype = {
             _this.canvas.setAttribute("style", "display: none !important;");
             document.querySelector("body").appendChild(_this.canvas);
             _this.options.autoUpload && _this.uploadCanvas();
+        }
+    },
+
+    /**
+     * 上传函数
+     */
+    upload: function() {
+        if (this.fileType.indexOf("image/") >= 0) {
+            this.uploadCanvas();
+        } else {
+            this.uploadFile(this.fileObj.files[0]);
         }
     },
     
