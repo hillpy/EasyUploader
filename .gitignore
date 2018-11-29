@@ -1,6 +1,7 @@
 .DS_Store
-/example/file
-/example/js
-/.vscode
-/node_modules
-/dist
+example/file
+example/js
+.vscode
+node_modules
+dist
+build

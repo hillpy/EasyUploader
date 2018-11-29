@@ -4,7 +4,7 @@ import { uglify } from "rollup-plugin-uglify";
 
 const production = !process.env.ROLLUP_WATCH;
 let ouputFile = "example/js/easyuploader.js";
-production && (ouputFile = "dist/easyuploader.min.js");
+production && (ouputFile = "build/easyuploader.min.js");
 
 export default {
     input: "src/main.js",
