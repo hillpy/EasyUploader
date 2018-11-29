@@ -242,10 +242,16 @@ easyUploader.prototype = {
     drawAndRenderCanvas: function() {
         var _this = this,
             reader = new FileReader,
-            image = new Image();
+            image = new Image(),
+            arrayBuffer = new ArrayBuffer(),
+            orientation = 1,
+            width = '',
+            height = '';
 
         reader.readAsDataURL(_this.fileObj.files[0]);
         reader.onload = function(e) {
+            arrayBuffer = _this.base64ToArrayBuffer(this.result);
+            orientation = _this.getOrientation(arrayBuffer);
             image.src = this.result;
         }
 
@@ -253,24 +259,57 @@ easyUploader.prototype = {
             if (_this.options.compress) {
                 if (image.width > _this.options.resize.maxWidth || image.height > _this.options.resize.maxHeight) {
                     if (image.width > image.height) {
-                        _this.canvas.width = _this.options.resize.maxWidth;
-                        _this.canvas.height = (image.height / image.width) * _this.options.resize.maxWidth;
+                        width = _this.options.resize.maxWidth;
+                        height = (image.height / image.width) * _this.options.resize.maxWidth;
                     } else {
-                        _this.canvas.width = (image.width / image.height) * _this.options.resize.maxHeight;
-                        _this.canvas.height = _this.options.resize.maxHeight;
+                        width = (image.width / image.height) * _this.options.resize.maxHeight;
+                        height = _this.options.resize.maxHeight;
                     }
                 } else {
-                    _this.canvas.width = image.width;
-                    _this.canvas.height = image.height;
+                    width = image.width;
+                    height = image.height;
                 }
             } else {
-                _this.canvas.width = image.width;
-                _this.canvas.height = image.height;
+                width = image.width;
+                height = image.height;
                 _this.options.compressQuality = 1;
             }
 
-            _this.context.drawImage(image, 0, 0, _this.canvas.width, _this.canvas.height);
-            _this.canvas.setAttribute("style", "display: none !important;");
+            switch(orientation) {
+                // 偏移180度，转180度
+                case 3:
+                    _this.canvas.width = width;
+                    _this.canvas.height = height;
+                    _this.context.rotate(180 * Math.PI / 180);
+                    _this.context.drawImage(image, -width, -height, width, height);
+                    break;
+                
+                // 顺时针偏移270度（逆时针偏移90度），再转90度
+                case 8:
+                    _this.canvas.width = height;
+                    _this.canvas.height = width;
+                    _this.context.rotate(90 * Math.PI / 180);
+                    _this.context.drawImage(image, 0, -height, width, height);
+                    break;
+                
+                // 顺时针偏移90度，再转270度
+                case 6:
+                    _this.canvas.width = height;
+                    _this.canvas.height = width;
+                    _this.context.rotate(270 * Math.PI / 180);
+                    _this.context.drawImage(image, -width, 0, width, height);
+                    break;
+                
+                // 0度和默认，不旋转
+                case 1:
+                default:
+                    _this.canvas.width = width;
+                    _this.canvas.height = height;
+                    _this.context.drawImage(image, 0, 0, width, height);
+                    break;
+            }
+
+            // _this.canvas.setAttribute("style", "display: none !important;");
             document.querySelector("body").appendChild(_this.canvas);
             _this.options.autoUpload && _this.uploadCanvas();
         }
@@ -335,6 +374,93 @@ easyUploader.prototype = {
         };
         //xhr.setRequestHeader("Content-type", "multipart/form-data");
         xhr.send(_this.formData);
+    },
+
+    /**
+     * 图片的base64转ArrayBuffer对象
+     */
+    base64ToArrayBuffer: function(base64) {
+        base64 = base64.replace(/^data\:([^\;]+)\;base64,/gim, "");
+        var binary = atob(base64),
+            length = binary.length,
+            buffer = new ArrayBuffer(length),
+            view = new Uint8Array(buffer);
+        for (var i = 0; i < length; i++) {
+            view[i] = binary.charCodeAt(i);
+        }
+        return buffer;
+    },
+
+    /**
+     * Unicode码转字符串
+     */
+    getStringFromCharCode: function(dataView, start, length) {
+        var string = '',
+            i;
+        for (i = start, length += start; i < length; i++) {
+            string += String.fromCharCode(dataView.getUint8(i));
+        }
+        return string;
+    },
+
+    /**
+     * 获取jpg图片的orientation（即角度）
+     */
+    getOrientation: function(arrayBuffer) {
+        var dataView = new DataView(arrayBuffer),
+            length = dataView.byteLength,
+            orientation,
+            exifIDCode,
+            tiffOffset,
+            firstIFDOffset,
+            littleEndian,
+            endianness,
+            app1Start,
+            ifdStart,
+            offset,
+            i;
+
+        if (dataView.getUint8(0) === 0xFF && dataView.getUint8(1) === 0xD8) {
+            offset = 2;
+            while (offset < length) {
+                if (dataView.getUint8(offset) === 0xFF && dataView.getUint8(offset + 1) === 0xE1) {
+                    app1Start = offset;
+                    break;
+                }
+                offset++;
+            }
+        }
+        if (app1Start) {
+            exifIDCode = app1Start + 4;
+            tiffOffset = app1Start + 10;
+            if (this.getStringFromCharCode(dataView, exifIDCode, 4) === 'Exif') {
+                endianness = dataView.getUint16(tiffOffset);
+                littleEndian = endianness === 0x4949;
+                if (littleEndian || endianness === 0x4D4D) {
+                    if (dataView.getUint16(tiffOffset + 2, littleEndian) === 0x002A) {
+                        firstIFDOffset = dataView.getUint32(tiffOffset + 4, littleEndian);
+                        if (firstIFDOffset >= 0x00000008) {
+                            ifdStart = tiffOffset + firstIFDOffset;
+                        }
+                    }
+                }
+            }
+        }
+        if (ifdStart) {
+            length = dataView.getUint16(ifdStart, littleEndian);
+            for (i = 0; i < length; i++) {
+                offset = ifdStart + i * 12 + 2;
+                if (dataView.getUint16(offset, littleEndian) === 0x0112) {
+                    offset += 8;
+                    orientation = dataView.getUint16(offset, littleEndian);
+                    if (navigator.userAgent.indexOf("Safari") > -1) {
+                        dataView.setUint16(offset, 1, littleEndian);
+                    }
+                    break;
+                }
+            }
+        }
+        return orientation;
     },
 
     /**
