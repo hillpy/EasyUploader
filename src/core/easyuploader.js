@@ -309,7 +309,7 @@ easyUploader.prototype = {
                     break;
             }
 
-            // _this.canvas.setAttribute("style", "display: none !important;");
+            _this.canvas.setAttribute("style", "display: none !important;");
             document.querySelector("body").appendChild(_this.canvas);
             _this.options.autoUpload && _this.uploadCanvas();
         }
