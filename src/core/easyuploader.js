@@ -277,7 +277,7 @@ easyUploader.prototype = {
                 _this.options.compressQuality = 1;
             }
 
-            if (_this.fixOrientation) {
+            if (_this.options.fixOrientation) {
                 switch(orientation) {
                     // 偏移180度
                     case 3:
