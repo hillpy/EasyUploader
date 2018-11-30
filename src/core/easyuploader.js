@@ -24,13 +24,13 @@ var easyUploader = function(options) {
         // 上传结果返回类型
         "resType": "json",
         // 是否自动上传
-        "autoUpload": false,
+        "autoUpload": true,
         // 上传文件最大容量
         "maxFileSize": "2M",
         // 提示层样式
         "tipClass": "",
-        // 是否启用拖拽上传
-        "drag": false,
+        // 是否允许拖拽上传
+        "allowDrag": false,
         // 是否自动修正上传照片方向
         "fixOrientation": true,
 
@@ -51,6 +51,7 @@ var easyUploader = function(options) {
     this.fileType = "";
     this.fileName = "";
     this.fileSize = "";
+    this.fileExt = "";
     this.fileObjClickStatus = true;
     this.canvas = document.createElement("canvas");
     this.context = this.canvas.getContext("2d");
@@ -75,10 +76,10 @@ easyUploader.prototype = {
             this.elObj = document.querySelector(this.options.el);
             this.createInput();
             this.bindElToInput();
-            this.options.drag && this.addListenDrag(this.elObj);
+            this.options.allowDrag && this.listenDrag(this.elObj);
         } else {
             this.fileObj = document.querySelector(this.options.file);
-            this.options.drag && this.addListenDrag(this.fileObj);
+            this.options.allowDrag && this.listenDrag(this.fileObj);
         }
 
         this.listenFileObjClick();
@@ -165,6 +166,7 @@ easyUploader.prototype = {
         _this.fileObj.addEventListener("change", function() {
             _this.fileType = _this.fileObj.files[0].type;
             _this.fileName = _this.fileObj.files[0].name;
+            _this.fileExt = _this.fileName.split(".").pop();
             _this.fileSize = _this.fileObj.files[0].size;
             if (_this.checkFile()) {
                 if (_this.fileType.indexOf("image/") >= 0) {
@@ -177,9 +179,9 @@ easyUploader.prototype = {
     },
     
     /**
-     * 添加拖曳事件监听
+     * 监听拖曳事件
      */
-    addListenDrag: function(obj) {
+    listenDrag: function(obj) {
         var _this = this;
         obj.addEventListener("drop", function(e) {
             e.preventDefault();
