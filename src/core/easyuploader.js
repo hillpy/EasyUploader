@@ -33,8 +33,10 @@ var easyUploader = function(options) {
         "allowDrag": false,
         // 是否自动修正上传照片方向
         "fixOrientation": true,
+        // 允许上传的文件扩展名
+        "allowFileExt": [],
 
-        // 是否自动压缩（仅图片有效））
+        // 是否进行压缩（仅图片有效）
         "compress": true,
         // 重置尺寸（仅图片有效）
         "resize": {
@@ -505,6 +507,12 @@ easyUploader.prototype = {
 
         if (this.fileSize > maxFileSize) {
             this.renderTipDom("文件太大，最大允许为" + this.options.maxFileSize + letterStr);
+            this.fileObj.value = "";
+            return false;
+        }
+
+        if (this.options.allowFileExt.length > 0 && this.options.allowFileExt.indexOf(this.fileExt) == -1) {
+            this.renderTipDom("文件格式不允许上传，请上传" + this.options.allowFileExt.join("，") + "格式的文件");
             this.fileObj.value = "";
             return false;
         }
