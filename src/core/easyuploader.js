@@ -31,6 +31,8 @@ var easyUploader = function(options) {
         "tipClass": "",
         // 是否启用拖拽上传
         "drag": false,
+        // 是否自动修正上传照片方向
+        "fixOrientation": true,
 
         // 是否自动压缩（仅图片有效））
         "compress": true,
@@ -275,38 +277,43 @@ easyUploader.prototype = {
                 _this.options.compressQuality = 1;
             }
 
-            switch(orientation) {
-                // 偏移180度，转180度
-                case 3:
-                    _this.canvas.width = width;
-                    _this.canvas.height = height;
-                    _this.context.rotate(180 * Math.PI / 180);
-                    _this.context.drawImage(image, -width, -height, width, height);
-                    break;
-                
-                // 顺时针偏移270度（逆时针偏移90度），再转90度
-                case 8:
-                    _this.canvas.width = height;
-                    _this.canvas.height = width;
-                    _this.context.rotate(90 * Math.PI / 180);
-                    _this.context.drawImage(image, 0, -height, width, height);
-                    break;
-                
-                // 顺时针偏移90度，再转270度
-                case 6:
-                    _this.canvas.width = height;
-                    _this.canvas.height = width;
-                    _this.context.rotate(270 * Math.PI / 180);
-                    _this.context.drawImage(image, -width, 0, width, height);
-                    break;
-                
-                // 0度和默认，不旋转
-                case 1:
-                default:
-                    _this.canvas.width = width;
-                    _this.canvas.height = height;
-                    _this.context.drawImage(image, 0, 0, width, height);
-                    break;
+            if (_this.fixOrientation) {
+                switch(orientation) {
+                    // 偏移180度
+                    case 3:
+                        _this.canvas.width = width;
+                        _this.canvas.height = height;
+                        _this.context.rotate(180 * Math.PI / 180);
+                        _this.context.drawImage(image, -width, -height, width, height);
+                        break;
+                    
+                    // 顺时针偏移90度
+                    case 6:
+                        _this.canvas.width = height;
+                        _this.canvas.height = width;
+                        _this.context.rotate(90 * Math.PI / 180);
+                        _this.context.drawImage(image, 0, -height, width, height);
+                        break;
+                    
+                    // 顺时针偏移270度
+                    case 8:
+                        _this.canvas.width = height;
+                        _this.canvas.height = width;
+                        _this.context.rotate(270 * Math.PI / 180);
+                        _this.context.drawImage(image, -width, 0, width, height);
+                        break;
+                    
+                    // 0度和默认，不旋转
+                    case 1:
+                    default:
+                        _this.canvas.width = width;
+                        _this.canvas.height = height;
+                        _this.context.drawImage(image, 0, 0, width, height);
+                }
+            } else {
+                _this.canvas.width = width;
+                _this.canvas.height = height;
+                _this.context.drawImage(image, 0, 0, width, height);
             }
 
             _this.canvas.setAttribute("style", "display: none !important;");
