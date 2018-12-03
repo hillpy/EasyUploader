@@ -95,6 +95,31 @@
             display: inline-block;
             max-width: 100%;
         }
+
+        .clip-frame {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 90000;
+        }
+        .clip-layer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .clip-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            width: 80vw;
+            max-width: 400px;
+            height: 80vw;
+            max-height: 400px;
+            background: #fff;
+        }
     </style>
 </head>
 <body>
@@ -118,6 +143,13 @@
     <div id="file_frame">
         <h3>上传结果文件</h3>
         <hr>
+    </div>
+    <div class="clip-frame">
+        <div class="clip-layer">
+            <div class="clip-box">
+
+            </div>
+        </div>
     </div>
     <script src="./js/easyuploader.js"></script>
     <script>
