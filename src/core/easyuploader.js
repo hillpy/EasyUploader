@@ -35,6 +35,8 @@ var easyUploader = function(options) {
         "fixOrientation": true,
         // 允许上传的文件扩展名
         "allowFileExt": [],
+        // 是否开启裁剪（仅图片有效）
+        "clip": false,
 
         // 是否进行压缩（仅图片有效）
         "compress": true,
