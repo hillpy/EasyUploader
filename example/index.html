@@ -101,6 +101,7 @@
             top: 0;
             left: 0;
             z-index: 90000;
+            display: none;
         }
         .clip-layer {
             position: relative;
@@ -315,7 +316,7 @@
                 "maxHeight": 1000
             },
             "compressQuality": 0.9,
-            "maxFileSize": "2M",
+            "maxFileSize": "10M",
             onUploadProgress: function (e) {
                 console.log("上传进度为：" + ((e.loaded / e.total) * 100).toFixed(2) + "%");
             },
