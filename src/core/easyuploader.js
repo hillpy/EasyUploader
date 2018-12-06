@@ -494,35 +494,42 @@ easyUploader.prototype = {
      * 校验文件（尺寸、类型）
      */
     checkFile: function() {
-        // B
         var maxFileSize = this.options.maxFileSize,
-            hasLetter = false,
-            letterStr = "B";
+            maxFileSizeWithLetter = 0,
+            letterStr = "";
         if (maxFileSize.indexOf("B") > 0) {
             maxFileSize = maxFileSize.replace(/B/g, "");
-            hasLetter = true;
-            letterStr = "";
+            letterStr = "B";
         }
         if (maxFileSize.indexOf("K") > 0) {
-            maxFileSize = maxFileSize.replace(/K/g, "") * 1024;
-            hasLetter = true;
-            letterStr = "";
+            maxFileSizeWithLetter = eval(maxFileSize.replace(/K/g, ""));
+            maxFileSize = maxFileSizeWithLetter * 1024;
+            console.log()
+            letterStr = "K" + letterStr;
         } else if (maxFileSize.indexOf("M") > 0) {
-            maxFileSize = maxFileSize.replace(/M/g, "") * 1024 * 1024;
-            hasLetter = true;
-            letterStr = "";
+            maxFileSizeWithLetter = eval(maxFileSize.replace(/M/g, ""));
+            maxFileSize = maxFileSizeWithLetter * 1024 * 1024;
+            letterStr = "M" + letterStr;
         } else if (maxFileSize.indexOf("G") > 0) {
-            maxFileSize = maxFileSize.replace(/G/g, "") * 1024 * 1024 * 1024;
-            hasLetter = true;
-            letterStr = "";
+            maxFileSizeWithLetter = eval(maxFileSize.replace(/G/g, ""));
+            maxFileSize = maxFileSizeWithLetter * 1024 * 1024 * 1024;
+            letterStr = "G" + letterStr;
         } else if (maxFileSize.indexOf("T") > 0) {
-            maxFileSize = maxFileSize.replace(/T/g, "") * 1024 * 1024 * 1024 * 1024;
-            hasLetter = true;
-            letterStr = "";
+            maxFileSizeWithLetter = eval(maxFileSize.replace(/T/g, ""));
+            maxFileSize = maxFileSizeWithLetter * 1024 * 1024 * 1024 * 1024;
+            letterStr = "T" + letterStr;
+        } else if (maxFileSize.indexOf("P") > 0) {
+            maxFileSizeWithLetter = eval(maxFileSize.replace(/P/g, ""));
+            maxFileSize = maxFileSizeWithLetter * 1024 * 1024 * 1024 * 1024 * 1024;
+            letterStr = "P" + letterStr;
+        } else {
+            maxFileSizeWithLetter = eval(maxFileSize);
+            maxFileSize = maxFileSizeWithLetter;
+            letterStr = "B";
         }
 
         if (this.fileSize > maxFileSize) {
-            this.renderTipDom("文件太大，最大允许为" + this.options.maxFileSize + letterStr);
+            this.renderTipDom("文件太大，最大允许为" + maxFileSizeWithLetter + letterStr);
             this.fileObj.value = "";
             return false;
         }
