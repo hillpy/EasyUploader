@@ -74,6 +74,7 @@ var easyUploader = function(options) {
     this.canvas = document.createElement("canvas");
     this.context = this.canvas.getContext("2d");
     this.formData = new FormData();
+    this.eval = eval;
 
     // 扩展配置选项
     this.options = this.extend(defaultOptions, options);
@@ -502,27 +503,27 @@ easyUploader.prototype = {
             letterStr = "B";
         }
         if (maxFileSize.indexOf("K") > 0) {
-            maxFileSizeWithLetter = eval(maxFileSize.replace(/K/g, ""));
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/K/g, ""));
             maxFileSize = maxFileSizeWithLetter * 1024;
             letterStr = "K" + letterStr;
         } else if (maxFileSize.indexOf("M") > 0) {
-            maxFileSizeWithLetter = eval(maxFileSize.replace(/M/g, ""));
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/M/g, ""));
             maxFileSize = maxFileSizeWithLetter * 1024 * 1024;
             letterStr = "M" + letterStr;
         } else if (maxFileSize.indexOf("G") > 0) {
-            maxFileSizeWithLetter = eval(maxFileSize.replace(/G/g, ""));
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/G/g, ""));
             maxFileSize = maxFileSizeWithLetter * 1024 * 1024 * 1024;
             letterStr = "G" + letterStr;
         } else if (maxFileSize.indexOf("T") > 0) {
-            maxFileSizeWithLetter = eval(maxFileSize.replace(/T/g, ""));
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/T/g, ""));
             maxFileSize = maxFileSizeWithLetter * 1024 * 1024 * 1024 * 1024;
             letterStr = "T" + letterStr;
         } else if (maxFileSize.indexOf("P") > 0) {
-            maxFileSizeWithLetter = eval(maxFileSize.replace(/P/g, ""));
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/P/g, ""));
             maxFileSize = maxFileSizeWithLetter * 1024 * 1024 * 1024 * 1024 * 1024;
             letterStr = "P" + letterStr;
         } else {
-            maxFileSizeWithLetter = eval(maxFileSize);
+            maxFileSizeWithLetter = this.eval(maxFileSize);
             maxFileSize = maxFileSizeWithLetter;
             letterStr = "B";
         }
