@@ -504,7 +504,6 @@ easyUploader.prototype = {
         if (maxFileSize.indexOf("K") > 0) {
             maxFileSizeWithLetter = eval(maxFileSize.replace(/K/g, ""));
             maxFileSize = maxFileSizeWithLetter * 1024;
-            console.log()
             letterStr = "K" + letterStr;
         } else if (maxFileSize.indexOf("M") > 0) {
             maxFileSizeWithLetter = eval(maxFileSize.replace(/M/g, ""));
