@@ -1,0 +1,49 @@
+{
+    "title": "easyUploader",
+    "author": "shinn_lancelot",
+    "description": "easyUploader document",
+    "language": "zh-hans",
+    "gitbook": "^3.2.3",
+    "structure": {
+        "readme": "README.md"
+    },
+    "plugins": [
+        "-sharing",
+        "splitter",
+        "expandable-chapters-small",
+        "anchors",
+
+        "github",
+        "github-buttons",
+        "edit-link",
+        "donate"
+    ],
+    "pluginsConfig": {
+        "github": {
+            "url": "https://github.com/hillpy"
+        },
+        "github-buttons": {
+            "buttons": [
+                {
+                    "user": "hillpy",
+                    "repo": "easyUploader",
+                    "type": "star",
+                    "size": "small",
+                    "count": true
+                }
+            ]
+        },
+        "donate": {
+            "wechat": "./asset/image/wechat_qrcode.png",
+            "alipay": "./asset/image/alipay_qrcode.png",
+            "title": "",
+            "button": "打赏",
+            "wechatText": "微信打赏",
+            "alipayText": "支付宝打赏"
+        },
+        "edit-link": {
+            "base": "https://github.com/hillpy/easyUploader/tree/master/doc",
+            "label": "Edit This Page"
+        }
+    }
+}
