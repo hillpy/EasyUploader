@@ -1,1 +1,3 @@
-# easyUploader文档
+# easyUploader
+
+easyUploader是一个轻量级的、基于HTML5的js文件上传插件
