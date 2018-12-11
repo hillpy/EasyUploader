@@ -17,8 +17,8 @@ install:
   - gitbook install
 
 script:
-  - gitbook build . ./_book
-  # - gitbook build . ./_book/$CUSTOM_PATH
+  - gitbook build ./_book
+  # - gitbook build ./_book/$CUSTOM_PATH
 
 branches:
   only:
