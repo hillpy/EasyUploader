@@ -16,8 +16,8 @@ install:
   - gitbook install
 
 script:
-  - gitbook build ./doc ./doc/_book
-  # - gitbook build ./doc ./doc/_book/$CUSTOM_PATH
+  - gitbook build . ./_book
+  # - gitbook build . ./_book/$CUSTOM_PATH
 
 branches:
   only:
@@ -27,7 +27,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: ./doc/_book
+  local_dir: ./_book
   #fqdn: $CUSTOM_DOMAIN
   name: $GIT_NAME
   email: $GIT_EMAIL
