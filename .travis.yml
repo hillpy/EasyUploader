@@ -27,7 +27,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: ./_book
+  local_dir: ./doc/_book
   #fqdn: $CUSTOM_DOMAIN
   name: $GIT_NAME
   email: $GIT_EMAIL
