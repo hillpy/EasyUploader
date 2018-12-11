@@ -9,16 +9,15 @@ cache:
 
 before_install:
   - export TZ='Asia/Shanghai' # 更改时区
+  - cd doc
 
 install:
-
-
   - npm install gitbook-cli -g
   - gitbook install
 
 script:
-  - gitbook build ./_book
-  # - gitbook build ./_book/$CUSTOM_PATH
+  - gitbook build ./doc ./doc/_book
+  # - gitbook build ./doc ./doc/_book/$CUSTOM_PATH
 
 branches:
   only:
@@ -28,7 +27,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: _book
+  local_dir: ./doc/_book
   #fqdn: $CUSTOM_DOMAIN
   name: $GIT_NAME
   email: $GIT_EMAIL
