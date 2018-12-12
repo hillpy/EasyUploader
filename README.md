@@ -1,5 +1,11 @@
 # easyUploader，一个轻量级的、基于HTML5的js文件上传插件
 
+[![issue](https://img.shields.io/github/issues/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader/issues)
+[![star](https://img.shields.io/github/stars/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader)
+[![fork](https://img.shields.io/github/forks/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader)
+[![license](https://img.shields.io/github/license/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader/blob/master/LICENSE)
+[![Build Status](https://www.travis-ci.com/hillpy/easyUploader.svg?branch=master)](https://www.travis-ci.com/hillpy/easyUploader)
+
 ## 主要特性
 
 * 文件上传

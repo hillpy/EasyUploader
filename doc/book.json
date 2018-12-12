@@ -37,8 +37,8 @@
             ]
         },
         "donate": {
-            "wechat": "./asset/image/wechat_new_qrcode.png",
-            "alipay": "./asset/image/alipay_new_qrcode.png",
+            "wechat": "http://resource.hillpy.com/image/wechat_new_qrcode.png",
+            "alipay": "http://resource.hillpy.com/image/alipay_new_qrcode.png",
             "title": "",
             "button": "打赏",
             "wechatText": "微信打赏",
