@@ -12,13 +12,16 @@
         "splitter",
         "expandable-chapters-small",
         "anchors",
-
+        "anchor-navigation-ex",
         "github",
         "github-buttons",
         "edit-link",
         "donate"
     ],
     "pluginsConfig": {
+        "anchor-navigation-ex": {
+            "showLevel": false
+        },
         "github": {
             "url": "https://github.com/hillpy/easyUploader"
         },
