@@ -9,13 +9,17 @@ cache:
 
 before_install:
   - export TZ='Asia/Shanghai' # 更改时区
-  - cd doc
 
 install:
+  - npm install
+  - cd doc
   - npm install gitbook-cli -g
   - gitbook install
 
 script:
+  - cd ..
+  - npm run build
+  - cd doc
   - gitbook build . ./_book
   # - gitbook build . ./_book/$CUSTOM_PATH
 
