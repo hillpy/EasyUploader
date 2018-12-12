@@ -20,7 +20,7 @@
     ],
     "pluginsConfig": {
         "github": {
-            "url": "https://github.com/hillpy"
+            "url": "https://github.com/hillpy/easyUploader"
         },
         "github-buttons": {
             "buttons": [
@@ -34,8 +34,8 @@
             ]
         },
         "donate": {
-            "wechat": "./asset/image/wechat_qrcode.png",
-            "alipay": "./asset/image/alipay_qrcode.png",
+            "wechat": "./asset/image/wechat_new_qrcode.png",
+            "alipay": "./asset/image/alipay_new_qrcode.png",
             "title": "",
             "button": "打赏",
             "wechatText": "微信打赏",
