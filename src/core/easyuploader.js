@@ -49,8 +49,6 @@ var easyUploader = function(options) {
         "fixOrientation": true,
         // 允许上传的文件扩展名
         "allowFileExt": [],
-        // 是否开启裁剪（仅图片有效）
-        "clip": false,
 
         // 是否进行压缩（仅图片有效）
         "compress": true,
@@ -188,7 +186,7 @@ easyUploader.prototype = {
             _this.fileExt = _this.fileName.split(".").pop();
             _this.fileSize = _this.fileObj.files[0].size;
             if (_this.checkFile()) {
-                if (_this.fileType.indexOf("image/") >= 0) {
+                if (_this.fileType.indexOf("image/") >= 0 && _this.options.compress) {
                     _this.drawAndRenderCanvas();
                 } else {
                     _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0]);
