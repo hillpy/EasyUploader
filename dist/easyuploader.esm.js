@@ -206,8 +206,7 @@ var easyUploader = function easyUploader(options) {
     this.eval = eval;
 
     // 扩展配置选项
-    this.options = defaultExport.extend(defaultOptions, options);
-
+    this.options = defaultExport.extend(JSON.parse(JSON.stringify(defaultOptions)), options);
     // 初始化
     this.init();
 };
@@ -250,7 +249,7 @@ easyUploader.prototype.createInput = function createInput () {
  */
 easyUploader.prototype.bindElToInput = function bindElToInput () {
     var _this = this;
-    _this.elObj.addEventListener("click", function() {
+    _this.elObj.addEventListener("click", function () {
         _this.fileObj.click();
     });
 };
@@ -274,7 +273,7 @@ easyUploader.prototype.disableFileObjClick = function disableFileObjClick () {
  */
 easyUploader.prototype.listenFileObjClick = function listenFileObjClick () {
     var _this = this;
-    _this.fileObj.addEventListener("click", function(e) {
+    _this.fileObj.addEventListener("click", function (e) {
         _this.fileObjClickStatus || e.preventDefault();
     });
 };
@@ -284,7 +283,7 @@ easyUploader.prototype.listenFileObjClick = function listenFileObjClick () {
  */
 easyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
     var _this = this;
-    _this.fileObj.addEventListener("change", function() {
+    _this.fileObj.addEventListener("change", function () {
         _this.fileType = _this.fileObj.files[0].type;
         _this.fileName = _this.fileObj.files[0].name;
         _this.fileExt = _this.fileName.split(".").pop();
@@ -304,20 +303,20 @@ easyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
  */
 easyUploader.prototype.listenDrag = function listenDrag (obj) {
     var _this = this;
-    obj.addEventListener("drop", function(e) {
+    obj.addEventListener("drop", function (e) {
         e.preventDefault();
         _this.options.onDrop && _this.options.onDrop(e);
         _this.fileObj.files = e.dataTransfer.files;
     });
-    obj.addEventListener("dragover", function(e) {
+    obj.addEventListener("dragover", function (e) {
         e.preventDefault();
         _this.options.onDragOver && _this.options.onDragOver(e);
     });
-    obj.addEventListener("dragenter", function(e) {
+    obj.addEventListener("dragenter", function (e) {
         e.preventDefault();
         _this.options.onDragEnter && _this.options.onDragEnter(e);
     });
-    obj.addEventListener("dragleave", function(e) {
+    obj.addEventListener("dragleave", function (e) {
         e.preventDefault();
         _this.options.onDragLeave && _this.options.onDragLeave(e);
     });
@@ -336,13 +335,13 @@ easyUploader.prototype.drawAndRenderCanvas = function drawAndRenderCanvas () {
         height = '';
 
     reader.readAsDataURL(_this.fileObj.files[0]);
-    reader.onload = function(e) {
-        arrayBuffer = defaultExport.base64ToArrayBuffer(this.result);
+    reader.onload = function (e) {
+        arrayBuffer = defaultExport.base64ToArrayBuffer(e.target.result);
         orientation = defaultExport.getOrientation(arrayBuffer);
-        image.src = this.result;
+        image.src = e.target.result;
     };
 
-    image.onload = function() {
+    image.onload = function () {
         if (_this.options.compress) {
             if (image.width > _this.options.resize.maxWidth || image.height > _this.options.resize.maxHeight) {
                 if (image.width > image.height) {
@@ -429,7 +428,7 @@ easyUploader.prototype.uploadCanvas = function uploadCanvas () {
         return;
     }
 
-    _this.canvas.toBlob(function(blob) {
+    _this.canvas.toBlob(function (blob) {
         _this.uploadFile(blob);
     }, _this.fileType, _this.options.compressQuality);
 };
@@ -448,13 +447,13 @@ easyUploader.prototype.uploadFile = function uploadFile (value) {
     _this.formData.append(_this.options.name, value, _this.fileName);
     var xhr = new XMLHttpRequest();
     xhr.open(_this.options.method, _this.options.url, true);
-    xhr.upload.addEventListener("progress", function(e) {
+    xhr.upload.addEventListener("progress", function (e) {
         _this.options.onUploadProgress && _this.options.onUploadProgress(e);
     });
-    xhr.upload.addEventListener("loadstart", function(e) {
+    xhr.upload.addEventListener("loadstart", function (e) {
         _this.options.onUploadStart && _this.options.onUploadStart(e);
     });
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
                 _this.options.onUploadComplete && _this.options.onUploadComplete(_this.handleRes(xhr.responseText));
@@ -480,14 +479,14 @@ easyUploader.prototype.renderTipDom = function renderTipDom (text) {
         div.setAttribute("style", "max-width: 80%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: absolute;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;");
     }
     document.querySelector("body").appendChild(div);
-    setTimeout(function() {
+    setTimeout(function () {
         var opacity = div.style.opacity;
         if (opacity > 0) {
             opacity = (opacity - 0.2).toFixed(1);
             if (opacity < 0) {
                 opacity = 0;
             }
-            var hideTip = setInterval(function() {
+            var hideTip = setInterval(function () {
                 div.style.opacity = opacity;
                 div.style.filter = "Alpha((opacity = " + opacity * 100 + "))";
                 if (opacity <= 0) {

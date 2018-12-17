@@ -32,11 +32,11 @@ export default class {
      */
     static base64ToArrayBuffer(base64) {
         base64 = base64.replace(/^data\:([^\;]+)\;base64,/gim, "");
-        var binary = atob(base64),
+        let binary = atob(base64),
             length = binary.length,
             buffer = new ArrayBuffer(length),
             view = new Uint8Array(buffer);
-        for (var i = 0; i < length; i++) {
+        for (let i = 0; i < length; i++) {
             view[i] = binary.charCodeAt(i);
         }
         return buffer;
@@ -46,7 +46,7 @@ export default class {
      * 获取jpg图片的orientation（即角度）
      */
     static getOrientation(arrayBuffer) {
-        var dataView = new DataView(arrayBuffer),
+        let dataView = new DataView(arrayBuffer),
             length = dataView.byteLength,
             orientation,
             exifIDCode,
@@ -106,7 +106,7 @@ export default class {
      * Unicode码转字符串
      */
     static getStringFromCharCode(dataView, start, length) {
-        var string = '',
+        let string = '',
             i;
         for (i = start, length += start; i < length; i++) {
             string += String.fromCharCode(dataView.getUint8(i));
@@ -119,9 +119,9 @@ export default class {
      */
     static getNonce(length) {
         length || (length = 16);
-        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890",
+        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890",
             nonce = '';
-        for (var i = 0; i < length; i++) {
+        for (let i = 0; i < length; i++) {
             nonce += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         return nonce;

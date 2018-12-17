@@ -4,10 +4,10 @@ import common from './common'   // 导入通用静态函数类
 if (!HTMLCanvasElement.prototype.toBlob) {
     Object.defineProperty(HTMLCanvasElement.prototype, "toBlob", {
         value: function(callback, type, quality) {
-            var binStr = atob(this.toDataURL(type, quality).split(",")[1]),
+            let binStr = atob(this.toDataURL(type, quality).split(",")[1]),
                 len = binStr.length,
                 arr = new Uint8Array(len);
-            for (var i = 0; i < len; i++) {
+            for (let i = 0; i < len; i++) {
                 arr[i] = binStr.charCodeAt(i);
             }
             callback(new Blob([arr], { type: type || "image/png" }));
@@ -39,8 +39,7 @@ export default class easyUploader {
         this.eval = eval;
 
         // 扩展配置选项
-        this.options = common.extend(defaultOptions, options);
-
+        this.options = common.extend(JSON.parse(JSON.stringify(defaultOptions)), options);
         // 初始化
         this.init();
     }
@@ -68,7 +67,7 @@ export default class easyUploader {
      */
     createInput() {
         this.options.id || (this.options.id = "easyuploader_" + common.getNonce());
-        var input = document.createElement("input");
+        let input = document.createElement("input");
         input.type = "file";
         input.name = this.options.name;
         input.id = this.options.id;
@@ -82,8 +81,8 @@ export default class easyUploader {
      * 元素点击事件绑定到文件对象点击事件
      */
     bindElToInput() {
-        var _this = this;
-        _this.elObj.addEventListener("click", function() {
+        let _this = this;
+        _this.elObj.addEventListener("click", () => {
             _this.fileObj.click();
         });
     }
@@ -106,8 +105,8 @@ export default class easyUploader {
      * 监听文件对象点击
      */
     listenFileObjClick() {
-        var _this = this;
-        _this.fileObj.addEventListener("click", function(e) {
+        let _this = this;
+        _this.fileObj.addEventListener("click", (e) => {
             _this.fileObjClickStatus || e.preventDefault();
         });
     }
@@ -116,8 +115,8 @@ export default class easyUploader {
      * 监听文件对象值变化
      */
     listenFileObjChange() {
-        var _this = this;
-        _this.fileObj.addEventListener("change", function() {
+        let _this = this;
+        _this.fileObj.addEventListener("change", () => {
             _this.fileType = _this.fileObj.files[0].type;
             _this.fileName = _this.fileObj.files[0].name;
             _this.fileExt = _this.fileName.split(".").pop();
@@ -136,21 +135,21 @@ export default class easyUploader {
      * 监听拖曳事件
      */
     listenDrag(obj) {
-        var _this = this;
-        obj.addEventListener("drop", function(e) {
+        let _this = this;
+        obj.addEventListener("drop", (e) => {
             e.preventDefault();
             _this.options.onDrop && _this.options.onDrop(e);
             _this.fileObj.files = e.dataTransfer.files;
         });
-        obj.addEventListener("dragover", function(e) {
+        obj.addEventListener("dragover", (e) => {
             e.preventDefault();
             _this.options.onDragOver && _this.options.onDragOver(e);
         });
-        obj.addEventListener("dragenter", function(e) {
+        obj.addEventListener("dragenter", (e) => {
             e.preventDefault();
             _this.options.onDragEnter && _this.options.onDragEnter(e);
         });
-        obj.addEventListener("dragleave", function(e) {
+        obj.addEventListener("dragleave", (e) => {
             e.preventDefault();
             _this.options.onDragLeave && _this.options.onDragLeave(e);
         });
@@ -160,7 +159,7 @@ export default class easyUploader {
      * 重绘image并渲染画布
      */
     drawAndRenderCanvas() {
-        var _this = this,
+        let _this = this,
             reader = new FileReader,
             image = new Image(),
             arrayBuffer = new ArrayBuffer(),
@@ -169,13 +168,13 @@ export default class easyUploader {
             height = '';
 
         reader.readAsDataURL(_this.fileObj.files[0]);
-        reader.onload = function(e) {
-            arrayBuffer = common.base64ToArrayBuffer(this.result);
+        reader.onload = (e) => {
+            arrayBuffer = common.base64ToArrayBuffer(e.target.result);
             orientation = common.getOrientation(arrayBuffer);
-            image.src = this.result;
+            image.src = e.target.result;
         }
 
-        image.onload = function() {
+        image.onload = () => {
             if (_this.options.compress) {
                 if (image.width > _this.options.resize.maxWidth || image.height > _this.options.resize.maxHeight) {
                     if (image.width > image.height) {
@@ -255,14 +254,14 @@ export default class easyUploader {
      * 上传canvas中的图片文件
      */
     uploadCanvas() {
-        var _this = this;
+        let _this = this;
 
         if (!_this.fileObj.files[0]) {
             _this.renderTipDom("请先选择文件")
             return;
         }
 
-        _this.canvas.toBlob(function(blob) {
+        _this.canvas.toBlob((blob) => {
             _this.uploadFile(blob);
         }, _this.fileType, _this.options.compressQuality);
     }
@@ -271,7 +270,7 @@ export default class easyUploader {
      * 上传文件
      */
     uploadFile(value) {
-        var _this = this;
+        let _this = this;
 
         if (!_this.fileObj.files[0]) {
             _this.renderTipDom("请先选择文件");
@@ -279,15 +278,15 @@ export default class easyUploader {
         }
 
         _this.formData.append(_this.options.name, value, _this.fileName);
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open(_this.options.method, _this.options.url, true);
-        xhr.upload.addEventListener("progress", function(e) {
+        xhr.upload.addEventListener("progress", (e) => {
             _this.options.onUploadProgress && _this.options.onUploadProgress(e);
         });
-        xhr.upload.addEventListener("loadstart", function(e) {
+        xhr.upload.addEventListener("loadstart", (e) => {
             _this.options.onUploadStart && _this.options.onUploadStart(e);
         });
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
                 if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
                     _this.options.onUploadComplete && _this.options.onUploadComplete(_this.handleRes(xhr.responseText));
@@ -305,7 +304,7 @@ export default class easyUploader {
      * 渲染提示层到dom
      */
     renderTipDom(text) {
-        var div = document.createElement("div");
+        let div = document.createElement("div");
         div.innerHTML = text;
         if (this.options.tipClass) {
             div.className = this.options.tipClass;
@@ -313,14 +312,14 @@ export default class easyUploader {
             div.setAttribute("style", "max-width: 80%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: absolute;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;");
         }
         document.querySelector("body").appendChild(div);
-        setTimeout(function() {
-            var opacity = div.style.opacity;
+        setTimeout(() => {
+            let opacity = div.style.opacity;
             if (opacity > 0) {
                 opacity = (opacity - 0.2).toFixed(1)
                 if (opacity < 0) {
                     opacity = 0;
                 }
-                var hideTip = setInterval(function() {
+                let hideTip = setInterval(() => {
                     div.style.opacity = opacity;
                     div.style.filter = "Alpha((opacity = " + opacity * 100 + "))";
                     if (opacity <= 0) {
@@ -343,7 +342,7 @@ export default class easyUploader {
      * 校验文件（尺寸、类型）
      */
     checkFile() {
-        var maxFileSize = this.options.maxFileSize,
+        let maxFileSize = this.options.maxFileSize,
             maxFileSizeWithLetter = 0,
             letterStr = "";
         if (maxFileSize.indexOf("B") > 0) {
@@ -395,7 +394,7 @@ export default class easyUploader {
      * 处理结果格式
      */
     handleRes(res) {
-        var resType = this.options.resType.toLowerCase();
+        let resType = this.options.resType.toLowerCase();
         if (resType == "json") {
             return JSON.parse(res);
         } else if (resType == 'text') {
