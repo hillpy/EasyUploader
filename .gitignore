@@ -3,6 +3,4 @@ example/file
 example/js
 .vscode
 node_modules
-dist
-build
 _book

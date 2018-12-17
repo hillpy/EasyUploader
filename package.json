@@ -1,12 +1,15 @@
 {
   "name": "easyuploader",
   "version": "0.0.0",
-  "description": "一个文件上传插件",
+  "description": "一个轻量级的、基于HTML5的js文件上传插件",
+  "main": "dist/easyuploader.cjs.js",
+  "module": "dist/easyuploader.esm.js",
+  "browser": "dist/easyuploader.umd.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run watch & npm run start",
     "watch": "rollup -c -w",
-    "start": "php -S localhost:1180 -t example",
+    "start": "php -S localhost:1180",
     "build": "rollup -c"
   },
   "repository": {
@@ -27,10 +30,11 @@
   "readme": "README.md",
   "devDependencies": {
     "rollup": "^0.66.6",
+    "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-flow-no-whitespace": "^1.0.0",
     "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-uglify": "^6.0.0",
-    "serve": "^10.1.1"
+    "rollup-plugin-terser": "^3.0.0"
   },
   "dependencies": {}
 }

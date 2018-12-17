@@ -568,5 +568,3 @@ easyUploader.prototype = {
         }
     }
 }
-
-window.easyUploader = easyUploader;
