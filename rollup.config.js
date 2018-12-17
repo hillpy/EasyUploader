@@ -24,7 +24,7 @@ const outFileInfo = {
     'prod': {
         'cjs': outPath + libName.toLowerCase() + '.cjs.min.js',
         'esm': outPath + libName.toLowerCase() + '.esm.min.js',
-        'umd': outPath + libName.toLowerCase() + '.umd.min.js'
+        'umd': outPath + libName.toLowerCase() + '.min.js'
     }
 }
 
