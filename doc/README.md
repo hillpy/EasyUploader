@@ -1,6 +1,6 @@
 # easyUploader
 
-easyUploader是一个轻量级的、基于HTML5的js文件上传插件。基于HTML5、canvas、fileReader等技术开发。比较适合移动端使用，pc端浏览器由于HTML支持情况不同，导致使用比较受限，特别是IE浏览器，后期会考虑添加flash上传文件。
+easyUploader是一个轻量级的、基于HTML5的js文件上传插件。基于HTML5、canvas、fileReader等技术开发。比较适合移动端使用，pc端浏览器由于HTML支持情况不同，导致使用比较受限，特别是IE浏览器，后期会考虑添加flash上传文件。目前只有单文件上传，不依赖其它js库。
 
 # 开发契机
 
@@ -12,6 +12,10 @@ easyUploader是一个轻量级的、基于HTML5的js文件上传插件。基于H
 * 图片压缩
 * 拖曳上传
 * 照片上传旋转修正
+
+# 体验地址
+
+[easyUploader example](http://test.hillpy.com/easyuploader/index.html)
 
 # 项目说明
 
