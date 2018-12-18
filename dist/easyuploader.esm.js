@@ -1,7 +1,7 @@
 /*
- * easyUploader v0.0.0
+ * easyUploader v0.0.1-beta
  * (c) 2018-2018 shinn_lancelot
- * Released under the MIT License.
+ * Released under the Apache License 2.0 License.
  */
 var defaultOptions = {
     // 绑定到元素节点

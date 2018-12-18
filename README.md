@@ -6,11 +6,16 @@
 [![license](https://img.shields.io/github/license/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader/blob/master/LICENSE)
 [![Build Status](https://www.travis-ci.com/hillpy/easyUploader.svg?branch=master)](https://www.travis-ci.com/hillpy/easyUploader)
 
+## 项目文档
+
+[easyUploader document](https://hillpy.github.io/easyUploader/)
+
 ## 主要特性
 
 * 文件上传
 * 图片压缩
 * 拖曳上传
+* 照片上传旋转修正
 
 ## 如何运行
 
@@ -29,10 +34,19 @@
     ```
         npm run dev
     ```
+4. 打包构建
+
+    ```
+        npm run build
+    ```
 
 ## 其它说明
 
 * 目前项目还在开发完善中
+
+## CHANGELOG
+
+[版本日志](https://github.com/hillpy/easyUploader/releases)
 
 ## TODO
 
@@ -46,4 +60,12 @@
 
 5. 断点续传、文件分片上传
 
+### 仓库地址
 
+[Coding](https://coding.net/u/shinn_lancelot/p/easyUploader/git "easyUploader")<br>
+[Gitee](https://gitee.com/hillpy/easyUploader "easyUploader")<br>
+[Github](https://github.com/hillpy/easyUploader "easyUploader")<br>
+
+### 协议
+
+[Apache License 2.0](https://github.com/hillpy/easyUploader/blob/master/LICENSE "Apache License 2.0")<br>
