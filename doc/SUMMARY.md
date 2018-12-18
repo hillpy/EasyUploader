@@ -12,4 +12,6 @@
     * [压缩类选项](option/compress-option.md)
     * [其它类选项](option/other-option.md)
 * [事件](event/README.md)
+    * [上传类事件](event/upload-event.md)
+    * [拖曳类事件](event/drag-event.md)
 * [方法](method/README.md)
