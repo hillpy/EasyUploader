@@ -10,6 +10,10 @@
 
 [easyUploader document](https://hillpy.github.io/easyUploader/)
 
+## 体验地址
+
+[easyUploader example](http://test.hillpy.com/easyuploader/index.html)
+
 ## 主要特性
 
 * 文件上传
@@ -18,6 +22,8 @@
 * 照片上传旋转修正
 
 ## 如何运行
+
+* 运行项目
 
 1. 克隆本项目
 
@@ -38,6 +44,14 @@
 
     ```
         npm run build
+    ```
+
+* 运行文档
+
+1. 全局安装gitbook-cli
+
+    ```
+        cd doc && gitbook 
     ```
 
 ## 其它说明
