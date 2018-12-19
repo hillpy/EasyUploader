@@ -1,5 +1,5 @@
 /*
- * easyUploader v0.0.1-beta
+ * easyUploader v0.0.2-beta
  * (c) 2018-2018 shinn_lancelot
  * Released under the Apache License 2.0 License.
  */
@@ -412,7 +412,7 @@ easyUploader.prototype.drawAndRenderCanvas = function drawAndRenderCanvas () {
  * 上传函数
  */
 easyUploader.prototype.upload = function upload () {
-    if (this.fileType.indexOf("image/") >= 0) {
+    if (this.fileType.indexOf("image/") >= 0 && this.options.compress) {
         this.uploadCanvas();
     } else {
         this.uploadFile(this.fileObj.files[0]);
@@ -478,7 +478,7 @@ easyUploader.prototype.renderTipDom = function renderTipDom (text) {
     if (this.options.tipClass) {
         div.className = this.options.tipClass;
     } else {
-        div.setAttribute("style", "max-width: 80%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: absolute;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;");
+        div.setAttribute("style", "max-width: 90%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;");
     }
     document.querySelector("body").appendChild(div);
     setTimeout(function () {
