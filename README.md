@@ -25,34 +25,47 @@
 
 * 运行项目
 
-1. 克隆本项目
+    1. 克隆本项目
 
-    ```
-        git clone https://github.com/hillpy/easyUploader.git
-    ```
-2. 安装node依赖包
+        ```
+            git clone https://github.com/hillpy/easyUploader.git
+        ```
+    2. 安装node依赖包
 
-    ```
-        npm install
-    ```
-3. 开启rollup监听及web服务（需php环境），url：localhost:1180
+        ```
+            npm install
+        ```
+    3. 开启rollup监听及web服务（需php环境），url：localhost:1180
 
-    ```
-        npm run dev
-    ```
-4. 打包构建
+        ```
+            npm run dev
+        ```
+    4. 打包构建
 
-    ```
-        npm run build
-    ```
+        ```
+            npm run build
+        ```
 
 * 运行文档
 
-1. 全局安装gitbook-cli
+    1. 全局安装gitbook-cli
 
-    ```
-        cd doc && gitbook 
-    ```
+        ```
+            npm install gitbook-cli -g
+        ```
+
+    2. 安装依赖库
+
+        ```
+            cd doc && gitbook install
+        ```
+
+    3. 启动服务
+
+        ```
+            gitbook serve
+        ```
+
 
 ## 其它说明
 
