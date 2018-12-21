@@ -3,9 +3,9 @@
  */
 export default class {
     /**
-     * 扩展对象函数
-     * @param {*} obj 
-     * @param {*} newObj 
+     * 扩展对象（将旧对象根据新对象进行扩展）
+     * @param {*} obj 旧对象
+     * @param {*} newObj 新对象
      */
     static extend(obj, newObj) {
         for (let key in newObj) {
@@ -29,6 +29,7 @@ export default class {
 
     /**
      * 图片的base64转ArrayBuffer对象
+     * @param {*} base64 图片的base64
      */
     static base64ToArrayBuffer(base64) {
         base64 = base64.replace(/^data\:([^\;]+)\;base64,/gim, '');
@@ -44,6 +45,7 @@ export default class {
 
     /**
      * 获取jpg图片的orientation（即角度）
+     * @param {*} arrayBuffer 图片二进制数据缓冲区
      */
     static getOrientation(arrayBuffer) {
         let dataView = new DataView(arrayBuffer),
@@ -104,6 +106,9 @@ export default class {
 
     /**
      * Unicode码转字符串
+     * @param {*} dataView 
+     * @param {*} start 
+     * @param {*} length 
      */
     static getStringFromCharCode(dataView, start, length) {
         let string = '',
@@ -116,14 +121,26 @@ export default class {
 
     /**
      * 获取随机字符串
+     * @param {*} length 随机字符串长度
      */
-    static getNonce(length) {
-        length || (length = 16);
+    static getNonce(length = 16) {
         let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',
             nonce = '';
         for (let i = 0; i < length; i++) {
             nonce += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         return nonce;
+    }
+
+    /**
+     * 替换字符串中的占位字符串
+     * @param {*} str 需要替换的字符串
+     * @param {*} arr 用于替换旧字符串的字符串数组
+     */
+    static replacePlaceholders(str = '', arr = []) {
+        for (let i = 0; i < arr.length; i++) {
+            str = str.replace(new RegExp('\\{' + i + '\\}', 'g'), arr[i]);
+        }
+        return str;
     }
 }

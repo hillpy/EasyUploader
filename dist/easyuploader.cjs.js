@@ -48,6 +48,14 @@ var defaultOptions = {
     'compressQuality': 0.92,
 };
 
+var tipInfos = {
+    'chinese': {
+        'noFile': '请先选择文件',
+        'fileTooLarge': '文件太大，最大允许为{0}',
+        'fileTypeNotAllow': '文件格式不允许上传，请上传{0}格式的文件'
+    }
+};
+
 /**
  * 通用静态函数类
  */
@@ -75,6 +83,7 @@ defaultExport.extend = function extend (obj, newObj) {
 
 /**
  * 图片的base64转ArrayBuffer对象
+ * @param {*} base64 图片的base64
  */
 defaultExport.base64ToArrayBuffer = function base64ToArrayBuffer (base64) {
     base64 = base64.replace(/^data\:([^\;]+)\;base64,/gim, '');
@@ -90,6 +99,7 @@ defaultExport.base64ToArrayBuffer = function base64ToArrayBuffer (base64) {
 
 /**
  * 获取jpg图片的orientation（即角度）
+ * @param {*} arrayBuffer 图片二进制数据缓冲区
  */
 defaultExport.getOrientation = function getOrientation (arrayBuffer) {
     var dataView = new DataView(arrayBuffer),
@@ -150,6 +160,9 @@ defaultExport.getOrientation = function getOrientation (arrayBuffer) {
 
 /**
  * Unicode码转字符串
+ * @param {*} dataView 
+ * @param {*} start 
+ * @param {*} length 
  */
 defaultExport.getStringFromCharCode = function getStringFromCharCode (dataView, start, length) {
     var string = '',
@@ -162,15 +175,32 @@ defaultExport.getStringFromCharCode = function getStringFromCharCode (dataView, 
 
 /**
  * 获取随机字符串
+ * @param {*} length 随机字符串长度
  */
 defaultExport.getNonce = function getNonce (length) {
-    length || (length = 16);
+        if ( length === void 0 ) length = 16;
+
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',
         nonce = '';
     for (var i = 0; i < length; i++) {
         nonce += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return nonce;
+};
+
+/**
+ * 替换字符串中的占位字符串
+ * @param {*} str 需要替换的字符串
+ * @param {*} arr 用于替换旧字符串的字符串数组
+ */
+defaultExport.replacePlaceholders = function replacePlaceholders (str, arr) {
+        if ( str === void 0 ) str = '';
+        if ( arr === void 0 ) arr = [];
+
+    for (var i = 0; i < arr.length; i++) {
+        str = str.replace(new RegExp('\\{' + i + '\\}', 'g'), arr[i]);
+    }
+    return str;
 };
 
 if (!HTMLCanvasElement.prototype.toBlob) {
@@ -206,6 +236,7 @@ var easyUploader = function easyUploader(options) {
     this.context = this.canvas.getContext('2d');
     this.formData = new FormData();
     this.eval = eval;
+    this.tips = {};
 
     // 扩展配置选项
     this.options = defaultExport.extend(JSON.parse(JSON.stringify(defaultOptions)), options);
@@ -217,6 +248,9 @@ var easyUploader = function easyUploader(options) {
  * 初始化
  */
 easyUploader.prototype.init = function init () {
+    var _tipInfos = JSON.parse(JSON.stringify(tipInfos));
+    this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['chinese'];
+
     if (this.options.el) {
         this.elObj = document.querySelector(this.options.el);
         this.createInput();
@@ -302,6 +336,7 @@ easyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
 
 /**
  * 监听拖曳事件
+ * @param {*} obj 被监听的对象
  */
 easyUploader.prototype.listenDrag = function listenDrag (obj) {
     var _this = this;
@@ -426,7 +461,7 @@ easyUploader.prototype.uploadCanvas = function uploadCanvas () {
     var _this = this;
 
     if (!_this.fileObj.files[0]) {
-        _this.renderTipDom('请先选择文件');
+        _this.renderTipDom(this.tips.noFile);
         return;
     }
 
@@ -437,12 +472,13 @@ easyUploader.prototype.uploadCanvas = function uploadCanvas () {
 
 /**
  * 上传文件
+ * @param {*} value input file中的值
  */
 easyUploader.prototype.uploadFile = function uploadFile (value) {
     var _this = this;
 
     if (!_this.fileObj.files[0]) {
-        _this.renderTipDom('请先选择文件');
+        _this.renderTipDom(this.tips.noFile);
         return;
     }
 
@@ -471,6 +507,7 @@ easyUploader.prototype.uploadFile = function uploadFile (value) {
 
 /**
  * 渲染提示层到dom
+ * @param {*} text 提示文本
  */
 easyUploader.prototype.renderTipDom = function renderTipDom (text) {
     var div = document.createElement('div');
@@ -545,13 +582,20 @@ easyUploader.prototype.checkFile = function checkFile () {
     }
 
     if (this.fileSize > maxFileSize) {
-        this.renderTipDom('文件太大，最大允许为' + maxFileSizeWithLetter + letterStr);
+        this.renderTipDom(defaultExport.replacePlaceholders(
+            this.tips.fileTooLarge,
+            [maxFileSizeWithLetter + letterStr]
+        ));
         this.fileObj.value = '';
         return false;
     }
 
     if (this.options.allowFileExt.length > 0 && this.options.allowFileExt.indexOf(this.fileExt) == -1) {
-        this.renderTipDom('文件格式不允许上传，请上传' + this.options.allowFileExt.join('，') + '格式的文件');
+        this.renderTipDom(defaultExport.replacePlaceholders(
+            this.tips.fileTypeNotAllow,
+            [this.options.allowFileExt.join("，")]
+        ));
+
         this.fileObj.value = '';
         return false;
     }
@@ -561,6 +605,7 @@ easyUploader.prototype.checkFile = function checkFile () {
 
 /**
  * 处理结果格式
+ * @param {*} res 需要处理的结果
  */
 easyUploader.prototype.handleRes = function handleRes (res) {
     var resType = this.options.resType.toLowerCase();

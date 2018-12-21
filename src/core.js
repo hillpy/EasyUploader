@@ -1,4 +1,5 @@
 import defaultOptions from './defaultoptions'   // 导入默认选项
+import tipInfos from './tipinfos'   // 导入提示信息
 import common from './common'   // 导入通用静态函数类
 
 if (!HTMLCanvasElement.prototype.toBlob) {
@@ -18,7 +19,7 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 export default class easyUploader {
     /**
      * 初始化构造函数
-     * @param {*} options 
+     * @param {*} options 实例化传入的选项
      */
     constructor(options = {}) {
         if (!(this instanceof easyUploader)) {
@@ -37,6 +38,7 @@ export default class easyUploader {
         this.context = this.canvas.getContext('2d');
         this.formData = new FormData();
         this.eval = eval;
+        this.tips = {};
 
         // 扩展配置选项
         this.options = common.extend(JSON.parse(JSON.stringify(defaultOptions)), options);
@@ -48,6 +50,9 @@ export default class easyUploader {
      * 初始化
      */
     init() {
+        let _tipInfos = JSON.parse(JSON.stringify(tipInfos));
+        this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['chinese'];
+
         if (this.options.el) {
             this.elObj = document.querySelector(this.options.el);
             this.createInput();
@@ -133,6 +138,7 @@ export default class easyUploader {
 
     /**
      * 监听拖曳事件
+     * @param {*} obj 被监听的对象
      */
     listenDrag(obj) {
         let _this = this;
@@ -257,7 +263,7 @@ export default class easyUploader {
         let _this = this;
 
         if (!_this.fileObj.files[0]) {
-            _this.renderTipDom('请先选择文件')
+            _this.renderTipDom(this.tips.noFile)
             return;
         }
 
@@ -268,12 +274,13 @@ export default class easyUploader {
 
     /**
      * 上传文件
+     * @param {*} value input file中的值
      */
     uploadFile(value) {
         let _this = this;
 
         if (!_this.fileObj.files[0]) {
-            _this.renderTipDom('请先选择文件');
+            _this.renderTipDom(this.tips.noFile);
             return;
         }
 
@@ -302,6 +309,7 @@ export default class easyUploader {
 
     /**
      * 渲染提示层到dom
+     * @param {*} text 提示文本
      */
     renderTipDom(text) {
         let div = document.createElement('div');
@@ -376,13 +384,20 @@ export default class easyUploader {
         }
 
         if (this.fileSize > maxFileSize) {
-            this.renderTipDom('文件太大，最大允许为' + maxFileSizeWithLetter + letterStr);
+            this.renderTipDom(common.replacePlaceholders(
+                this.tips.fileTooLarge,
+                [maxFileSizeWithLetter + letterStr]
+            ));
             this.fileObj.value = '';
             return false;
         }
 
         if (this.options.allowFileExt.length > 0 && this.options.allowFileExt.indexOf(this.fileExt) == -1) {
-            this.renderTipDom('文件格式不允许上传，请上传' + this.options.allowFileExt.join('，') + '格式的文件');
+            this.renderTipDom(common.replacePlaceholders(
+                this.tips.fileTypeNotAllow,
+                [this.options.allowFileExt.join("，")]
+            ));
+
             this.fileObj.value = '';
             return false;
         }
@@ -392,6 +407,7 @@ export default class easyUploader {
 
     /**
      * 处理结果格式
+     * @param {*} res 需要处理的结果
      */
     handleRes(res) {
         let resType = this.options.resType.toLowerCase();
