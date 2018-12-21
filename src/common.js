@@ -31,7 +31,7 @@ export default class {
      * 图片的base64转ArrayBuffer对象
      */
     static base64ToArrayBuffer(base64) {
-        base64 = base64.replace(/^data\:([^\;]+)\;base64,/gim, "");
+        base64 = base64.replace(/^data\:([^\;]+)\;base64,/gim, '');
         let binary = atob(base64),
             length = binary.length,
             buffer = new ArrayBuffer(length),
@@ -92,7 +92,7 @@ export default class {
                 if (dataView.getUint16(offset, littleEndian) === 0x0112) {
                     offset += 8;
                     orientation = dataView.getUint16(offset, littleEndian);
-                    if (navigator.userAgent.indexOf("Safari") > -1) {
+                    if (navigator.userAgent.indexOf('Safari') > -1) {
                         dataView.setUint16(offset, 1, littleEndian);
                     }
                     break;
@@ -119,7 +119,7 @@ export default class {
      */
     static getNonce(length) {
         length || (length = 16);
-        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890",
+        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',
             nonce = '';
         for (let i = 0; i < length; i++) {
             nonce += chars.charAt(Math.floor(Math.random() * chars.length));

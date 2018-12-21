@@ -11,45 +11,45 @@
 
     var defaultOptions = {
         // 绑定到元素节点
-        "el": "",
+        'el': '',
         // 创建的input name
-        "name": "file",
+        'name': 'file',
         // 创建的input id
-        "id": "",
+        'id': '',
         // 创建的input accept
-        "accept": "",
+        'accept': '',
 
         // 绑定到file
-        "file": "#file",
+        'file': '#file',
 
         // http上传方式
-        "method": "post",
+        'method': 'post',
         // 文件上传地址
-        "url": "",
+        'url': '',
         // 上传结果返回类型
-        "resType": "json",
+        'resType': 'json',
         // 是否自动上传
-        "autoUpload": true,
+        'autoUpload': true,
         // 上传文件最大容量
-        "maxFileSize": "2M",
+        'maxFileSize': '2M',
         // 提示层样式
-        "tipClass": "",
+        'tipClass': '',
         // 是否允许拖拽上传
-        "allowDrag": false,
+        'allowDrag': false,
         // 是否自动修正上传照片方向
-        "fixOrientation": true,
+        'fixOrientation': true,
         // 允许上传的文件扩展名
-        "allowFileExt": [],
+        'allowFileExt': [],
 
         // 是否进行压缩（仅图片有效）
-        "compress": true,
+        'compress': true,
         // 重置尺寸（仅图片有效）
-        "resize": {
-            "maxWidth": 800,
-            "maxHeight": 800
+        'resize': {
+            'maxWidth': 800,
+            'maxHeight': 800
         },
         // 压缩质量（仅图片有效，图片格式必须为jpg、webp，必须为0-1小数，默认0.92）
-        "compressQuality": 0.92,
+        'compressQuality': 0.92,
     };
 
     /**
@@ -81,7 +81,7 @@
      * 图片的base64转ArrayBuffer对象
      */
     defaultExport.base64ToArrayBuffer = function base64ToArrayBuffer (base64) {
-        base64 = base64.replace(/^data\:([^\;]+)\;base64,/gim, "");
+        base64 = base64.replace(/^data\:([^\;]+)\;base64,/gim, '');
         var binary = atob(base64),
             length = binary.length,
             buffer = new ArrayBuffer(length),
@@ -142,7 +142,7 @@
                 if (dataView.getUint16(offset, littleEndian) === 0x0112) {
                     offset += 8;
                     orientation = dataView.getUint16(offset, littleEndian);
-                    if (navigator.userAgent.indexOf("Safari") > -1) {
+                    if (navigator.userAgent.indexOf('Safari') > -1) {
                         dataView.setUint16(offset, 1, littleEndian);
                     }
                     break;
@@ -169,7 +169,7 @@
      */
     defaultExport.getNonce = function getNonce (length) {
         length || (length = 16);
-        var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890",
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',
             nonce = '';
         for (var i = 0; i < length; i++) {
             nonce += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -178,15 +178,15 @@
     };
 
     if (!HTMLCanvasElement.prototype.toBlob) {
-        Object.defineProperty(HTMLCanvasElement.prototype, "toBlob", {
+        Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
             value: function(callback, type, quality) {
-                var binStr = atob(this.toDataURL(type, quality).split(",")[1]),
+                var binStr = atob(this.toDataURL(type, quality).split(',')[1]),
                     len = binStr.length,
                     arr = new Uint8Array(len);
                 for (var i = 0; i < len; i++) {
                     arr[i] = binStr.charCodeAt(i);
                 }
-                callback(new Blob([arr], { type: type || "image/png" }));
+                callback(new Blob([arr], { type: type || 'image/png' }));
             }
         });
     }
@@ -199,15 +199,15 @@
         }
 
         // 公共参数
-        this.fileObj = "";
-        this.elObj = "";
-        this.fileType = "";
-        this.fileName = "";
-        this.fileSize = "";
-        this.fileExt = "";
+        this.fileObj = '';
+        this.elObj = '';
+        this.fileType = '';
+        this.fileName = '';
+        this.fileSize = '';
+        this.fileExt = '';
         this.fileObjClickStatus = true;
-        this.canvas = document.createElement("canvas");
-        this.context = this.canvas.getContext("2d");
+        this.canvas = document.createElement('canvas');
+        this.context = this.canvas.getContext('2d');
         this.formData = new FormData();
         this.eval = eval;
 
@@ -239,15 +239,15 @@
      * 创建input(type=file)
      */
     easyUploader.prototype.createInput = function createInput () {
-        this.options.id || (this.options.id = "easyuploader_" + defaultExport.getNonce());
-        var input = document.createElement("input");
-        input.type = "file";
+        this.options.id || (this.options.id = 'easyuploader_' + defaultExport.getNonce());
+        var input = document.createElement('input');
+        input.type = 'file';
         input.name = this.options.name;
         input.id = this.options.id;
         input.accept = this.options.accept;
-        input.setAttribute("style", "display: none; !important");
-        document.querySelector("body").appendChild(input);
-        this.fileObj = document.querySelector("#" + this.options.id);
+        input.setAttribute('style', 'display: none; !important');
+        document.querySelector('body').appendChild(input);
+        this.fileObj = document.querySelector('#' + this.options.id);
     };
 
     /**
@@ -255,7 +255,7 @@
      */
     easyUploader.prototype.bindElToInput = function bindElToInput () {
         var _this = this;
-        _this.elObj.addEventListener("click", function () {
+        _this.elObj.addEventListener('click', function () {
             _this.fileObj.click();
         });
     };
@@ -279,7 +279,7 @@
      */
     easyUploader.prototype.listenFileObjClick = function listenFileObjClick () {
         var _this = this;
-        _this.fileObj.addEventListener("click", function (e) {
+        _this.fileObj.addEventListener('click', function (e) {
             _this.fileObjClickStatus || e.preventDefault();
         });
     };
@@ -289,13 +289,13 @@
      */
     easyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
         var _this = this;
-        _this.fileObj.addEventListener("change", function () {
+        _this.fileObj.addEventListener('change', function () {
             _this.fileType = _this.fileObj.files[0].type;
             _this.fileName = _this.fileObj.files[0].name;
-            _this.fileExt = _this.fileName.split(".").pop();
+            _this.fileExt = _this.fileName.split('.').pop();
             _this.fileSize = _this.fileObj.files[0].size;
             if (_this.checkFile()) {
-                if (_this.fileType.indexOf("image/") >= 0 && _this.options.compress) {
+                if (_this.fileType.indexOf('image/') >= 0 && _this.options.compress) {
                     _this.drawAndRenderCanvas();
                 } else {
                     _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0]);
@@ -309,20 +309,20 @@
      */
     easyUploader.prototype.listenDrag = function listenDrag (obj) {
         var _this = this;
-        obj.addEventListener("drop", function (e) {
+        obj.addEventListener('drop', function (e) {
             e.preventDefault();
             _this.options.onDrop && _this.options.onDrop(e);
             _this.fileObj.files = e.dataTransfer.files;
         });
-        obj.addEventListener("dragover", function (e) {
+        obj.addEventListener('dragover', function (e) {
             e.preventDefault();
             _this.options.onDragOver && _this.options.onDragOver(e);
         });
-        obj.addEventListener("dragenter", function (e) {
+        obj.addEventListener('dragenter', function (e) {
             e.preventDefault();
             _this.options.onDragEnter && _this.options.onDragEnter(e);
         });
-        obj.addEventListener("dragleave", function (e) {
+        obj.addEventListener('dragleave', function (e) {
             e.preventDefault();
             _this.options.onDragLeave && _this.options.onDragLeave(e);
         });
@@ -406,8 +406,8 @@
                 _this.context.drawImage(image, 0, 0, width, height);
             }
 
-            _this.canvas.setAttribute("style", "display: none !important;");
-            document.querySelector("body").appendChild(_this.canvas);
+            _this.canvas.setAttribute('style', 'display: none !important;');
+            document.querySelector('body').appendChild(_this.canvas);
             _this.options.autoUpload && _this.uploadCanvas();
         };
     };
@@ -416,7 +416,7 @@
      * 上传函数
      */
     easyUploader.prototype.upload = function upload () {
-        if (this.fileType.indexOf("image/") >= 0 && this.options.compress) {
+        if (this.fileType.indexOf('image/') >= 0 && this.options.compress) {
             this.uploadCanvas();
         } else {
             this.uploadFile(this.fileObj.files[0]);
@@ -430,7 +430,7 @@
         var _this = this;
 
         if (!_this.fileObj.files[0]) {
-            _this.renderTipDom("请先选择文件");
+            _this.renderTipDom('请先选择文件');
             return;
         }
 
@@ -446,17 +446,17 @@
         var _this = this;
 
         if (!_this.fileObj.files[0]) {
-            _this.renderTipDom("请先选择文件");
+            _this.renderTipDom('请先选择文件');
             return;
         }
 
         _this.formData.append(_this.options.name, value, _this.fileName);
         var xhr = new XMLHttpRequest();
         xhr.open(_this.options.method, _this.options.url, true);
-        xhr.upload.addEventListener("progress", function (e) {
+        xhr.upload.addEventListener('progress', function (e) {
             _this.options.onUploadProgress && _this.options.onUploadProgress(e);
         });
-        xhr.upload.addEventListener("loadstart", function (e) {
+        xhr.upload.addEventListener('loadstart', function (e) {
             _this.options.onUploadStart && _this.options.onUploadStart(e);
         });
         xhr.onreadystatechange = function () {
@@ -466,10 +466,10 @@
                 } else {
                     _this.options.onUploadError && _this.options.onUploadError(xhr.status);
                 }
-                _this.fileObj.value = "";
+                _this.fileObj.value = '';
             }
         };
-        //xhr.setRequestHeader("Content-type", "multipart/form-data");
+        //xhr.setRequestHeader('Content-type', 'multipart/form-data');
         xhr.send(_this.formData);
     };
 
@@ -477,14 +477,14 @@
      * 渲染提示层到dom
      */
     easyUploader.prototype.renderTipDom = function renderTipDom (text) {
-        var div = document.createElement("div");
+        var div = document.createElement('div');
         div.innerHTML = text;
         if (this.options.tipClass) {
             div.className = this.options.tipClass;
         } else {
-            div.setAttribute("style", "max-width: 90%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;");
+            div.setAttribute('style', 'max-width: 90%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;');
         }
-        document.querySelector("body").appendChild(div);
+        document.querySelector('body').appendChild(div);
         setTimeout(function () {
             var opacity = div.style.opacity;
             if (opacity > 0) {
@@ -494,7 +494,7 @@
                 }
                 var hideTip = setInterval(function () {
                     div.style.opacity = opacity;
-                    div.style.filter = "Alpha((opacity = " + opacity * 100 + "))";
+                    div.style.filter = 'Alpha((opacity = ' + opacity * 100 + '))';
                     if (opacity <= 0) {
                         div.remove();
                         clearInterval(hideTip);
@@ -517,46 +517,46 @@
     easyUploader.prototype.checkFile = function checkFile () {
         var maxFileSize = this.options.maxFileSize,
             maxFileSizeWithLetter = 0,
-            letterStr = "";
-        if (maxFileSize.indexOf("B") > 0) {
-            maxFileSize = maxFileSize.replace(/B/g, "");
-            letterStr = "B";
+            letterStr = '';
+        if (maxFileSize.indexOf('B') > 0) {
+            maxFileSize = maxFileSize.replace(/B/g, '');
+            letterStr = 'B';
         }
-        if (maxFileSize.indexOf("K") > 0) {
-            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/K/g, ""));
+        if (maxFileSize.indexOf('K') > 0) {
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/K/g, ''));
             maxFileSize = maxFileSizeWithLetter * 1024;
-            letterStr = "K" + letterStr;
-        } else if (maxFileSize.indexOf("M") > 0) {
-            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/M/g, ""));
+            letterStr = 'K' + letterStr;
+        } else if (maxFileSize.indexOf('M') > 0) {
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/M/g, ''));
             maxFileSize = maxFileSizeWithLetter * 1024 * 1024;
-            letterStr = "M" + letterStr;
-        } else if (maxFileSize.indexOf("G") > 0) {
-            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/G/g, ""));
+            letterStr = 'M' + letterStr;
+        } else if (maxFileSize.indexOf('G') > 0) {
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/G/g, ''));
             maxFileSize = maxFileSizeWithLetter * 1024 * 1024 * 1024;
-            letterStr = "G" + letterStr;
-        } else if (maxFileSize.indexOf("T") > 0) {
-            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/T/g, ""));
+            letterStr = 'G' + letterStr;
+        } else if (maxFileSize.indexOf('T') > 0) {
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/T/g, ''));
             maxFileSize = maxFileSizeWithLetter * 1024 * 1024 * 1024 * 1024;
-            letterStr = "T" + letterStr;
-        } else if (maxFileSize.indexOf("P") > 0) {
-            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/P/g, ""));
+            letterStr = 'T' + letterStr;
+        } else if (maxFileSize.indexOf('P') > 0) {
+            maxFileSizeWithLetter = this.eval(maxFileSize.replace(/P/g, ''));
             maxFileSize = maxFileSizeWithLetter * 1024 * 1024 * 1024 * 1024 * 1024;
-            letterStr = "P" + letterStr;
+            letterStr = 'P' + letterStr;
         } else {
             maxFileSizeWithLetter = this.eval(maxFileSize);
             maxFileSize = maxFileSizeWithLetter;
-            letterStr = "B";
+            letterStr = 'B';
         }
 
         if (this.fileSize > maxFileSize) {
-            this.renderTipDom("文件太大，最大允许为" + maxFileSizeWithLetter + letterStr);
-            this.fileObj.value = "";
+            this.renderTipDom('文件太大，最大允许为' + maxFileSizeWithLetter + letterStr);
+            this.fileObj.value = '';
             return false;
         }
 
         if (this.options.allowFileExt.length > 0 && this.options.allowFileExt.indexOf(this.fileExt) == -1) {
-            this.renderTipDom("文件格式不允许上传，请上传" + this.options.allowFileExt.join("，") + "格式的文件");
-            this.fileObj.value = "";
+            this.renderTipDom('文件格式不允许上传，请上传' + this.options.allowFileExt.join('，') + '格式的文件');
+            this.fileObj.value = '';
             return false;
         }
 
@@ -568,7 +568,7 @@
      */
     easyUploader.prototype.handleRes = function handleRes (res) {
         var resType = this.options.resType.toLowerCase();
-        if (resType == "json") {
+        if (resType == 'json') {
             return JSON.parse(res);
         } else if (resType == 'text') {
             return res;
