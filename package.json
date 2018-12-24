@@ -1,6 +1,6 @@
 {
   "name": "easyuploader",
-  "version": "0.0.2-beta",
+  "version": "0.0.3-beta",
   "description": "一个轻量级的、基于HTML5的js文件上传插件",
   "main": "dist/easyuploader.cjs.js",
   "module": "dist/easyuploader.esm.js",
