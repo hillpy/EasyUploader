@@ -20,3 +20,10 @@
 * 默认值：true
 * 值示例："fixOrientation": false
 * 解释：该选项为是否自动修正图片的方向。移动端使用相机拍照上传，并使用canvas绘制上传的照片时，会出现照片方向翻转的问题。当该选项为true时会对此进行自动修正。注意：仅jpg有效。
+
+# language
+
+* 类型：String
+* 默认值："chinese"
+* 值示例："language": "chinese"
+* 解释：该选项为插件提示信息的语言类型，比如"请选择文件"、"文件太大，最大允许为2M"等等。默认"chinese"，后续会加入"english"
