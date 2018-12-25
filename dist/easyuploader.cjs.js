@@ -1,5 +1,5 @@
 /*
- * easyUploader v0.0.4-beta
+ * easyUploader v0.0.5-beta
  * (c) 2018-2018 shinn_lancelot
  * Released under the Apache License 2.0 License.
  */
@@ -36,6 +36,8 @@ var defaultOptions = {
     'fixOrientation': true,
     // 允许上传的文件扩展名
     'allowFileExt': [],
+    // 提示信息语言
+    'language': 'chinese',
 
     // 是否进行压缩（仅图片有效）
     'compress': true,

@@ -29,6 +29,8 @@ export default {
     'fixOrientation': true,
     // 允许上传的文件扩展名
     'allowFileExt': [],
+    // 提示信息语言
+    'language': 'chinese',
 
     // 是否进行压缩（仅图片有效）
     'compress': true,
