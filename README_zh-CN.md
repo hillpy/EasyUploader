@@ -26,13 +26,14 @@
 * 拖曳上传
 * 照片上传旋转修正
 
-## 备注
+### 备注
 
 项目正在开发中。英文文档正在编写中。我很抱歉我的英语比较烂。
 
 ### 如何安装
 
 * 使用NPM方式
+
     ```
     npm install easyupload -save
     ```
@@ -87,11 +88,11 @@
         gitbook serve
         ```
 
-## 版本日志
+### 版本日志
 
 [版本日志](https://github.com/hillpy/easyUploader/releases)
 
-## 待做
+### 待做
 
 ~~1. 避免创建的input中id属性出现冲突~~
 

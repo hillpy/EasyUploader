@@ -46,22 +46,25 @@ This project is being developed. The English document is being writed. And I'm s
 
 * run project
 
-    step1. Clone project.
+    1. Clone project.
 
         ```
         git clone https://github.com/hillpy/easyUploader.git
         ```
-    step2. Install NPM dependencies package.
+
+    2. Install NPM dependencies package.
 
         ```
         npm install
         ```
-    step3. Open rollup watching and open web service(need php environment). url: localhost:1180.
+
+    3. Open rollup watching and open web service(need php environment). url: localhost:1180.
 
         ```
         npm run dev
         ```
-    step4. Bundle and build.
+
+    4. Bundle and build.
 
         ```
         npm run build
@@ -69,19 +72,19 @@ This project is being developed. The English document is being writed. And I'm s
 
 * run gitbook
 
-    step1. Global installation gitbook-cli.
+    1. Global installation gitbook-cli.
 
         ```
         npm install gitbook-cli -g
         ```
 
-    step2. Install NPM dependencies package.
+    2. Install NPM dependencies package.
 
         ```
         cd doc && gitbook install
         ```
 
-    step3. Open service.
+    3. Open service.
 
         ```
         gitbook serve
