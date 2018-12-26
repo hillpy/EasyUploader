@@ -7,108 +7,108 @@
 * [README_zh-CN](./README_zh-CN.md)
 * [README](./README.md)
 
-### What is easyUploader
+### easyUploader是什么
 
-EasyUploader is a lightweight js file upload library which is  based HTML5.
+ easyUploader是一个轻量级的、基于HTML5的js文件上传插件。
 
-### Document
+### 文档
 
 [easyUploader document](https://hillpy.github.io/easyUploader/)
 
-### Online example
+### 在线例子
 
 [easyUploader example](http://test.hillpy.com/easyuploader/index.html)
 
-### Features
+### 特性
 
-* file upload
-* picture compress
-* drag upload
-* fix photo orientation  
+* 文件上传
+* 图片压缩
+* 拖曳上传
+* 照片上传旋转修正
 
-### P.S.
+## 备注
 
-This project is being developed. The English document is being writed. And I'm sorry my English is poor.
+项目正在开发中。英文文档正在编写中。我很抱歉我的英语比较烂。
 
-### How to install
+### 如何安装
 
-* use NPM.
+* 使用NPM方式
     ```
     npm install easyupload -save
     ```
 
-* use script (unpkg CDN).
+* 使用script (unpkg CDN)方式.
     ```
      <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
     ```
 
-### How to run
+### 如何运行
 
-* run project
+* 运行项目
 
-    step1. Clone project.
+    1. 克隆本项目
 
         ```
         git clone https://github.com/hillpy/easyUploader.git
         ```
-    step2. Install NPM dependencies package.
+    2. 安装node依赖包
 
         ```
         npm install
         ```
-    step3. Open rollup watching and open web service(need php environment). url: localhost:1180.
+    3. 开启rollup监听及web服务（需php环境），url：localhost:1180
 
         ```
         npm run dev
         ```
-    step4. Bundle and build.
+    4. 打包构建
 
         ```
         npm run build
         ```
 
-* run gitbook
+* 运行文档
 
-    step1. Global installation gitbook-cli.
+    1. 全局安装gitbook-cli
 
         ```
         npm install gitbook-cli -g
         ```
 
-    step2. Install NPM dependencies package.
+    2. 安装依赖库
 
         ```
         cd doc && gitbook install
         ```
 
-    step3. Open service.
+    3. 启动服务
 
         ```
         gitbook serve
         ```
 
-### CHANGELOG
+## 版本日志
 
-[version log](https://github.com/hillpy/easyUploader/releases)
+[版本日志](https://github.com/hillpy/easyUploader/releases)
 
-### TODO
+## 待做
 
-~~1. avoid id collisions~~
+~~1. 避免创建的input中id属性出现冲突~~
 
-~~2. limit file upload types~~
+~~2. 限制文件上传类型~~
 
-3. multiple files upload
+3. 多文件上传
 
-4. picture clip
+4. 图片裁剪
 
-5. breakpoint to continue and file slice upload
+5. 断点续传、文件分片上传
 
-### Repository link
+### 仓库链接
 
 [Coding](https://coding.net/u/shinn_lancelot/p/easyUploader/git "easyUploader")<br>
 [Gitee](https://gitee.com/hillpy/easyUploader "easyUploader")<br>
 [Github](https://github.com/hillpy/easyUploader "easyUploader")<br>
 
-### LICENSE
+### 协议
 
 [Apache License 2.0](https://github.com/hillpy/easyUploader/blob/master/LICENSE "Apache License 2.0")<br>
