@@ -330,7 +330,7 @@ easyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
     _this.fileObj.addEventListener('change', function () {
         _this.fileType = _this.fileObj.files[0].type;
         _this.fileName = _this.fileObj.files[0].name;
-        _this.fileExt = _this.fileName.split('.').pop();
+        _this.fileExt = _this.fileName.split('.').pop().toLowerCase();
         _this.fileSize = _this.fileObj.files[0].size;
         if (_this.checkFile()) {
             if (_this.fileType.indexOf('image/') >= 0 && _this.options.compress) {
