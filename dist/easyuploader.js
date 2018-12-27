@@ -9,52 +9,60 @@
     (global.easyUploader = factory());
 }(this, (function () { 'use strict';
 
+    /**
+     * The default options file.
+     * el: Bind to the element node.
+     * name: The input element name which is created.
+     * id: The input element id which is created.
+     * accept: The input element accept which is created.
+     * file: Bind to the input(type=file).
+     * method: The http request type.
+     * url: The file upload URL.
+     * resType: The return type of the file after uploading.
+     * autoUpload: Whether the file is automatically uploaded after selecting it.
+     * maxFileSize: Maximum file size allowed to upload.
+     * tipClass: The class of tip element node.
+     * autoDrag: Whether drag upload is allowed.
+     * fixOrientation: Whether to automatically correct the orientation of uploading photos.
+     * allowFileExt: File extensions that allow uploading.
+     * language: The tip info language.
+     * compress: Whether to compress or not.
+     * resize: Redefine the maxWidth and amxHeight.
+     * compressQuality: The picture compression quality.
+     */
     var defaultOptions = {
-        // 绑定到元素节点
         'el': '',
-        // 创建的input name
         'name': 'file',
-        // 创建的input id
         'id': '',
-        // 创建的input accept
         'accept': '',
-
-        // 绑定到file
         'file': '#file',
-
-        // http上传方式
         'method': 'post',
-        // 文件上传地址
         'url': '',
-        // 上传结果返回类型
         'resType': 'json',
-        // 是否自动上传
         'autoUpload': true,
-        // 上传文件最大容量
         'maxFileSize': '2M',
-        // 提示层样式
         'tipClass': '',
-        // 是否允许拖拽上传
         'allowDrag': false,
-        // 是否自动修正上传照片方向
         'fixOrientation': true,
-        // 允许上传的文件扩展名
         'allowFileExt': [],
-        // 提示信息语言
         'language': 'chinese',
-
-        // 是否进行压缩（仅图片有效）
         'compress': true,
-        // 重置尺寸（仅图片有效）
         'resize': {
             'maxWidth': 800,
             'maxHeight': 800
         },
-        // 压缩质量（仅图片有效，图片格式必须为jpg、webp，必须为0-1小数，默认0.92）
         'compressQuality': 0.92,
     };
 
+    /**
+     * The tip infos config file.
+     */
     var tipInfos = {
+        'english': {
+            'noFile': 'Please choose the file first.',
+            'fileTooLarge': 'The file is too Large. The maxFileSize is {0}.',
+            'fileTypeNotAllow': 'The file type is not allowed to upload. Please upload the {0} file.'
+        },
         'chinese': {
             'noFile': '请先选择文件',
             'fileTooLarge': '文件太大，最大允许为{0}',
@@ -255,7 +263,7 @@
      */
     easyUploader.prototype.init = function init () {
         var _tipInfos = JSON.parse(JSON.stringify(tipInfos));
-        this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['chinese'];
+        this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['english'];
 
         if (this.options.el) {
             this.elObj = document.querySelector(this.options.el);

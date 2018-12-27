@@ -1,4 +1,12 @@
+/**
+ * The tip infos config file.
+ */
 export default {
+    'english': {
+        'noFile': 'Please choose the file first.',
+        'fileTooLarge': 'The file is too Large. The maxFileSize is {0}.',
+        'fileTypeNotAllow': 'The file type is not allowed to upload. Please upload the {0} file.'
+    },
     'chinese': {
         'noFile': '请先选择文件',
         'fileTooLarge': '文件太大，最大允许为{0}',
