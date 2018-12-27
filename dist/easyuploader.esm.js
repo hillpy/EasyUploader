@@ -232,7 +232,7 @@ var easyUploader = function easyUploader(options) {
         return new easyUploader(options);
     }
 
-    // 公共参数
+    // The common params.
     this.fileObj = '';
     this.elObj = '';
     this.fileType = '';
@@ -246,14 +246,14 @@ var easyUploader = function easyUploader(options) {
     this.eval = eval;
     this.tips = {};
 
-    // 扩展配置选项
+    // Extend config options.
     this.options = defaultExport.extend(JSON.parse(JSON.stringify(defaultOptions)), options);
-    // 初始化
+    // Init function.
     this.init();
 };
 
 /**
- * 初始化
+ * Init function.
  */
 easyUploader.prototype.init = function init () {
     var _tipInfos = JSON.parse(JSON.stringify(tipInfos));
@@ -274,7 +274,7 @@ easyUploader.prototype.init = function init () {
 };
 
 /**
- * 创建input(type=file)
+ * Create the input(type=file).
  */
 easyUploader.prototype.createInput = function createInput () {
     this.options.id || (this.options.id = 'easyuploader_' + defaultExport.getNonce());
@@ -289,7 +289,7 @@ easyUploader.prototype.createInput = function createInput () {
 };
 
 /**
- * 元素点击事件绑定到文件对象点击事件
+ * Bind fileObj click event to elObj click event.
  */
 easyUploader.prototype.bindElToInput = function bindElToInput () {
     var _this = this;
@@ -299,21 +299,21 @@ easyUploader.prototype.bindElToInput = function bindElToInput () {
 };
 
 /**
- * 启用点击
+ * Enable fileObj click event.
  */
 easyUploader.prototype.enableFileObjClick = function enableFileObjClick () {
     this.fileObjClickStatus = true;
 };
 
 /**
- * 禁用点击
+ * Disable fileObj click event.
  */
 easyUploader.prototype.disableFileObjClick = function disableFileObjClick () {
     this.fileObjClickStatus = false;
 };
 
 /**
- * 监听文件对象点击
+ * Listen fileObj click event.
  */
 easyUploader.prototype.listenFileObjClick = function listenFileObjClick () {
     var _this = this;
@@ -323,7 +323,7 @@ easyUploader.prototype.listenFileObjClick = function listenFileObjClick () {
 };
 
 /**
- * 监听文件对象值变化
+ * Listen fileObj change event.
  */
 easyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
     var _this = this;
@@ -343,8 +343,8 @@ easyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
 };
 
 /**
- * 监听拖曳事件
- * @param {*} obj 被监听的对象
+ * Listen drag event
+ * @param {*} obj The listen obj.
  */
 easyUploader.prototype.listenDrag = function listenDrag (obj) {
     var _this = this;
@@ -368,7 +368,7 @@ easyUploader.prototype.listenDrag = function listenDrag (obj) {
 };
 
 /**
- * 重绘image并渲染画布
+ * Draw and render canvas.
  */
 easyUploader.prototype.drawAndRenderCanvas = function drawAndRenderCanvas () {
     var _this = this,
@@ -408,7 +408,7 @@ easyUploader.prototype.drawAndRenderCanvas = function drawAndRenderCanvas () {
 
         if (_this.options.fixOrientation) {
             switch(orientation) {
-                // 偏移180度
+                // 180 degree
                 case 3:
                     _this.canvas.width = width;
                     _this.canvas.height = height;
@@ -416,7 +416,7 @@ easyUploader.prototype.drawAndRenderCanvas = function drawAndRenderCanvas () {
                     _this.context.drawImage(image, -width, -height, width, height);
                     break;
                     
-                // 顺时针偏移90度
+                // clockwise 90 degree
                 case 6:
                     _this.canvas.width = height;
                     _this.canvas.height = width;
@@ -424,7 +424,7 @@ easyUploader.prototype.drawAndRenderCanvas = function drawAndRenderCanvas () {
                     _this.context.drawImage(image, 0, -height, width, height);
                     break;
                     
-                // 顺时针偏移270度
+                // clockwise 270 degree
                 case 8:
                     _this.canvas.width = height;
                     _this.canvas.height = width;
@@ -432,7 +432,7 @@ easyUploader.prototype.drawAndRenderCanvas = function drawAndRenderCanvas () {
                     _this.context.drawImage(image, -width, 0, width, height);
                     break;
                     
-                // 0度和默认，不旋转
+                // 0 degree and default
                 case 1:
                 default:
                     _this.canvas.width = width;
@@ -452,7 +452,7 @@ easyUploader.prototype.drawAndRenderCanvas = function drawAndRenderCanvas () {
 };
 
 /**
- * 上传函数
+ * The upload file function.
  */
 easyUploader.prototype.upload = function upload () {
     if (this.fileType.indexOf('image/') >= 0 && this.options.compress) {
@@ -463,7 +463,7 @@ easyUploader.prototype.upload = function upload () {
 };
 
 /**
- * 上传canvas中的图片文件
+ * Upload the canvas picture.
  */
 easyUploader.prototype.uploadCanvas = function uploadCanvas () {
     var _this = this;
@@ -479,8 +479,8 @@ easyUploader.prototype.uploadCanvas = function uploadCanvas () {
 };
 
 /**
- * 上传文件
- * @param {*} value input file中的值
+ * Upload file.
+ * @param {*} value The input file's value.
  */
 easyUploader.prototype.uploadFile = function uploadFile (value) {
     var _this = this;
@@ -553,7 +553,7 @@ easyUploader.prototype.renderTipDom = function renderTipDom (text) {
 };
 
 /**
- * 校验文件（尺寸、类型）
+ * Check the file,such as fileType and maxFileSize.
  */
 easyUploader.prototype.checkFile = function checkFile () {
     var maxFileSize = this.options.maxFileSize,
@@ -612,8 +612,8 @@ easyUploader.prototype.checkFile = function checkFile () {
 };
 
 /**
- * 处理结果格式
- * @param {*} res 需要处理的结果
+ * Handle the upload result.
+ * @param {*} res The result.
  */
 easyUploader.prototype.handleRes = function handleRes (res) {
     var resType = this.options.resType.toLowerCase();

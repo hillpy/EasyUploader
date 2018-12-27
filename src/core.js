@@ -1,6 +1,6 @@
-import defaultOptions from './defaultoptions'   // 导入默认选项
-import tipInfos from './tipinfos'   // 导入提示信息
-import common from './common'   // 导入通用静态函数类
+import defaultOptions from './defaultoptions'   // Import the defaultoptions module.
+import tipInfos from './tipinfos'   // Import the tipinfos module.
+import common from './common'   // Import the common module.
 
 if (!HTMLCanvasElement.prototype.toBlob) {
     Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
@@ -18,15 +18,15 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 
 export default class easyUploader {
     /**
-     * 初始化构造函数
-     * @param {*} options 实例化传入的选项
+     * The constructor.
+     * @param {*} options Constructor options.
      */
     constructor(options = {}) {
         if (!(this instanceof easyUploader)) {
             return new easyUploader(options);
         }
 
-        // 公共参数
+        // The common params.
         this.fileObj = '';
         this.elObj = '';
         this.fileType = '';
@@ -40,14 +40,14 @@ export default class easyUploader {
         this.eval = eval;
         this.tips = {};
 
-        // 扩展配置选项
+        // Extend config options.
         this.options = common.extend(JSON.parse(JSON.stringify(defaultOptions)), options);
-        // 初始化
+        // Init function.
         this.init();
     }
 
     /**
-     * 初始化
+     * Init function.
      */
     init() {
         let _tipInfos = JSON.parse(JSON.stringify(tipInfos));
@@ -68,7 +68,7 @@ export default class easyUploader {
     }
 
     /**
-     * 创建input(type=file)
+     * Create the input(type=file).
      */
     createInput() {
         this.options.id || (this.options.id = 'easyuploader_' + common.getNonce());
@@ -83,7 +83,7 @@ export default class easyUploader {
     }
 
     /**
-     * 元素点击事件绑定到文件对象点击事件
+     * Bind fileObj click event to elObj click event.
      */
     bindElToInput() {
         let _this = this;
@@ -93,21 +93,21 @@ export default class easyUploader {
     }
 
     /**
-     * 启用点击
+     * Enable fileObj click event.
      */
     enableFileObjClick() {
         this.fileObjClickStatus = true;
     }
 
     /**
-     * 禁用点击
+     * Disable fileObj click event.
      */
     disableFileObjClick() {
         this.fileObjClickStatus = false;
     }
 
     /**
-     * 监听文件对象点击
+     * Listen fileObj click event.
      */
     listenFileObjClick() {
         let _this = this;
@@ -117,7 +117,7 @@ export default class easyUploader {
     }
 
     /**
-     * 监听文件对象值变化
+     * Listen fileObj change event.
      */
     listenFileObjChange() {
         let _this = this;
@@ -137,8 +137,8 @@ export default class easyUploader {
     }
 
     /**
-     * 监听拖曳事件
-     * @param {*} obj 被监听的对象
+     * Listen drag event
+     * @param {*} obj The listen obj.
      */
     listenDrag(obj) {
         let _this = this;
@@ -162,7 +162,7 @@ export default class easyUploader {
     }
 
     /**
-     * 重绘image并渲染画布
+     * Draw and render canvas.
      */
     drawAndRenderCanvas() {
         let _this = this,
@@ -202,7 +202,7 @@ export default class easyUploader {
 
             if (_this.options.fixOrientation) {
                 switch(orientation) {
-                    // 偏移180度
+                    // 180 degree
                     case 3:
                         _this.canvas.width = width;
                         _this.canvas.height = height;
@@ -210,7 +210,7 @@ export default class easyUploader {
                         _this.context.drawImage(image, -width, -height, width, height);
                         break;
                     
-                    // 顺时针偏移90度
+                    // clockwise 90 degree
                     case 6:
                         _this.canvas.width = height;
                         _this.canvas.height = width;
@@ -218,7 +218,7 @@ export default class easyUploader {
                         _this.context.drawImage(image, 0, -height, width, height);
                         break;
                     
-                    // 顺时针偏移270度
+                    // clockwise 270 degree
                     case 8:
                         _this.canvas.width = height;
                         _this.canvas.height = width;
@@ -226,7 +226,7 @@ export default class easyUploader {
                         _this.context.drawImage(image, -width, 0, width, height);
                         break;
                     
-                    // 0度和默认，不旋转
+                    // 0 degree and default
                     case 1:
                     default:
                         _this.canvas.width = width;
@@ -246,7 +246,7 @@ export default class easyUploader {
     }
 
     /**
-     * 上传函数
+     * The upload file function.
      */
     upload() {
         if (this.fileType.indexOf('image/') >= 0 && this.options.compress) {
@@ -257,7 +257,7 @@ export default class easyUploader {
     }
 
     /**
-     * 上传canvas中的图片文件
+     * Upload the canvas picture.
      */
     uploadCanvas() {
         let _this = this;
@@ -273,8 +273,8 @@ export default class easyUploader {
     }
 
     /**
-     * 上传文件
-     * @param {*} value input file中的值
+     * Upload file.
+     * @param {*} value The input file's value.
      */
     uploadFile(value) {
         let _this = this;
@@ -347,7 +347,7 @@ export default class easyUploader {
     }
 
     /**
-     * 校验文件（尺寸、类型）
+     * Check the file,such as fileType and maxFileSize.
      */
     checkFile() {
         let maxFileSize = this.options.maxFileSize,
@@ -406,8 +406,8 @@ export default class easyUploader {
     }
 
     /**
-     * 处理结果格式
-     * @param {*} res 需要处理的结果
+     * Handle the upload result.
+     * @param {*} res The result.
      */
     handleRes(res) {
         let resType = this.options.resType.toLowerCase();
