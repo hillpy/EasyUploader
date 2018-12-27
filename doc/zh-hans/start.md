@@ -1,8 +1,8 @@
-# 快速开始
+## 快速开始
 
-## 简单上传（绑定到元素按钮节点）
+### 简单上传（绑定到元素按钮节点）
 
-```
+``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
 <script>
     var easyuploader1 = new easyUploader({
@@ -14,9 +14,9 @@
 
 实例化插件，实现最简单的上传功能。传入el、url参数即可，el代表元素按钮节点，即上传按钮，url代表需要提交到后端的地址
 
-## 图片上传
+### 图片上传
 
-```
+``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
 <script>
     var easyUploader2 = new easyUploader({
@@ -51,9 +51,9 @@
 
 较完善的图片上传设置，name、accept代表input中的属性。当autoUploader为true时，在选择文件之后将自动执行上传。allowFileExt代表允许上传的文件扩展名。compress代表是否对图片进行压缩，为true时resize和compressQuality生效。resize传入对象，需包含maxWidth和maxHeight，代表图片的最大宽高。compressQuality代表图片压缩质量，仅jpg和webp格式有效。maxFileSize代表允许文件上传的最大容量。后面四个为上传相关事件。
 
-## 绑定到input(type=file)上传
+### 绑定到input（type=file）上传
 
-```
+``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
 <script>
     var easyUploader3 = new easyUploader({
@@ -86,9 +86,9 @@
 
 直接绑定到'input type=file'，与绑定到元素按钮节点大同小异
 
-## 拖曳上传
+### 拖曳上传
 
-```
+``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
 <script>
     var easyUploader4 = new easyUploader({

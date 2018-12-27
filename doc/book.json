@@ -2,7 +2,7 @@
     "title": "easyUploader",
     "author": "shinn_lancelot",
     "description": "easyUploader document",
-    "language": "zh-hans",
+    "language": "en",
     "gitbook": "^3.2.3",
     "structure": {
         "readme": "readme.md"
@@ -16,7 +16,9 @@
         "github",
         "github-buttons",
         "edit-link",
-        "donate"
+        "donate",
+        "theme-vuejs",
+        "scripts"
     ],
     "pluginsConfig": {
         "anchor-navigation-ex": {

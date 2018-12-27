@@ -1,10 +1,21 @@
-# script引入方式
+## 安装
+
+### NPM方式
+
+* 执行以下命令即可
+
+    ```
+        npm install easyuploader --save
+    ```
+
+### script引入方式
 
 * 使用unpkg的cdn
 
     ```
         <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
     ```
+    <br/>
     ```
         https://unpkg.com/easyuploader/dist/easyuploader.min.js
     ```
