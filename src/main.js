@@ -1,3 +1,3 @@
-import core from './core' // 导入核心
+import core from './core' // Import core module.
 
-export default core // 导出核心
+export default core // Export core module.

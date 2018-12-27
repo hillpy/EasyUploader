@@ -67,7 +67,7 @@ var tipInfos = {
 };
 
 /**
- * 通用静态函数类
+ * Common static function class.
  */
 var defaultExport = function defaultExport () {};
 
@@ -92,8 +92,8 @@ defaultExport.extend = function extend (obj, newObj) {
 };
 
 /**
- * 图片的base64转ArrayBuffer对象
- * @param {*} base64 图片的base64
+ * Converts base64 to ArrayBuffer.
+ * @param {*} base64 The file's base64.
  */
 defaultExport.base64ToArrayBuffer = function base64ToArrayBuffer (base64) {
     base64 = base64.replace(/^data\:([^\;]+)\;base64,/gim, '');
@@ -108,8 +108,8 @@ defaultExport.base64ToArrayBuffer = function base64ToArrayBuffer (base64) {
 };
 
 /**
- * 获取jpg图片的orientation（即角度）
- * @param {*} arrayBuffer 图片二进制数据缓冲区
+ * Get the jpg file's orientation.
+ * @param {*} arrayBuffer The jpg file's arrayBuffer.
  */
 defaultExport.getOrientation = function getOrientation (arrayBuffer) {
     var dataView = new DataView(arrayBuffer),
@@ -169,7 +169,7 @@ defaultExport.getOrientation = function getOrientation (arrayBuffer) {
 };
 
 /**
- * Unicode码转字符串
+ * Unicode to string.
  * @param {*} dataView 
  * @param {*} start 
  * @param {*} length 
@@ -184,8 +184,8 @@ defaultExport.getStringFromCharCode = function getStringFromCharCode (dataView, 
 };
 
 /**
- * 获取随机字符串
- * @param {*} length 随机字符串长度
+ * Get the random nonce.
+ * @param {*} length The nonce length.
  */
 defaultExport.getNonce = function getNonce (length) {
         if ( length === void 0 ) length = 16;
@@ -199,9 +199,9 @@ defaultExport.getNonce = function getNonce (length) {
 };
 
 /**
- * 替换字符串中的占位字符串
- * @param {*} str 需要替换的字符串
- * @param {*} arr 用于替换旧字符串的字符串数组
+ * Replace the string's placeholder.
+ * @param {*} str The string.
+ * @param {*} arr The new string array.
  */
 defaultExport.replacePlaceholders = function replacePlaceholders (str, arr) {
         if ( str === void 0 ) str = '';
@@ -628,6 +628,6 @@ easyUploader.prototype.handleRes = function handleRes (res) {
     }
 };
 
-// 导出核心
+// Export core module.
 
 module.exports = easyUploader;
