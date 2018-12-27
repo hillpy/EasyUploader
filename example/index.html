@@ -179,31 +179,31 @@
 </head>
 <body>
     <div class='example-frame'>
-        <div class='title'>绑定元素节点上传</div>
-        <button id='btn1'>上传图片</button>
+        <div class='title'>bind element node</div>
+        <button id='btn1'>upload_pic</button>
     </div>
     <div class='example-frame'>
-        <div class='title'>选择文件后手动点击上传</div>
+        <div class='title'>choose file and click upload button</div>
         <button id='btn2'>＋</button>
-        <button id='upload_btn2'>开始上传</button>
+        <button id='upload_btn2'>upload_btn</button>
     </div>
     <div class='example-frame'>
-        <div class='title'>绑定input type='file'节点上传</div>
+        <div class='title'>bind input(type='file') element node</div>
         <input type='file' name='file' id='easyuploader_file'>
     </div>
     <div class='example-frame'>
-        <div class='title'>拖曳上传</div>
-        <div id='drop_area'>请将文件拖进此处</div>
+        <div class='title'>drag upload</div>
+        <div id='drop_area'>drag the file in here</div>
     </div>
     <div id='file_frame'>
-        <h3>上传结果文件</h3>
+        <h3>upload result file</h3>
         <hr>
     </div>
     <div class='clip-frame'>
         <div class='clip-layer'>
             <div class='clip-wrapper'>
                 <div class='clip-wrapper-header'>
-                    <h3>请裁剪图片</h3>
+                    <h3>Please clip picture</h3>
 
                 </div>
                 <div class='clip-wrapper-body'>
@@ -215,7 +215,7 @@
                     </div>
                 </div>
                 <div class='clip-wrapper-footer'>
-                    <button>保存上传</button>
+                    <button>save and upload</button>
                 </div>
             </div>
         </div>
@@ -242,10 +242,10 @@
             'compressQuality': 0.9,
             'maxFileSize': '5 * 1024 * 1024',
             onUploadProgress: function(e) {
-                console.log('上传进度为：' + ((e.loaded / e.total) * 100).toFixed(2) + '%');
+                console.log('the progress:' + ((e.loaded / e.total) * 100).toFixed(2) + '%');
             },
             onUploadStart: function(e) {
-                console.log('即将上传。。');
+                console.log('the file will upload');
             },
             onUploadComplete: function(data) {
                 alert(data.msg);
@@ -255,7 +255,7 @@
                         img.src = fileData.path;
                         fileFrameObj.appendChild(img);
                     } else {
-                        div.innerHTML = '文件路径：' + fileData.path;
+                        div.innerHTML = 'the file path：' + fileData.path;
                         fileFrameObj.appendChild(div);
                     }
                 }
@@ -278,10 +278,10 @@
             'compressQuality': 0.9,
             'maxFileSize': '2M',
             onUploadProgress: function(e) {
-                console.log('上传进度为：' + ((e.loaded / e.total) * 100).toFixed(2) + '%');
+                console.log('the progress:' + ((e.loaded / e.total) * 100).toFixed(2) + '%');
             },
             onUploadStart: function(e) {
-                console.log('即将上传。。');
+                console.log('the file will upload');
             },
             onUploadComplete: function(data) {
                 alert(data.msg);
@@ -291,7 +291,7 @@
                         img.src = fileData.path;
                         fileFrameObj.appendChild(img);
                     } else {
-                        div.innerHTML = '文件路径：' + fileData.path;
+                        div.innerHTML = 'the file path:' + fileData.path;
                         fileFrameObj.appendChild(div);
                     }
                 }
@@ -318,10 +318,10 @@
             'compressQuality': 0.9,
             'maxFileSize': '10M',
             onUploadProgress: function (e) {
-                console.log('上传进度为：' + ((e.loaded / e.total) * 100).toFixed(2) + '%');
+                console.log('the progress:' + ((e.loaded / e.total) * 100).toFixed(2) + '%');
             },
             onUploadStart: function (e) {
-                console.log('即将上传。。');
+                console.log('the file will upload');
             },
             onUploadComplete: function (data) {
                 alert(data.msg);
@@ -331,7 +331,7 @@
                         img.src = fileData.path;
                         fileFrameObj.appendChild(img);
                     } else {
-                        div.innerHTML = '文件路径：' + fileData.path;
+                        div.innerHTML = 'the file path:' + fileData.path;
                         fileFrameObj.appendChild(div);
                     }
                 }
@@ -367,10 +367,10 @@
                 console.log('dragleave');
             },
             onUploadProgress: function (e) {
-                console.log('上传进度为：' + ((e.loaded / e.total) * 100).toFixed(2) + '%');
+                console.log('the progress:' + ((e.loaded / e.total) * 100).toFixed(2) + '%');
             },
             onUploadStart: function (e) {
-                console.log('即将上传。。');
+                console.log('the file will upload');
             },
             onUploadComplete: function (data) {
                 alert(data.msg);
@@ -380,7 +380,7 @@
                         img.src = fileData.path;
                         fileFrameObj.appendChild(img);
                     } else {
-                        div.innerHTML = '文件路径：' + fileData.path;
+                        div.innerHTML = 'the file path:' + fileData.path;
                         fileFrameObj.appendChild(div);
                     }
                 }

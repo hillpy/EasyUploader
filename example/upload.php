@@ -3,16 +3,16 @@
 if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
     $res = array(
         'code' => 0,
-        'msg' => '上传失败'
+        'msg' => 'upload failed'
     );
 
-    // 原文件名
+    // originalFileName
     $fileName = $_FILES['file']['name'];
-    // 临时文件
+    // tempName
     $tmpName = $_FILES['file']['tmp_name'];
-    // 文件类型
+    // fileType
     $type = $_FILES['file']['type'];
-    // 文件大小
+    // fileSize
     $size = $_FILES['file']['size'];
 
     $uploadDir = './file/';
@@ -20,25 +20,25 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
         mkdir($uploadDir);
     }
 
-    // 打开并读取临时文件
+    // open and read tempName
     $fp = fopen($tmpName, 'r');
     $file = fread($fp, $size);
     $data = $file;
 
-    // 打开文件准备写入
+    // open to write
     $newFile = fopen($uploadDir . $fileName, 'w');
-    // 写入二进制流到文件
+    // write to file
     fwrite($newFile, $data);
-    // 关闭文件
+    // close file
     fclose($newFile);
 
     $res['code'] = 1;
-    $res['msg'] = '上传成功';
+    $res['msg'] = 'upload successful';
     $res['data'] = array(
         'file_type'=>$type,
         'path'=>$uploadDir . $fileName
     );
     echo json_encode($res);
 } else {
-    exit('禁止访问');
+    exit('forbidden');
 }
