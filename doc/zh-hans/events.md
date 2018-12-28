@@ -1,5 +1,7 @@
 ## 事件
 
+easyUploader还提供了一些事件，便于做更多灵活交互。
+
 ### onUploadProgress
 
 * 事件示例：onUploadProgress: function(e) {}

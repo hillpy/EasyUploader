@@ -1,5 +1,7 @@
 ## 选项
 
+easyUploader在实例化时支持很多选项配置。选项以对象键值形式传入，通过不同选项实现不同特性。
+
 ### el
 
 * 类型：String
@@ -19,21 +21,21 @@
 * 类型：String
 * 默认值："file"
 * 值示例："name": "file"
-* 解释：该选项代表创建的input file的name属性。当el选项存在时有效，必须填写该选项。
+* 解释：该选项代表创建的input file的name属性。当[el](/options.md#el)选项存在时有效，必须填写该选项。
 
 ### id
 
 * 类型：String
 * 默认值：自动创建
 * 值示例："id": "easyuploader_file"
-* 解释：该选项代表创建的input file的id属性。当el选项存在时有效，若不填写，插件将会自动创建该选项的值。
+* 解释：该选项代表创建的input file的id属性。当[el](/options.md#el)选项存在时有效，若不填写，插件将会自动创建该选项的值。
 
 ### accept
 
 * 类型：String
 * 默认值：""
 * 值示例："accept": "image/*"
-* 解释：该选项代表创建的input file的accept属性。当el选项存在时有效。
+* 解释：该选项代表创建的input file的accept属性。当[el](/options.md#el)选项存在时有效。
 
 ### url
 
@@ -110,7 +112,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * 类型：Boolean
 * 默认值：true
 * 值示例："autoUpload": true
-* 解释：该选项代表在选择文件后是否自动上传文件。若为false，需要手动调用方法上传easyUploader.upload()
+* 解释：该选项代表在选择文件后是否自动上传文件。若为false，需要手动调用方法上传[easyUploader.upload()](/methods.md#upload)
 
 ### allowDrag
 
@@ -124,7 +126,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * 类型：Array
 * 默认值：[]
 * 值示例："allowFileExt": ["jpg", "jpeg", "png"]
-* 解释：该选项代表允许上传的文件的扩展类型。完全根据文件名的扩展名称来进行判断，不允许的扩展名称将无法上传。默认为空数组时，不限制上传文件类型。注意：虽然input的accept属性在选择文件时可以限制文件类型，但开启拖曳上传时将失效，故若要限制文件类型，建议配置此选项。
+* 解释：该选项代表允许上传的文件的扩展类型。完全根据文件名的扩展名称来进行判断，不允许的扩展名称将无法上传。默认为空数组时，不限制上传文件类型。注意：虽然input的accept属性在选择文件时可以限制文件类型，但开启拖曳上传时将失效，故若要限制文件类型，建议配置此选项。另外，必须填写小写字母。
 
 ### compress
 
@@ -138,14 +140,14 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * 类型：Object
 * 默认值：{ "maxWidth": 800, "maxHeight": 800 }
 * 值示例："resize": { "maxWidth": 1000, "maxHeight": 1000 }
-* 解释：该选项代表图片重新绘制的最大尺寸（图片尺寸上的压缩），需传入maxWidth（最大宽），maxHeight（最大高）两个键值。当compress为true时生效。
+* 解释：该选项代表图片重新绘制的最大尺寸（图片尺寸上的压缩），需传入maxWidth（最大宽），maxHeight（最大高）两个键值。当[compress](/options.md#compress)为true时生效。
 
 ### compressQuality
 
 * 类型：Float
 * 默认值：0.92
 * 值示例："compressQuality": 0.9
-* 解释：该选项代表图片重新绘制的质量（图片质量上的压缩）。在重新绘制尺寸基础上再对图片质量进行压缩，当compress为true时生效，且仅对jpg、webp格式的图片有效。值必须在0-1之间，值越大质量越高。
+* 解释：该选项代表图片重新绘制的质量（图片质量上的压缩）。在重新绘制尺寸基础上再对图片质量进行压缩，当[compress](/options.md#compress)为true时生效，且仅对jpg、webp格式的图片有效。值必须在0-1之间，值越大质量越高。
 
 ### resType
 
@@ -171,6 +173,6 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 ### language
 
 * 类型：String
-* 默认值："chinese"
+* 默认值："english"
 * 值示例："language": "chinese"
-* 解释：该选项为插件提示信息的语言类型，比如"请选择文件"、"文件太大，最大允许为2M"等等。默认"chinese"，后续会加入"english"
+* 解释：该选项为插件提示信息的语言类型，比如"请选择文件"、"文件太大，最大允许为2M"等等。可选值为"english"或"chinese"。
