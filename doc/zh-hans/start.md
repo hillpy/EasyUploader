@@ -51,7 +51,7 @@
 
 较完善的图片上传设置，name、accept代表input中的属性。当autoUploader为true时，在选择文件之后将自动执行上传。allowFileExt代表允许上传的文件扩展名。compress代表是否对图片进行压缩，为true时resize和compressQuality生效。resize传入对象，需包含maxWidth和maxHeight，代表图片的最大宽高。compressQuality代表图片压缩质量，仅jpg和webp格式有效。maxFileSize代表允许文件上传的最大容量。后面四个为上传相关事件。
 
-### 绑定到input（type=file）上传
+### 绑定到input-type-file上传
 
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>

@@ -9,7 +9,6 @@
     },
     "plugins": [
         "-sharing",
-        "splitter",
         "expandable-chapters-small",
         "anchors",
         "anchor-navigation-ex",

@@ -9,7 +9,7 @@
 
 ### easyUploader是什么
 
- easyUploader是一个轻量级的、基于HTML5的js文件上传插件。
+easyUploader是一个轻量级的、基于HTML5的js文件上传插件。
 
 ### 文档
 
