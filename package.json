@@ -7,6 +7,7 @@
   "browser": "dist/easyuploader.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "git-cz",
     "dev": "npm run watch & npm run start",
     "watch": "rollup -c -w",
     "start": "php -S localhost:1180",
@@ -29,6 +30,7 @@
   },
   "readme": "README.md",
   "devDependencies": {
+    "commitizen": "^3.0.5",
     "cz-conventional-changelog": "^2.1.0",
     "rollup": "^0.66.6",
     "rollup-plugin-buble": "^0.19.6",

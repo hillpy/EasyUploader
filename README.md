@@ -30,13 +30,14 @@ File upload is very common in web development, and there are many existing uploa
 * drag upload
 * fix photo orientation
 
-### P.S.
+### Remark
 
 This project is being developed. The release is still a test version for the time being.And I'm sorry my English is poor.Please submit the project questions on [github issue](https://github.com/hillpy/easyUploader/issues "github issue").If you give me a star, I will be very happy.
 
 ### How to install
 
 * use NPM.
+
     ```
     npm install easyupload -save
     ```

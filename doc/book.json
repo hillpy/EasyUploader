@@ -41,9 +41,9 @@
             "wechat": "http://resource.hillpy.com/image/wechat_new_qrcode.png",
             "alipay": "http://resource.hillpy.com/image/alipay_new_qrcode.png",
             "title": "",
-            "button": "打赏",
-            "wechatText": "微信打赏",
-            "alipayText": "支付宝打赏"
+            "button": "Donate",
+            "wechatText": "WeChat Pay",
+            "alipayText": "Alipay"
         },
         "edit-link": {
             "base": "https://github.com/hillpy/easyUploader/tree/master/doc",
