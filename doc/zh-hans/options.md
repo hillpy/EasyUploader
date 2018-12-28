@@ -21,21 +21,21 @@ easyUploader在实例化时支持很多选项配置。选项以对象键值形�
 * 类型：String
 * 默认值："file"
 * 值示例："name": "file"
-* 解释：该选项代表创建的input file的name属性。当[el](/options.md#el)选项存在时有效，必须填写该选项。
+* 解释：该选项代表创建的input file的name属性。当[el](options.md#el)选项存在时有效，必须填写该选项。
 
 ### id
 
 * 类型：String
 * 默认值：自动创建
 * 值示例："id": "easyuploader_file"
-* 解释：该选项代表创建的input file的id属性。当[el](/options.md#el)选项存在时有效，若不填写，插件将会自动创建该选项的值。
+* 解释：该选项代表创建的input file的id属性。当[el](options.md#el)选项存在时有效，若不填写，插件将会自动创建该选项的值。
 
 ### accept
 
 * 类型：String
 * 默认值：""
 * 值示例："accept": "image/*"
-* 解释：该选项代表创建的input file的accept属性。当[el](/options.md#el)选项存在时有效。
+* 解释：该选项代表创建的input file的accept属性。当[el](options.md#el)选项存在时有效。
 
 ### url
 
@@ -112,7 +112,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * 类型：Boolean
 * 默认值：true
 * 值示例："autoUpload": true
-* 解释：该选项代表在选择文件后是否自动上传文件。若为false，需要手动调用方法上传[easyUploader.upload()](/methods.md#upload)
+* 解释：该选项代表在选择文件后是否自动上传文件。若为false，需要手动调用方法上传[easyUploader.upload()](methods.md#upload)
 
 ### allowDrag
 
@@ -140,14 +140,14 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * 类型：Object
 * 默认值：{ "maxWidth": 800, "maxHeight": 800 }
 * 值示例："resize": { "maxWidth": 1000, "maxHeight": 1000 }
-* 解释：该选项代表图片重新绘制的最大尺寸（图片尺寸上的压缩），需传入maxWidth（最大宽），maxHeight（最大高）两个键值。当[compress](/options.md#compress)为true时生效。
+* 解释：该选项代表图片重新绘制的最大尺寸（图片尺寸上的压缩），需传入maxWidth（最大宽），maxHeight（最大高）两个键值。当[compress](options.md#compress)为true时生效。
 
 ### compressQuality
 
 * 类型：Float
 * 默认值：0.92
 * 值示例："compressQuality": 0.9
-* 解释：该选项代表图片重新绘制的质量（图片质量上的压缩）。在重新绘制尺寸基础上再对图片质量进行压缩，当[compress](/options.md#compress)为true时生效，且仅对jpg、webp格式的图片有效。值必须在0-1之间，值越大质量越高。
+* 解释：该选项代表图片重新绘制的质量（图片质量上的压缩）。在重新绘制尺寸基础上再对图片质量进行压缩，当[compress](options.md#compress)为true时生效，且仅对jpg、webp格式的图片有效。值必须在0-1之间，值越大质量越高。
 
 ### resType
 
