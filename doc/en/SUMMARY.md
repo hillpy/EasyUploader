@@ -12,7 +12,7 @@
 * [Quick start](quick-start.md)
     * [Simple upload (bind to element node)](quick-start.md#simple-upload)
     * [Upload picture](quick-start.md#upload-picture)
-    * [Bind to input-type-file)](quick-start.md#bind-to-input-type-file)
+    * [Bind to input-type-file](quick-start.md#bind-to-input-type-file)
     * [Drag upload](quick-start.md#drag-upload)
 * [Options](options.md)
     * [el](options.md#el)

@@ -1,8 +1,8 @@
-## 快速开始
+## Quick start
 
-以下列举几种使用使用方式供参考体验。
+The following are several ways to use them for reference.
 
-### 简单上传（绑定到元素按钮节点）
+### Simple upload (bind to element node)
 
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
@@ -10,14 +10,14 @@
     var easyuploader1 = new easyUploader({
         "el": "#btn1",
         "url": "./upload.php",
-        "language": "chinese"
+        "language": "english"
     });
 </script>
 ```
 
-实例化库，实现最简单的上传功能。传入`el`、`url`、`language`选项即可。`el`代表元素按钮节点，即上传按钮，`url`代表需要提交到后端的地址，`language`代表信息提示语言类型。
+Initialize the library to achieve the simplest upload function. The incoming `el` `url` `language` option. `el` represents the element button node, the upload button. `url` represents the address that needs to be submitted to the back end. `language` represents the type of message prompt language.
 
-### 图片上传
+### Upload picture
 
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
@@ -29,7 +29,7 @@
         "url": "./upload.php",
         "autoUpload": true,
         "allowFileExt": ["jpg", "jpeg", "png"],
-        "language": "chinese",
+        "language": "english",
         "compress": true,
         "resize": {
             "maxWidth": 1000,
@@ -53,9 +53,9 @@
 </script>
 ```
 
-较完善的图片上传设置，`name`、`accept`代表input中的属性。当`autoUploader`为true时，在选择文件之后将自动执行上传。`allowFileExt`代表允许上传的文件扩展名。`compress`代表是否对图片进行压缩，为true时`resize`和`compressQuality`生效。`resize`需要传入对象，包含`maxWidth`和`maxHeight`，代表图片的最大宽高。`compressQuality`代表图片压缩质量，仅jpg和webp格式有效。`maxFileSize`代表允许文件上传的最大容量。后面四个为上传相关事件。
+More perfect image upload settings, `name` `accept` represented attribute of the input. When `autoUploader` is true, after select files to upload automatically. `allowFileExt` represents the file extension that is allowed to be uploaded. `compress` represents whether to compress the image, and `resize` and `compressQuality` take effect when it is true. `resize` needs to be introduced into object, including `maxWidth` and `maxHeight`, on behalf of the biggest wide high pictures. `compressQuality` represents the image compression quality, only JPG and webp formats are valid. `maxFileSize` represents the maximum capacity allowed for file uploads. The next four are for uploading related events.
 
-### 绑定到input-type-file上传
+### Bind to input-type-file
 
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
@@ -64,7 +64,7 @@
         "file": "#easyuploader_file",
         "url": "./upload.php",
         "autoUpload": true,
-        "language": "chinese",
+        "language": "english",
         "compress": true,
         "resize": {
             "maxWidth": 1000,
@@ -88,9 +88,9 @@
 </script>
 ```
 
-直接绑定到'input type=file'，填写到`file`选项即可。它与绑定到元素按钮节点大同小异。
+Directly bound to the 'input type = file, fill in the ` file ` option. It is much the same as binding to an element button node.
 
-### 拖曳上传
+### Drag upload
 
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
@@ -99,7 +99,7 @@
         "el": "#drop_area",
         "url": "./upload.php",
         "autoUpload": true,
-        "language": "chinese",
+        "language": "english",
         "compress": true,
         "resize": {
             "maxWidth": 1000,
@@ -136,4 +136,4 @@
 </script>
 ```
 
-拖曳上传与绑定到元素按钮节点上传无异，仅仅在此基础上新增拖曳上传。`allowDrag`代表是否开启拖曳，当为true时，目标文件拖至绑定元素按钮区域即可实现上传。然后，还有四个拖曳事件可供使用。
+Drag upload is the same as binding to an element button node upload, only drag upload is added on top of that. `allowDrag` represents whether drag is enabled, and when true, the target file can be uploaded by dragging it to the button area of the binding element. And then, there are four more drag events available.
