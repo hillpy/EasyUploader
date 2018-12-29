@@ -51,7 +51,7 @@ export default class easyUploader {
      */
     init() {
         let _tipInfos = JSON.parse(JSON.stringify(tipInfos));
-        this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['english'];
+        this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['en'];
 
         if (this.options.el) {
             this.elObj = document.querySelector(this.options.el);

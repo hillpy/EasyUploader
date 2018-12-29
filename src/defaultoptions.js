@@ -34,7 +34,7 @@ export default {
     'allowDrag': false,
     'fixOrientation': true,
     'allowFileExt': [],
-    'language': 'chinese',
+    'language': 'en',
     'compress': true,
     'resize': {
         'maxWidth': 800,

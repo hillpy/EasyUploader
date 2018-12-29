@@ -39,7 +39,7 @@ var defaultOptions = {
     'allowDrag': false,
     'fixOrientation': true,
     'allowFileExt': [],
-    'language': 'chinese',
+    'language': 'en',
     'compress': true,
     'resize': {
         'maxWidth': 800,
@@ -52,12 +52,12 @@ var defaultOptions = {
  * The tip infos config file.
  */
 var tipInfos = {
-    'english': {
+    'en': {
         'noFile': 'Please choose the file first.',
         'fileTooLarge': 'The file is too Large. The maxFileSize is {0}.',
         'fileTypeNotAllow': 'The file type is not allowed to upload. Please upload the {0} file.'
     },
-    'chinese': {
+    'cn': {
         'noFile': '请先选择文件',
         'fileTooLarge': '文件太大，最大允许为{0}',
         'fileTypeNotAllow': '文件格式不允许上传，请上传{0}格式的文件'
@@ -257,7 +257,7 @@ var easyUploader = function easyUploader(options) {
  */
 easyUploader.prototype.init = function init () {
     var _tipInfos = JSON.parse(JSON.stringify(tipInfos));
-    this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['english'];
+    this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['en'];
 
     if (this.options.el) {
         this.elObj = document.querySelector(this.options.el);
