@@ -10,7 +10,7 @@ The following are several ways to use them for reference.
     var easyuploader1 = new easyUploader({
         "el": "#btn1",
         "url": "./upload.php",
-        "language": "english"
+        "language": "en"
     });
 </script>
 ```
@@ -29,7 +29,7 @@ Initialize the library to achieve the simplest upload function. The incoming `el
         "url": "./upload.php",
         "autoUpload": true,
         "allowFileExt": ["jpg", "jpeg", "png"],
-        "language": "english",
+        "language": "en",
         "compress": true,
         "resize": {
             "maxWidth": 1000,
@@ -64,7 +64,7 @@ More perfect image upload settings, `name` `accept` represented attribute of the
         "file": "#easyuploader_file",
         "url": "./upload.php",
         "autoUpload": true,
-        "language": "english",
+        "language": "en",
         "compress": true,
         "resize": {
             "maxWidth": 1000,
@@ -99,7 +99,7 @@ Directly bound to the 'input type = file, fill in the ` file ` option. It is muc
         "el": "#drop_area",
         "url": "./upload.php",
         "autoUpload": true,
-        "language": "english",
+        "language": "en",
         "compress": true,
         "resize": {
             "maxWidth": 1000,

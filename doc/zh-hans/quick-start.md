@@ -10,7 +10,7 @@
     var easyuploader1 = new easyUploader({
         "el": "#btn1",
         "url": "./upload.php",
-        "language": "chinese"
+        "language": "cn"
     });
 </script>
 ```
@@ -29,7 +29,7 @@
         "url": "./upload.php",
         "autoUpload": true,
         "allowFileExt": ["jpg", "jpeg", "png"],
-        "language": "chinese",
+        "language": "cn",
         "compress": true,
         "resize": {
             "maxWidth": 1000,
@@ -64,7 +64,7 @@
         "file": "#easyuploader_file",
         "url": "./upload.php",
         "autoUpload": true,
-        "language": "chinese",
+        "language": "cn",
         "compress": true,
         "resize": {
             "maxWidth": 1000,
@@ -99,7 +99,7 @@
         "el": "#drop_area",
         "url": "./upload.php",
         "autoUpload": true,
-        "language": "chinese",
+        "language": "cn",
         "compress": true,
         "resize": {
             "maxWidth": 1000,

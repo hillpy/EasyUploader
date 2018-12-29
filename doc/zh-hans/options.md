@@ -174,5 +174,5 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
 * 类型：String
 * 默认值："english"
-* 值示例："language": "chinese"
+* 值示例："language": "cn"
 * 备注：该选项为插件提示信息的语言类型。比如"请选择文件"、"文件太大，最大允许为2M"等等。可选值为"english"或"chinese"。
