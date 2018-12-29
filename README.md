@@ -4,8 +4,8 @@
 [![license](https://img.shields.io/github/license/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader/blob/master/LICENSE)
 [![Build Status](https://www.travis-ci.com/hillpy/easyUploader.svg?branch=master)](https://www.travis-ci.com/hillpy/easyUploader)
 
-* [README_zh-CN](./README_zh-CN.md)
-* [README](./README.md)
+* [中文](./README.zh-CN.md)
+* [English](./README.md)
 
 ### What is easyUploader
 
