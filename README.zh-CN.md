@@ -64,12 +64,12 @@ easyUploader是一个轻量级的的js文件上传插件。它基于HTML5、canv
         npm install
         ```
 
-    3. 开启rollup监听及web服务（需php环境），url：localhost:1180
+    3. 开启rollup监听及web服务（需php环境），url：localhost:1180/example/index.html。
 
         ```
         npm run dev
         ```
-        
+
     4. 打包构建
 
         ```

@@ -64,7 +64,7 @@ This project is being developed. The release is still a test version for the tim
         npm install
         ```
 
-    3. Open rollup watching and open web service(need php environment). url: localhost:1180.
+    3. Open rollup watching and open web service(need php environment). url: localhost:1180/example/inex.html.
 
         ```
         npm run dev
