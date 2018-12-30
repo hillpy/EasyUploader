@@ -296,7 +296,7 @@ export default class easyUploader {
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
                 if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                    _this.options.onUploadComplete && _this.options.onUploadComplete(_this.handleRes(xhr.responseText));
+                    _this.options.onUploadComplete && _this.options.onUploadComplete(common.handleRes(xhr.responseText, this.options.resType.toLowerCase()));
                 } else {
                     _this.options.onUploadError && _this.options.onUploadError(xhr.status);
                 }
@@ -403,20 +403,5 @@ export default class easyUploader {
         }
 
         return true;
-    }
-
-    /**
-     * Handle the upload result.
-     * @param {*} res The result.
-     */
-    handleRes(res) {
-        let resType = this.options.resType.toLowerCase();
-        if (resType == 'json') {
-            return JSON.parse(res);
-        } else if (resType == 'text') {
-            return res;
-        } else {
-            return res;
-        }
     }
 }

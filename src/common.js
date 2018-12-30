@@ -143,4 +143,19 @@ export default class {
         }
         return str;
     }
+
+    /**
+     * Handle the result.
+     * @param {*} res The result data.
+     * @param {*} type Handle type. json | text
+     */
+    static handleRes(res, type) {
+        if (type == 'json') {
+            return JSON.parse(res);
+        } else if (type == 'text') {
+            return res;
+        } else {
+            return res;
+        }
+    }
 }

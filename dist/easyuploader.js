@@ -217,6 +217,21 @@
         return str;
     };
 
+    /**
+     * Handle the result.
+     * @param {*} res The result data.
+     * @param {*} type Handle type. json | text
+     */
+    defaultExport.handleRes = function handleRes (res, type) {
+        if (type == 'json') {
+            return JSON.parse(res);
+        } else if (type == 'text') {
+            return res;
+        } else {
+            return res;
+        }
+    };
+
     if (!HTMLCanvasElement.prototype.toBlob) {
         Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
             value: function(callback, type, quality) {
@@ -489,6 +504,8 @@
      * @param {*} value The input file's value.
      */
     easyUploader.prototype.uploadFile = function uploadFile (value) {
+            var this$1 = this;
+
         var _this = this;
 
         if (!_this.fileObj.files[0]) {
@@ -508,7 +525,7 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                    _this.options.onUploadComplete && _this.options.onUploadComplete(_this.handleRes(xhr.responseText));
+                    _this.options.onUploadComplete && _this.options.onUploadComplete(defaultExport.handleRes(xhr.responseText, this$1.options.resType.toLowerCase()));
                 } else {
                     _this.options.onUploadError && _this.options.onUploadError(xhr.status);
                 }
@@ -615,21 +632,6 @@
         }
 
         return true;
-    };
-
-    /**
-     * Handle the upload result.
-     * @param {*} res The result.
-     */
-    easyUploader.prototype.handleRes = function handleRes (res) {
-        var resType = this.options.resType.toLowerCase();
-        if (resType == 'json') {
-            return JSON.parse(res);
-        } else if (resType == 'text') {
-            return res;
-        } else {
-            return res;
-        }
     };
 
     // Export core module.
