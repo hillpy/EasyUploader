@@ -39,7 +39,7 @@ easyUploader是一个轻量级的的js文件上传插件。它基于HTML5、canv
 * 使用NPM方式
 
     ```
-    npm install easyupload -save
+    npm install easyuploader -save
     ```
 
 * 使用script (unpkg CDN)方式.
