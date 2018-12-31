@@ -161,7 +161,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * Type: String
 * Default: ""
 * Example: "tipClass": "tip"
-* Remark: This option is the value of the plug-in message prompt layer class attribute. You can add class values for style overrides.
+* Remark: This option is the value of library message prompt layer class attribute. You can add class values for style overrides.
 
 ### fixOrientation
 

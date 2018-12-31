@@ -6,7 +6,7 @@ EasyUploader is a lightweight js file upload library. It is developed based on H
 
 ### Why develop
 
-File upload is very common in web development, and there are many existing upload plug-ins (webuploader uploaderfy, etc.). But the feeling is still heavy, not light enough, and want to control as much as possible and familiar with the source code. Therefore, I came up with the idea of developing an upload plug-in and considered making it as simple and practical as possible. By the way, I can learn a lot of knowledge (HTML5 canvas closure tools, etc.).
+File upload is very common in web development, and there are many existing upload libraries (webuploader uploaderfy, etc.). But the feeling is still heavy, not light enough, and want to control as much as possible and familiar with the source code. Therefore, I came up with the idea of developing an upload library and considered making it as simple and practical as possible. By the way, I can learn a lot of knowledge (HTML5 canvas closure tools, etc.).
 
 ### Online example
 

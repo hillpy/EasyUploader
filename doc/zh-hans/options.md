@@ -161,7 +161,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * 类型：String
 * 默认值：""
 * 值示例："tipClass": "tip"
-* 备注：该选项为插件消息提示层class属性的值。可添加class值进行样式重写
+* 备注：该选项为库消息提示层class属性的值。可添加class值进行样式重写
 
 ### fixOrientation
 
@@ -175,4 +175,4 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * 类型：String
 * 默认值："english"
 * 值示例："language": "cn"
-* 备注：该选项为插件提示信息的语言类型。比如"请选择文件"、"文件太大，最大允许为2M"等等。可选值为"english"或"chinese"。
+* 备注：该选项为库提示信息的语言类型。比如"请选择文件"、"文件太大，最大允许为2M"等等。可选值为"english"或"chinese"。
