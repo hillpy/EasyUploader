@@ -436,7 +436,6 @@
     reader.onload = function (e) {
       arrayBuffer = defaultExport.base64ToArrayBuffer(e.target.result);
       orientation = defaultExport.getOrientation(arrayBuffer);
-      console.log(orientation);
       image.src = e.target.result;
     };
 

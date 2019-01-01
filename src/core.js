@@ -184,7 +184,6 @@ export default class EasyUploader {
     reader.onload = (e) => {
       arrayBuffer = common.base64ToArrayBuffer(e.target.result)
       orientation = common.getOrientation(arrayBuffer)
-      console.log(orientation)
       image.src = e.target.result
     }
 
