@@ -1,13 +1,13 @@
-[![issue](https://img.shields.io/github/issues/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader/issues)
-[![star](https://img.shields.io/github/stars/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader)
-[![fork](https://img.shields.io/github/forks/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader)
-[![license](https://img.shields.io/github/license/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader/blob/master/LICENSE)
-[![Build Status](https://www.travis-ci.com/hillpy/easyUploader.svg?branch=master)](https://www.travis-ci.com/hillpy/easyUploader)
+[![issue](https://img.shields.io/github/issues/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader/issues)
+[![star](https://img.shields.io/github/stars/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader)
+[![fork](https://img.shields.io/github/forks/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader)
+[![license](https://img.shields.io/github/license/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader/blob/master/LICENSE)
+[![Build Status](https://www.travis-ci.com/hillpy/EasyUploader.svg?branch=master)](https://www.travis-ci.com/hillpy/EasyUploader)
 
 * [中文](./README.zh-CN.md)
 * [English](./README.md)
 
-### What is easyUploader
+### What is EasyUploader
 
 EasyUploader is a lightweight js file upload library. It is developed based on HTML5、canvas、 fileReader and other technologies.It is more suitable for the use of mobile. Due to the different HTML support conditions of PC browsers, their use is limited, especially Internet explorer browsers. Flash will be considered to upload files in the later stage.It does not depend on other js libraries.
 
@@ -17,11 +17,11 @@ File upload is very common in web development, and there are many existing uploa
 
 ### Document
 
-[easyUploader document](https://hillpy.github.io/easyUploader/)
+[EasyUploader document](https://hillpy.github.io/EasyUploader/)
 
 ### Online example
 
-[easyUploader example](http://test.hillpy.com/easyuploader/index.html)
+[EasyUploader example](http://test.hillpy.com/easyuploader/index.html)
 
 ### Features
 
@@ -32,7 +32,7 @@ File upload is very common in web development, and there are many existing uploa
 
 ### Remark
 
-This project is being developed. The release is still a test version for the time being.And I'm sorry my English is poor.Please submit the project questions on [github issue](https://github.com/hillpy/easyUploader/issues "github issue").If you give me a star, I will be very happy.
+This project is being developed. The release is still a test version for the time being.And I'm sorry my English is poor.Please submit the project questions on [github issue](https://github.com/hillpy/EasyUploader/issues "github issue").If you give me a star, I will be very happy.
 
 ### How to install
 
@@ -55,7 +55,7 @@ This project is being developed. The release is still a test version for the tim
     1. Clone project.
 
         ```
-        git clone https://github.com/hillpy/easyUploader.git
+        git clone https://github.com/hillpy/EasyUploader.git
         ```
 
     2. Install NPM dependencies package.
@@ -98,7 +98,7 @@ This project is being developed. The release is still a test version for the tim
 
 ### CHANGELOG
 
-[version log](https://github.com/hillpy/easyUploader/releases)
+[version log](https://github.com/hillpy/EasyUploader/releases)
 
 ### TODO
 
@@ -114,10 +114,10 @@ This project is being developed. The release is still a test version for the tim
 
 ### Repository link
 
-[Coding](https://coding.net/u/shinn_lancelot/p/easyUploader/git "easyUploader")<br>
-[Gitee](https://gitee.com/hillpy/easyUploader "easyUploader")<br>
-[Github](https://github.com/hillpy/easyUploader "easyUploader")<br>
+[Coding](https://coding.net/u/shinn_lancelot/p/EasyUploader/git "EasyUploader")<br>
+[Gitee](https://gitee.com/hillpy/EasyUploader "EasyUploader")<br>
+[Github](https://github.com/hillpy/EasyUploader "EasyUploader")<br>
 
 ### LICENSE
 
-[Apache License 2.0](https://github.com/hillpy/easyUploader/blob/master/LICENSE "Apache License 2.0")<br>
+[Apache License 2.0](https://github.com/hillpy/EasyUploader/blob/master/LICENSE "Apache License 2.0")<br>

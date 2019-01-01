@@ -1,15 +1,15 @@
-[![issue](https://img.shields.io/github/issues/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader/issues)
-[![star](https://img.shields.io/github/stars/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader)
-[![fork](https://img.shields.io/github/forks/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader)
-[![license](https://img.shields.io/github/license/hillpy/easyUploader.svg)](https://github.com/hillpy/easyUploader/blob/master/LICENSE)
-[![Build Status](https://www.travis-ci.com/hillpy/easyUploader.svg?branch=master)](https://www.travis-ci.com/hillpy/easyUploader)
+[![issue](https://img.shields.io/github/issues/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader/issues)
+[![star](https://img.shields.io/github/stars/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader)
+[![fork](https://img.shields.io/github/forks/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader)
+[![license](https://img.shields.io/github/license/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader/blob/master/LICENSE)
+[![Build Status](https://www.travis-ci.com/hillpy/EasyUploader.svg?branch=master)](https://www.travis-ci.com/hillpy/EasyUploader)
 
 * [中文](./README.zh-CN.md)
 * [English](./README.md)
 
-### easyUploader是什么
+### EasyUploader是什么
 
-easyUploader是一个轻量级的的js文件上传库。它基于HTML5、canvas、fileReader等技术开发。比较适合移动端使用，pc端浏览器由于HTML支持情况不同，导致使用比较受限，特别是IE浏览器，后期会考虑添加flash上传文件。它不依赖其它js库。
+EasyUploader是一个轻量级的的js文件上传库。它基于HTML5、canvas、fileReader等技术开发。比较适合移动端使用，pc端浏览器由于HTML支持情况不同，导致使用比较受限，特别是IE浏览器，后期会考虑添加flash上传文件。它不依赖其它js库。
 
 ### 为什么要开发
 
@@ -17,11 +17,11 @@ easyUploader是一个轻量级的的js文件上传库。它基于HTML5、canvas�
 
 ### 文档
 
-[easyUploader document](https://hillpy.github.io/easyUploader/)
+[EasyUploader document](https://hillpy.github.io/EasyUploader/)
 
 ### 在线例子
 
-[easyUploader example](http://test.hillpy.com/easyuploader/index.html)
+[EasyUploader example](http://test.hillpy.com/easyuploader/index.html)
 
 ### 特性
 
@@ -32,7 +32,7 @@ easyUploader是一个轻量级的的js文件上传库。它基于HTML5、canvas�
 
 ### 备注
 
-项目正在开发中。发布的暂时还是测试版本。我很抱歉我的英语比较烂。关于项目问题，请在[github issue](https://github.com/hillpy/easyUploader/issues "github issue")提交即可。如果亲能赏个star，我会非常高兴的。
+项目正在开发中。发布的暂时还是测试版本。我很抱歉我的英语比较烂。关于项目问题，请在[github issue](https://github.com/hillpy/EasyUploader/issues "github issue")提交即可。如果亲能赏个star，我会非常高兴的。
 
 ### 如何安装
 
@@ -55,7 +55,7 @@ easyUploader是一个轻量级的的js文件上传库。它基于HTML5、canvas�
     1. 克隆本项目
 
         ```
-        git clone https://github.com/hillpy/easyUploader.git
+        git clone https://github.com/hillpy/EasyUploader.git
         ```
 
     2. 安装node依赖包
@@ -98,7 +98,7 @@ easyUploader是一个轻量级的的js文件上传库。它基于HTML5、canvas�
 
 ### 版本日志
 
-[版本日志](https://github.com/hillpy/easyUploader/releases)
+[版本日志](https://github.com/hillpy/EasyUploader/releases)
 
 ### 待做
 
@@ -114,10 +114,10 @@ easyUploader是一个轻量级的的js文件上传库。它基于HTML5、canvas�
 
 ### 仓库链接
 
-[Coding](https://coding.net/u/shinn_lancelot/p/easyUploader/git "easyUploader")<br>
-[Gitee](https://gitee.com/hillpy/easyUploader "easyUploader")<br>
-[Github](https://github.com/hillpy/easyUploader "easyUploader")<br>
+[Coding](https://coding.net/u/shinn_lancelot/p/EasyUploader/git "EasyUploader")<br>
+[Gitee](https://gitee.com/hillpy/EasyUploader "EasyUploader")<br>
+[Github](https://github.com/hillpy/EasyUploader "EasyUploader")<br>
 
 ### 协议
 
-[Apache License 2.0](https://github.com/hillpy/easyUploader/blob/master/LICENSE "Apache License 2.0")<br>
+[Apache License 2.0](https://github.com/hillpy/EasyUploader/blob/master/LICENSE "Apache License 2.0")<br>
