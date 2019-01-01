@@ -20,25 +20,25 @@
  * compressQuality: The picture compression quality.
  */
 export default {
-    'el': '',
-    'name': 'file',
-    'id': '',
-    'accept': '',
-    'file': '#file',
-    'method': 'post',
-    'url': '',
-    'resType': 'json',
-    'autoUpload': true,
-    'maxFileSize': '2M',
-    'tipClass': '',
-    'allowDrag': false,
-    'fixOrientation': true,
-    'allowFileExt': [],
-    'language': 'en',
-    'compress': true,
-    'resize': {
-        'maxWidth': 800,
-        'maxHeight': 800
-    },
-    'compressQuality': 0.92,
+  'el': '',
+  'name': 'file',
+  'id': '',
+  'accept': '',
+  'file': '#file',
+  'method': 'post',
+  'url': '',
+  'resType': 'json',
+  'autoUpload': true,
+  'maxFileSize': '2M',
+  'tipClass': '',
+  'allowDrag': false,
+  'fixOrientation': true,
+  'allowFileExt': [],
+  'language': 'en',
+  'compress': true,
+  'resize': {
+    'maxWidth': 800,
+    'maxHeight': 800
+  },
+  'compressQuality': 0.92
 }

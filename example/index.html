@@ -4,7 +4,7 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-    <title>easyUploader example</title>
+    <title>EasyUploader example</title>
     <style>
         * {
             margin: 0;
@@ -227,7 +227,7 @@
             div = document.createElement('div'),
             uploadBtn2 = document.querySelector('#upload_btn2');
 
-        var easyUploader1 = new easyUploader({
+        var eu1 = new EasyUploader({
             'el': '#btn1',
             'accept': 'image/*',
 
@@ -266,7 +266,7 @@
             }
         });
 
-        var easyUploader2 = new easyUploader({
+        var eu2 = new EasyUploader({
             'el': '#btn2',
 
             'url': './upload.php',
@@ -304,10 +304,10 @@
         });
 
         uploadBtn2.addEventListener('click', function() {
-            easyUploader2.upload();
+            eu2.upload();
         });
 
-        var easyUploader3 = new easyUploader({
+        var eu3 = new EasyUploader({
             'file': '#easyuploader_file',
 
             'url': './upload.php',
@@ -344,7 +344,7 @@
             }
         });
 
-        var easyUploader4 = new easyUploader({
+        var eu4 = new EasyUploader({
             'el': '#drop_area',
 
             'url': './upload.php',
