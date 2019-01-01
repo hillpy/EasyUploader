@@ -1,5 +1,5 @@
 /*
- * EasyUploader v0.0.7-beta
+ * EasyUploader v0.0.8-beta
  * (c) 2018-2019 shinn_lancelot
  * Released under the Apache License 2.0 License.
  */

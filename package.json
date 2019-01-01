@@ -1,6 +1,6 @@
 {
   "name": "easyuploader",
-  "version": "0.0.7-beta",
+  "version": "0.0.8-beta",
   "description": "EasyUploader is a lightweight js file upload library. EasyUploader是一个轻量级的的js文件上传库。",
   "main": "dist/easyuploader.cjs.js",
   "module": "dist/easyuploader.esm.js",
