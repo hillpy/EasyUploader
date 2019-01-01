@@ -22,7 +22,7 @@
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
 <script>
-    var eu = new EasyUploader({
+    var eu2 = new EasyUploader({
         "el": "#btn2",
         "name": "file",
         "accept": "image/*",
