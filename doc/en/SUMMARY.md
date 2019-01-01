@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-    * [What is easyUploader](README.md#what-is-easyuploader)
+    * [What is EasyUploader](README.md#what-is-easyuploader)
     * [Why develop](README.md#why-develop)
     * [Online example](README.md#online-example)
     * [Featrues](README.md#features)

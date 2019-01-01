@@ -1,6 +1,6 @@
 ## 选项
 
-easyUploader在实例化时支持很多选项配置。选项以对象键值形式传入，通过不同选项实现不同特性。
+EasyUploader在实例化时支持很多选项配置。选项以对象键值形式传入，通过不同选项实现不同特性。
 
 ### el
 
@@ -112,7 +112,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * 类型：Boolean
 * 默认值：true
 * 值示例："autoUpload": true
-* 备注：该选项代表在选择文件后是否自动上传文件。若为false，需要手动调用方法上传[easyUploader.upload()](methods.md#upload)
+* 备注：该选项代表在选择文件后是否自动上传文件。若为false，需要手动调用方法上传[EasyUploader.upload()](methods.md#upload)
 
 ### allowDrag
 

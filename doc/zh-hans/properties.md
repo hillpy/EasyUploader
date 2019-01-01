@@ -1,16 +1,16 @@
 ## 属性
 
-easyUploader还支持内部属性的获取与修改。
+EasyUploader还支持内部属性的获取与修改。
 
 ### fileObj
 
 * 类型：Object
-* 备注：该属性为input（type=file）对象。在easyUploader初始化时生成。
+* 备注：该属性为input（type=file）对象。在EasyUploader初始化时生成。
 
 ### elObj
 
 * 类型：Object
-* 备注：该属性为绑定的元素的对象。在easyUploader初始化时生成。
+* 备注：该属性为绑定的元素的对象。在EasyUploader初始化时生成。
 
 ### fileType
 

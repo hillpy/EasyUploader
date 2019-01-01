@@ -1,6 +1,6 @@
 ## Options
 
-easyUploader supports many option configurations at initialization time.
+EasyUploader supports many option configurations at initialization time.
 
 ### el
 
@@ -112,7 +112,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * Type: Boolean
 * Default: true
 * Example: "autoUpload": true
-* Remark: This option represents whether to automatically upload a file after selecting it. If false, you need to manually call the method upload[easyUploader.upload()](methods.md#upload).
+* Remark: This option represents whether to automatically upload a file after selecting it. If false, you need to manually call the method upload[EasyUploader.upload()](methods.md#upload).
 
 ### allowDrag
 

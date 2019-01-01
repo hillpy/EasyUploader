@@ -7,7 +7,7 @@
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
 <script>
-    var easyuploader1 = new easyUploader({
+    var eu1 = new EasyUploader({
         "el": "#btn1",
         "url": "./upload.php",
         "language": "cn"
@@ -22,7 +22,7 @@
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
 <script>
-    var easyUploader2 = new easyUploader({
+    var eu = new EasyUploader({
         "el": "#btn2",
         "name": "file",
         "accept": "image/*",
@@ -60,7 +60,7 @@
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
 <script>
-    var easyUploader3 = new easyUploader({
+    var eu3 = new EasyUploader({
         "file": "#easyuploader_file",
         "url": "./upload.php",
         "autoUpload": true,
@@ -95,7 +95,7 @@
 ``` js
 <script src="https://unpkg.com/easyuploader/dist/easyuploader.min.js"></script>
 <script>
-    var easyUploader4 = new easyUploader({
+    var eu4 = new EasyUploader({
         "el": "#drop_area",
         "url": "./upload.php",
         "autoUpload": true,

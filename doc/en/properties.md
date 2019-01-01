@@ -1,16 +1,16 @@
 ## Properties
 
-easyUploader also supports the acquisition and modification of internal properties.
+EasyUploader also supports the acquisition and modification of internal properties.
 
 ### fileObj
 
 * Type: Object
-* Remark: This attribute is an input(type=file) object. Generated when easyUploader is initialized.
+* Remark: This attribute is an input(type=file) object. Generated when EasyUploader is initialized.
 
 ### elObj
 
 * Type: Object
-* Remark: This property is the object of the bound element. Generated when easyUploader is initialized.
+* Remark: This property is the object of the bound element. Generated when EasyUploader is initialized.
 
 ### fileType
 

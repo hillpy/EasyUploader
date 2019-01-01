@@ -1,6 +1,6 @@
 ## Introduction
 
-### What is easyUploader
+### What is EasyUploader
 
 EasyUploader is a lightweight js file upload library. It is developed based on HTML5、canvas、 fileReader and other technologies. It is more suitable for the use of mobile. Due to the different HTML support conditions of PC browsers, their use is limited, especially Internet explorer browsers. Flash will be considered to upload files in the later stage. It does not depend on other js libraries.
 
@@ -10,7 +10,7 @@ File upload is very common in web development, and there are many existing uploa
 
 ### Online example
 
-[easyUploader example](http://test.hillpy.com/easyuploader/index.html)
+[EasyUploader example](http://test.hillpy.com/easyuploader/index.html)
 
 ### Features
 
@@ -21,4 +21,4 @@ File upload is very common in web development, and there are many existing uploa
 
 ### Remark
 
-This project is being developed. The release is still a test version for the time being. And I'm sorry my English is poor. Please submit the project questions on [github issue](https://github.com/hillpy/easyUploader/issues "github issue").If you give me a star, I will be very happy.
+This project is being developed. The release is still a test version for the time being. And I'm sorry my English is poor. Please submit the project questions on [github issue](https://github.com/hillpy/EasyUploader/issues "github issue").If you give me a star, I will be very happy.

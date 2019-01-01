@@ -1,6 +1,6 @@
 ## 事件
 
-easyUploader还提供了一些事件，便于做更多灵活交互。
+EasyUploader还提供了一些事件，便于做更多灵活交互。
 
 ### onUploadProgress
 

@@ -1,7 +1,7 @@
 # Summary
 
 * [介绍](README.md)
-    * [easyUploader是什么](README.md#easyuploader是什么)
+    * [EasyUploader是什么](README.md#easyuploader是什么)
     * [为什么要开发](README.md#为什么要开发)
     * [在线例子](README.md#在线例子)
     * [特性](README.md#特性)
