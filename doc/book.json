@@ -9,8 +9,9 @@
     },
     "plugins": [
         "-sharing",
-        "-search",
-        "search-plus",
+        "search",
+        "sharing-plus",
+        "search-pro",
         "expandable-chapters-small",
         "anchors",
         "anchor-navigation-ex",
@@ -20,9 +21,33 @@
         "donate",
         "theme-vuejs",
         "scripts",
-        "baidu-tongji"
+        "baidu-tongji",
+        "versions-select"
     ],
     "pluginsConfig": {
+        "sharing": {
+            "douban": false,
+            "facebook": true,
+            "google": true,
+            "hatenaBookmark": false,
+            "instapaper": false,
+            "line": false,
+            "linkedin": false,
+            "messenger": false,
+            "pocket": false,
+            "qq": true,
+            "qzone": false,
+            "stumbleupon": false,
+            "twitter": true,
+            "viber": false,
+            "vk": false,
+            "weibo": true,
+            "whatsapp": false
+        },
+        "search-pro": {
+            "cutWordLib": "nodejieba",
+            "defineWord" : ["Gitbook Use"]
+        },
         "anchor-navigation-ex": {
             "showLevel": false
         },
@@ -54,6 +79,14 @@
         },
         "baidu-tongji": {
             "token": "e3d09fb8f3f3dbd9eb23e885461dd36e"
+        },
+        "versions": {
+            "options": [
+                {
+                    "value": "https://hillpy.github.io/EasyUploader/",
+                    "text": "v0.0.8-beta"
+                }
+            ]
         }
     }
 }
