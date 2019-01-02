@@ -9,6 +9,8 @@
     },
     "plugins": [
         "-sharing",
+        "-search",
+        "search-plus",
         "expandable-chapters-small",
         "anchors",
         "anchor-navigation-ex",
