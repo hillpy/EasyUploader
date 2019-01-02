@@ -9,6 +9,7 @@
     },
     "plugins": [
         "-sharing",
+        "baidu-tongji",
         "expandable-chapters-small",
         "anchors",
         "anchor-navigation-ex",
@@ -17,10 +18,12 @@
         "edit-link",
         "donate",
         "theme-vuejs",
-        "scripts",
-        "baidu"
+        "scripts"
     ],
     "pluginsConfig": {
+        "baidu-tongji": {
+            "token": "e3d09fb8f3f3dbd9eb23e885461dd36e"
+        },
         "anchor-navigation-ex": {
             "showLevel": false
         },
@@ -49,9 +52,6 @@
         "edit-link": {
             "base": "https://github.com/hillpy/EasyUploader/tree/master/doc",
             "label": "Edit This Page"
-        },
-        "baidu": {
-            "token": "e3d09fb8f3f3dbd9eb23e885461dd36e"
         }
     }
 }
