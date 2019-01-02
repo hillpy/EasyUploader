@@ -18,7 +18,7 @@
         "donate",
         "theme-vuejs",
         "scripts",
-        "baidu"
+        "baidu-tongji"
     ],
     "pluginsConfig": {
         "anchor-navigation-ex": {
@@ -50,7 +50,7 @@
             "base": "https://github.com/hillpy/EasyUploader/tree/master/doc",
             "label": "Edit This Page"
         },
-        "baidu": {
+        "baidu-tongji": {
             "token": "e3d09fb8f3f3dbd9eb23e885461dd36e"
         }
     }
