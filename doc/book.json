@@ -17,7 +17,8 @@
         "edit-link",
         "donate",
         "theme-vuejs",
-        "scripts"
+        "scripts",
+        "baidu"
     ],
     "pluginsConfig": {
         "anchor-navigation-ex": {
@@ -48,6 +49,9 @@
         "edit-link": {
             "base": "https://github.com/hillpy/easyUploader/tree/master/doc",
             "label": "Edit This Page"
+        },
+        "baidu": {
+            "token": "e3d09fb8f3f3dbd9eb23e885461dd36e"
         }
     }
 }
