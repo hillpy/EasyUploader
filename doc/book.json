@@ -1,7 +1,7 @@
 {
-    "title": "easyUploader",
+    "title": "EasyUploader",
     "author": "shinn_lancelot",
-    "description": "easyUploader document",
+    "description": "EasyUploader document",
     "language": "en",
     "gitbook": "^3.2.3",
     "structure": {
@@ -25,13 +25,13 @@
             "showLevel": false
         },
         "github": {
-            "url": "https://github.com/hillpy/easyUploader"
+            "url": "https://github.com/hillpy/EasyUploader"
         },
         "github-buttons": {
             "buttons": [
                 {
                     "user": "hillpy",
-                    "repo": "easyUploader",
+                    "repo": "EasyUploader",
                     "type": "star",
                     "size": "small",
                     "count": true
@@ -47,7 +47,7 @@
             "alipayText": "Alipay"
         },
         "edit-link": {
-            "base": "https://github.com/hillpy/easyUploader/tree/master/doc",
+            "base": "https://github.com/hillpy/EasyUploader/tree/master/doc",
             "label": "Edit This Page"
         },
         "baidu": {
