@@ -1,8 +1,11 @@
-[![issue](https://img.shields.io/github/issues/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader/issues)
-[![star](https://img.shields.io/github/stars/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader)
-[![fork](https://img.shields.io/github/forks/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader)
-[![license](https://img.shields.io/github/license/hillpy/EasyUploader.svg)](https://github.com/hillpy/EasyUploader/blob/master/LICENSE)
-[![Build Status](https://www.travis-ci.com/hillpy/EasyUploader.svg?branch=master)](https://www.travis-ci.com/hillpy/EasyUploader)
+<p align="center">
+    <a href="https://github.com/hillpy/EasyUploader/blob/master/LICENSE"><img src="https://img.shields.io/github/license/hillpy/EasyUploader.svg" alt="License"></a>
+    <a href="https://www.travis-ci.com/hillpy/EasyUploader"><img src="https://img.shields.io/travis/com/hillpy/EasyUploader.svg" alt="Build Status"></a>
+    <a href="https://github.com/hillpy/EasyUploader/blob/master/dist/easyuploader.min.js"><img src="https://img.shields.io/bundlephobia/min/easyuploader.svg" alt="Minfied Size"></a>
+    <a href="https://www.npmjs.com/package/easyuploader"><img src="https://img.shields.io/npm/dt/easyuploader.svg" alt="Downloads"></a>
+    <a href="https://github.com/hillpy/EasyUploader/releases"><img src="https://img.shields.io/github/release/hillpy/EasyUploader.svg" alt="Github Release"></a>
+    <a href="https://www.npmjs.com/package/easyuploader"><img src="https://img.shields.io/npm/v/easyuploader.svg" alt="NPM Release"></a>
+</p>
 
 * [中文](./README.zh-CN.md)
 * [English](./README.md)
