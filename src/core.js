@@ -88,7 +88,8 @@ export default class EasyUploader {
    */
   bindElToInput () {
     let _this = this
-    _this.elObj.addEventListener('click', () => {
+    _this.elObj.addEventListener('click', (e) => {
+      e.preventDefault()
       _this.fileObj.click()
     })
   }

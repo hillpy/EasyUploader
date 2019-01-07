@@ -340,7 +340,8 @@
    */
   EasyUploader.prototype.bindElToInput = function bindElToInput () {
     var _this = this;
-    _this.elObj.addEventListener('click', function () {
+    _this.elObj.addEventListener('click', function (e) {
+      e.preventDefault();
       _this.fileObj.click();
     });
   };
