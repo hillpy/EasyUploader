@@ -564,8 +564,8 @@ EasyUploader.prototype.uploadFile = function uploadFile (value) {
 };
 
 /**
- * 渲染提示层到dom
- * @param {*} text 提示文本
+ * Render tipDom to body.
+ * @param {*} text The tip text.
  */
 EasyUploader.prototype.renderTipDom = function renderTipDom (text) {
   var div = document.createElement('div');
