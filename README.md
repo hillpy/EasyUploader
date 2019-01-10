@@ -123,4 +123,4 @@ This project is being developed. The release is still a test version for the tim
 
 ### LICENSE
 
-[Apache License 2.0](https://github.com/hillpy/EasyUploader/blob/master/LICENSE "Apache License 2.0")<br>
+[MIT](https://github.com/hillpy/EasyUploader/blob/master/LICENSE "MIT")<br>

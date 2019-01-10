@@ -123,4 +123,4 @@ EasyUploader是一个轻量级的的js文件上传库。它基于HTML5、canvas�
 
 ### 协议
 
-[Apache License 2.0](https://github.com/hillpy/EasyUploader/blob/master/LICENSE "Apache License 2.0")<br>
+[MIT](https://github.com/hillpy/EasyUploader/blob/master/LICENSE "MIT")<br>
