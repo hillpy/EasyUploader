@@ -8,10 +8,11 @@ import pkg from './package.json'
 const production = !process.env.ROLLUP_WATCH
 const version = process.env.VERSION || pkg.version
 const libName = 'EasyUploader' || pkg.name
+const birthYear = 2018
 const banner =
     '/*\n' +
     ` * ${libName} v${version}\n` +
-    ` * (c) 2018-${new Date().getFullYear()} ${pkg.author}\n` +
+    ` * (c) ${birthYear}-${new Date().getFullYear()} ${pkg.author}\n` +
     ` * Released under the ${pkg.license} License.\n` +
     ' */'
 const outPath = './dist/'
