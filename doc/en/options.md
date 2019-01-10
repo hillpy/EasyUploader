@@ -175,4 +175,4 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 * Type: String
 * Default: "en"
 * Example: "language": "cn"
-* Remark: This option is the language type of the library prompt message. For example, "please select the file", "the file is too large, the maximum allowed is 2M" and so on. The optional value is either "english" or "chinese".
+* Remark: This option is the language type of the library prompt message. For example, "please select the file", "the file is too large, the maximum allowed is 2M" and so on. The optional value is either "en" or "cn".
