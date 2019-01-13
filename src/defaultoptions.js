@@ -32,6 +32,7 @@ export default {
   'maxFileSize': '2M',
   'tipClass': '',
   'allowDrag': false,
+  'clip': false,
   'fixOrientation': true,
   'allowFileExt': [],
   'language': 'en',
