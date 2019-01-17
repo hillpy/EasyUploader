@@ -42,7 +42,7 @@ This project is being developed. The release is still a test version for the tim
 * use NPM.
 
     ```
-    npm install easyuploader -save
+    npm install easyuploader --save
     ```
 
 * use script (unpkg CDN).
