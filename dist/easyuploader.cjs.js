@@ -1,7 +1,7 @@
 /*
  * EasyUploader v0.0.8-beta
  * (c) 2018-2019 shinn_lancelot
- * Released under the Apache License 2.0 License.
+ * Released under the MIT License.
  */
 'use strict';
 
@@ -39,6 +39,7 @@ var defaultOptions = {
   'maxFileSize': '2M',
   'tipClass': '',
   'allowDrag': false,
+  'clip': false,
   'fixOrientation': true,
   'allowFileExt': [],
   'language': 'en',
@@ -377,7 +378,7 @@ EasyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
     _this.fileExt = _this.fileName.split('.').pop().toLowerCase();
     _this.fileSize = _this.fileObj.files[0].size;
     if (_this.checkFile()) {
-      if (_this.fileType.indexOf('image/') >= 0 && _this.options.compress) {
+      if (_this.fileType.indexOf('image/') >= 0 && (_this.options.compress || _this.options.clip)) {
         _this.drawAndRenderCanvas();
       } else {
         _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0]);
