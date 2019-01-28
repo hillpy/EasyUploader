@@ -16,7 +16,7 @@
  * allowFileExt: File extensions that allow uploading.
  * language: The tip info language.
  * compress: Whether to compress or not.
- * resize: Redefine the maxWidth and amxHeight.
+ * resize: Redefine the maxWidth and maxHeight.
  * compressQuality: The picture compression quality.
  */
 export default {
