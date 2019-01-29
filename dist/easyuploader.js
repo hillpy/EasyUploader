@@ -331,7 +331,7 @@
     input.name = this.options.name;
     input.id = this.options.id;
     input.accept = this.options.accept;
-    input.setAttribute('style', 'display: none; !important');
+    input.setAttribute('style', 'display: none !important;');
     this.elObj.parentNode.insertBefore(input, this.elObj.nextElementSibling);
     this.fileObj = document.querySelector('#' + this.options.id);
   };
