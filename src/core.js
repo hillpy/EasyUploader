@@ -129,7 +129,7 @@ export default class EasyUploader {
       _this.fileExt = _this.fileName.split('.').pop().toLowerCase()
       _this.fileSize = _this.fileObj.files[0].size
       if (_this.checkFile()) {
-        if (_this.fileType.indexOf('image/') >= 0 && (_this.options.compress || _this.options.clip)) {
+        if (_this.needCanvas) {
           _this.drawAndRenderCanvas()
         } else {
           _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0])
@@ -308,6 +308,9 @@ export default class EasyUploader {
         } else {
           _this.options.onUploadError && _this.options.onUploadError(xhr.status)
         }
+        if (_this.needCanvas) {
+          _this.canvas.remove()
+        }
         _this.fileObj.value = ''
       }
     }
@@ -413,5 +416,17 @@ export default class EasyUploader {
     }
 
     return true
+  }
+
+  /**
+   * need to use canvas?
+   */
+  needCanvas () {
+    let _this = this
+    if (_this.fileType.indexOf('image/') >= 0 && (_this.options.compress || _this.options.clip)) {
+      return true
+    }
+
+    return false
   }
 }

@@ -382,7 +382,7 @@
       _this.fileExt = _this.fileName.split('.').pop().toLowerCase();
       _this.fileSize = _this.fileObj.files[0].size;
       if (_this.checkFile()) {
-        if (_this.fileType.indexOf('image/') >= 0 && (_this.options.compress || _this.options.clip)) {
+        if (_this.needCanvas) {
           _this.drawAndRenderCanvas();
         } else {
           _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0]);
@@ -563,6 +563,9 @@
         } else {
           _this.options.onUploadError && _this.options.onUploadError(xhr.status);
         }
+        if (_this.needCanvas) {
+          _this.canvas.remove();
+        }
         _this.fileObj.value = '';
       }
     };
@@ -668,6 +671,18 @@
     }
 
     return true
+  };
+
+  /**
+   * need to use canvas?
+   */
+  EasyUploader.prototype.needCanvas = function needCanvas () {
+    var _this = this;
+    if (_this.fileType.indexOf('image/') >= 0 && (_this.options.compress || _this.options.clip)) {
+      return true
+    }
+
+    return false
   };
 
   return EasyUploader;
