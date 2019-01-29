@@ -23,7 +23,7 @@
  * allowFileExt: File extensions that allow uploading.
  * language: The tip info language.
  * compress: Whether to compress or not.
- * resize: Redefine the maxWidth and amxHeight.
+ * resize: Redefine the maxWidth and maxHeight.
  * compressQuality: The picture compression quality.
  */
 var defaultOptions = {
@@ -328,7 +328,7 @@ EasyUploader.prototype.createInput = function createInput () {
   input.id = this.options.id;
   input.accept = this.options.accept;
   input.setAttribute('style', 'display: none; !important');
-  document.querySelector('body').appendChild(input);
+  this.elObj.parentNode.insertBefore(input, this.elObj.nextElementSibling);
   this.fileObj = document.querySelector('#' + this.options.id);
 };
 
