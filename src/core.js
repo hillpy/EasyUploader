@@ -323,26 +323,29 @@ export default class EasyUploader {
    * @param {*} text The tip text.
    */
   renderTipDom (text) {
-    let div = document.createElement('div')
-    div.innerHTML = text
+    let oldTipDiv = document.getElementById('easyuploader_tipdom')
+    oldTipDiv && oldTipDiv.remove()
+    let tipDiv = document.createElement('div')
+    tipDiv.id = 'easyuploader_tipdom'
+    tipDiv.innerHTML = text
     if (this.options.tipClass) {
-      div.className = this.options.tipClass
+      tipDiv.className = this.options.tipClass
     } else {
-      div.setAttribute('style', 'max-width: 90%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;')
+      tipDiv.setAttribute('style', 'max-width: 90%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;')
     }
-    document.querySelector('body').appendChild(div)
+    document.querySelector('body').appendChild(tipDiv)
     setTimeout(() => {
-      let opacity = div.style.opacity
+      let opacity = tipDiv.style.opacity
       if (opacity > 0) {
         opacity = (opacity - 0.2).toFixed(1)
         if (opacity < 0) {
           opacity = 0
         }
         let hideTip = setInterval(() => {
-          div.style.opacity = opacity
-          div.style.filter = 'Alpha((opacity = ' + opacity * 100 + '))'
+          tipDiv.style.opacity = opacity
+          tipDiv.style.filter = 'Alpha((opacity = ' + opacity * 100 + '))'
           if (opacity <= 0) {
-            div.remove()
+            tipDiv.remove()
             clearInterval(hideTip)
           } else {
             opacity = (opacity - 0.1).toFixed(1)
@@ -352,7 +355,7 @@ export default class EasyUploader {
           }
         }, 10)
       } else {
-        div.remove()
+        tipDiv.remove()
       }
     }, 1500)
   }
@@ -422,8 +425,7 @@ export default class EasyUploader {
    * need to use canvas?
    */
   needCanvas () {
-    let _this = this
-    if (_this.fileType.indexOf('image/') >= 0 && (_this.options.compress || _this.options.clip)) {
+    if (this.fileType.indexOf('image/') >= 0 && (this.options.compress || this.options.clip)) {
       return true
     }
 
