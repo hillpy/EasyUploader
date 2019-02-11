@@ -11,9 +11,9 @@
     "lint": "eslint --fix --ext .js src",
     "commit": "git-cz",
     "dev": "npm run watch & npm run start",
-    "watch": "rollup -c -w",
+    "watch": "rollup -c build/rollup.config.js -w",
     "start": "php -S localhost:1180",
-    "build": "rollup -c"
+    "build": "rollup -c build/rollup.config.js"
   },
   "repository": {
     "type": "git",
@@ -40,12 +40,13 @@
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "rollup": "^0.66.6",
+    "rollup": "^1.1.2",
     "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-flow-no-whitespace": "^1.0.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-terser": "^3.0.0"
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-terser": "^4.0.3"
   },
   "dependencies": {},
   "config": {
