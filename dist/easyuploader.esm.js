@@ -1,5 +1,5 @@
 /*
- * EasyUploader v0.0.8-beta
+ * EasyUploader v0.0.8
  * (c) 2018-2019 shinn_lancelot
  * Released under the MIT License.
  */
@@ -56,12 +56,12 @@ var tipInfos = {
   'en': {
     'noFile': 'Please choose the file first.',
     'fileTooLarge': 'The file is too Large. The maxFileSize is {0}.',
-    'fileTypeNotAllow': 'The file type is not allowed to upload. Please upload the {0} file.'
+    'fileExtNotAllow': 'The file extension is not allowed to upload. Please upload the {0} file.'
   },
   'cn': {
     'noFile': '请先选择文件',
     'fileTooLarge': '文件太大，最大允许为{0}',
-    'fileTypeNotAllow': '文件格式不允许上传，请上传{0}格式的文件'
+    'fileExtNotAllow': '文件扩展名不允许上传，请上传{0}格式的文件'
   }
 };
 
@@ -376,7 +376,7 @@ EasyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
     _this.fileExt = _this.fileName.split('.').pop().toLowerCase();
     _this.fileSize = _this.fileObj.files[0].size;
     if (_this.checkFile()) {
-      if (_this.needCanvas) {
+      if (_this.needCanvas()) {
         _this.drawAndRenderCanvas();
       } else {
         _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0]);
@@ -557,7 +557,7 @@ EasyUploader.prototype.uploadFile = function uploadFile (value) {
       } else {
         _this.options.onUploadError && _this.options.onUploadError(xhr.status);
       }
-      if (_this.needCanvas) {
+      if (_this.needCanvas()) {
         _this.canvas.remove();
       }
       _this.fileObj.value = '';
@@ -580,7 +580,7 @@ EasyUploader.prototype.renderTipDom = function renderTipDom (text) {
   if (this.options.tipClass) {
     tipDiv.className = this.options.tipClass;
   } else {
-    tipDiv.setAttribute('style', 'max-width: 90%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;');
+    tipDiv.setAttribute('style', 'max-width: 100%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;');
   }
   document.querySelector('body').appendChild(tipDiv);
   setTimeout(function () {
@@ -659,7 +659,7 @@ EasyUploader.prototype.checkFile = function checkFile () {
 
   if (this.options.allowFileExt.length > 0 && this.options.allowFileExt.indexOf(this.fileExt) === -1) {
     this.renderTipDom(defaultExport.replacePlaceholders(
-      this.tips.fileTypeNotAllow,
+      this.tips.fileExtNotAllow,
       [this.options.allowFileExt.join('，')]
     ));
 

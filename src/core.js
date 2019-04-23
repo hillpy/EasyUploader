@@ -129,7 +129,7 @@ export default class EasyUploader {
       _this.fileExt = _this.fileName.split('.').pop().toLowerCase()
       _this.fileSize = _this.fileObj.files[0].size
       if (_this.checkFile()) {
-        if (_this.needCanvas) {
+        if (_this.needCanvas()) {
           _this.drawAndRenderCanvas()
         } else {
           _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0])
@@ -308,7 +308,7 @@ export default class EasyUploader {
         } else {
           _this.options.onUploadError && _this.options.onUploadError(xhr.status)
         }
-        if (_this.needCanvas) {
+        if (_this.needCanvas()) {
           _this.canvas.remove()
         }
         _this.fileObj.value = ''
@@ -331,7 +331,7 @@ export default class EasyUploader {
     if (this.options.tipClass) {
       tipDiv.className = this.options.tipClass
     } else {
-      tipDiv.setAttribute('style', 'max-width: 90%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;')
+      tipDiv.setAttribute('style', 'max-width: 100%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;')
     }
     document.querySelector('body').appendChild(tipDiv)
     setTimeout(() => {
@@ -410,7 +410,7 @@ export default class EasyUploader {
 
     if (this.options.allowFileExt.length > 0 && this.options.allowFileExt.indexOf(this.fileExt) === -1) {
       this.renderTipDom(common.replacePlaceholders(
-        this.tips.fileTypeNotAllow,
+        this.tips.fileExtNotAllow,
         [this.options.allowFileExt.join('，')]
       ))
 
