@@ -2,6 +2,16 @@
 
 EasyUploader还支持内部属性的获取与修改。
 
+### classPrefix
+
+* 类型：String
+* 备注：该属性为一般为类库名称小写（如：easyuploader），用于作为类库内部创建元素时的属性名称（如class、id）的前缀，避免冲突产生。在EasyUploader初始化时生成。
+
+### version
+
+* 类型：String
+* 备注：该属性为类库版本号（不含'v'）。在EasyUploader初始化时生成。
+
 ### fileObj
 
 * 类型：Object

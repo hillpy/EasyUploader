@@ -144,7 +144,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
 ### compressQuality
 
-* Type: Float
+* Type: Number
 * Default: 0.92
 * Example: "compressQuality": 0.9
 * Remark: This option represents the quality of the image redrawn (compression on the image quality). On the basis of redrawing size, the image quality is compressed. It takes effect when [compress](options.md#compress) option is true. And only valid for JPG webp format images. The value must be between 0 and 1, and the larger the value, the higher the quality.
@@ -173,6 +173,13 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 ### language
 
 * Type: String
-* Default: "en"
-* Example: "language": "cn"
+* Default: "cn"
+* Example: "language": "en"
 * Remark: This option is the language type of the library prompt message. For example, "please select the file", "the file is too large, the maximum allowed is 2M" and so on. The optional value is either "en" or "cn".
+
+### tipDurationTime
+
+* Type: Number
+* Default: 3
+* Example: "tipDurationTime": 1.5
+* Remark: This option is the duration of the library prompt information layer display, in seconds。For example, if it is set to 1.5, the prompt information layer will disappear after 1.5 seconds.

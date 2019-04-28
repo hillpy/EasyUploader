@@ -55,7 +55,9 @@ export default {
   plugins: [
     resolve(),
     commonjs(),
-    buble(),
+    buble({
+      include: 'src/js/**'
+    }),
     production && terser(),
     flow(),
     json()

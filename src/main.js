@@ -1,3 +1,3 @@
-import core from './core' // Import core module.
+import core from './js/core' // Import core module.
 
 export default core // Export core module.

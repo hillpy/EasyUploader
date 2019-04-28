@@ -18,6 +18,7 @@
  * compress: Whether to compress or not.
  * resize: Redefine the maxWidth and maxHeight.
  * compressQuality: The picture compression quality.
+ * tipDurationTime: The tip layer display duration time.The unit is seconds.
  */
 export default {
   'el': '',
@@ -35,11 +36,12 @@ export default {
   'clip': false,
   'fixOrientation': true,
   'allowFileExt': [],
-  'language': 'en',
+  'language': 'cn',
   'compress': true,
   'resize': {
     'maxWidth': 800,
     'maxHeight': 800
   },
-  'compressQuality': 0.92
+  'compressQuality': 0.92,
+  'tipDurationTime': 3
 }

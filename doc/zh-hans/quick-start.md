@@ -9,13 +9,12 @@
 <script>
     var eu1 = new EasyUploader({
         "el": "#btn1",
-        "url": "./upload.php",
-        "language": "cn"
+        "url": "./upload.php"
     });
 </script>
 ```
 
-实例化库，实现最简单的上传功能。传入`el`、`url`、`language`选项即可。`el`代表元素按钮节点，即上传按钮，`url`代表需要提交到后端的地址，`language`代表信息提示语言类型。
+实例化库，实现最简单的上传功能。传入`el`、`url`选项即可。`el`代表元素按钮节点，即上传按钮，`url`代表需要提交到后端的地址。
 
 ### 图片上传
 
@@ -29,7 +28,6 @@
         "url": "./upload.php",
         "autoUpload": true,
         "allowFileExt": ["jpg", "jpeg", "png"],
-        "language": "cn",
         "compress": true,
         "resize": {
             "maxWidth": 1000,
@@ -64,7 +62,6 @@
         "file": "#easyuploader_file",
         "url": "./upload.php",
         "autoUpload": true,
-        "language": "cn",
         "compress": true,
         "resize": {
             "maxWidth": 1000,
@@ -99,7 +96,6 @@
         "el": "#drop_area",
         "url": "./upload.php",
         "autoUpload": true,
-        "language": "cn",
         "compress": true,
         "resize": {
             "maxWidth": 1000,

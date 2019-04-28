@@ -1,5 +1,5 @@
 /*
- * EasyUploader v0.0.8
+ * EasyUploader v0.0.9
  * (c) 2018-2019 shinn_lancelot
  * Released under the MIT License.
  */
@@ -23,6 +23,7 @@
  * compress: Whether to compress or not.
  * resize: Redefine the maxWidth and maxHeight.
  * compressQuality: The picture compression quality.
+ * tipDurationTime: The tip layer display duration time.The unit is seconds.
  */
 var defaultOptions = {
   'el': '',
@@ -40,13 +41,14 @@ var defaultOptions = {
   'clip': false,
   'fixOrientation': true,
   'allowFileExt': [],
-  'language': 'en',
+  'language': 'cn',
   'compress': true,
   'resize': {
     'maxWidth': 800,
     'maxHeight': 800
   },
-  'compressQuality': 0.92
+  'compressQuality': 0.92,
+  'tipDurationTime': 3
 };
 
 /**
@@ -252,6 +254,9 @@ defaultExport.evil = function evil (fn) {
   return new Fn('return ' + fn)()
 };
 
+var name = "easyuploader";
+var version = "0.0.9";
+
 if (!HTMLCanvasElement.prototype.toBlob) {
   Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
     value: function (callback, type, quality) {
@@ -276,6 +281,8 @@ var EasyUploader = function EasyUploader (options) {
   }
 
   // The common params.
+  this.classPrefix = name.toLowerCase();
+  this.version = version;
   this.fileObj = '';
   this.elObj = '';
   this.fileType = '';
@@ -299,7 +306,7 @@ var EasyUploader = function EasyUploader (options) {
  */
 EasyUploader.prototype.init = function init () {
   var _tipInfos = JSON.parse(JSON.stringify(tipInfos));
-  this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['en'];
+  this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['cn'];
 
   if (this.options.el) {
     this.elObj = document.querySelector(this.options.el);
@@ -319,7 +326,7 @@ EasyUploader.prototype.init = function init () {
  * Create the input(type=file).
  */
 EasyUploader.prototype.createInput = function createInput () {
-  this.options.id || (this.options.id = 'easyuploader_' + defaultExport.getNonce());
+  this.options.id || (this.options.id = this.classPrefix + '_' + defaultExport.getNonce());
   var input = document.createElement('input');
   input.type = 'file';
   input.name = this.options.name;
@@ -541,6 +548,7 @@ EasyUploader.prototype.uploadFile = function uploadFile (value) {
     return
   }
 
+  _this.formData.has(_this.options.name) && _this.formData.delete(_this.options.name);
   _this.formData.append(_this.options.name, value, _this.fileName);
   var xhr = new XMLHttpRequest();
   xhr.open(_this.options.method, _this.options.url, true);
@@ -572,17 +580,23 @@ EasyUploader.prototype.uploadFile = function uploadFile (value) {
  * @param {*} text The tip text.
  */
 EasyUploader.prototype.renderTipDom = function renderTipDom (text) {
-  var oldTipDiv = document.getElementById('easyuploader_tipdom');
+  var oldTipDiv = document.getElementById(this.classPrefix + '_tipdom');
   oldTipDiv && oldTipDiv.remove();
   var tipDiv = document.createElement('div');
-  tipDiv.id = 'easyuploader_tipdom';
+  tipDiv.id = this.classPrefix + '_tipdom';
   tipDiv.innerHTML = text;
   if (this.options.tipClass) {
     tipDiv.className = this.options.tipClass;
   } else {
-    tipDiv.setAttribute('style', 'max-width: 100%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;');
+    tipDiv.setAttribute('style', 'max-width: 100%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(calc(-50% + 0.5px), calc(-50% + 0.5px));-webkit-transform: translate(calc(-50% + 0.5px), calc(-50% + 0.5px));text-align: center;background: #000;word-wrap: break-word;word-break: break-all;');
   }
   document.querySelector('body').appendChild(tipDiv);
+
+  var tipDurationTime = defaultOptions.tipDurationTime;
+  if (typeof this.options.tipDurationTime === 'number' && this.options.tipDurationTime > 0) {
+    tipDurationTime = this.options.tipDurationTime;
+  }
+
   setTimeout(function () {
     var opacity = tipDiv.style.opacity;
     if (opacity > 0) {
@@ -606,7 +620,7 @@ EasyUploader.prototype.renderTipDom = function renderTipDom (text) {
     } else {
       tipDiv.remove();
     }
-  }, 1500);
+  }, tipDurationTime * 1000);
 };
 
 /**

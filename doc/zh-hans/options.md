@@ -144,7 +144,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 
 ### compressQuality
 
-* 类型：Float
+* 类型：Number
 * 默认值：0.92
 * 值示例："compressQuality": 0.9
 * 备注：该选项代表图片重新绘制的质量（图片质量上的压缩）。在重新绘制尺寸基础上再对图片质量进行压缩。当[compress](options.md#compress)为true时生效。且仅对jpg、webp格式的图片有效。值必须在0-1之间，值越大质量越高。
@@ -173,6 +173,13 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
 ### language
 
 * 类型：String
-* 默认值："en"
-* 值示例："language": "cn"
+* 默认值："cn"
+* 值示例："language": "en"
 * 备注：该选项为库提示信息的语言类型。比如"请选择文件"、"文件太大，最大允许为2M"等等。可选值为"en"或"cn"。
+
+### tipDurationTime
+
+* 类型：Number
+* 默认值：3
+* 值示例："tipDurationTime": 1.5
+* 备注：该选项为库提示信息层显示的持续时间，单位为秒。比如设置为1.5，则提示信息层显示后将在1.5秒之后消失。

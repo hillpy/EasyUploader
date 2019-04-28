@@ -2,6 +2,16 @@
 
 EasyUploader also supports the acquisition and modification of internal properties.
 
+### classPrefix
+
+* Type: String
+* Remark: This attribute is generally lowercase of the library name (such as: easyuploader), used as a prefix of the attribute name (such as class, id) when the element is created inside the library to avoid conflicts. Generated when EasyUploader is initialized.
+
+### version
+
+* Type: String
+* Remark: This attribute is the library version number (without 'v'). Generated when EasyUploader is initialized.
+
 ### fileObj
 
 * Type: Object

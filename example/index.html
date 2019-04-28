@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
-    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>EasyUploader example</title>
     <style>
         * {
@@ -28,6 +28,12 @@
 
         .title {
             background: #ddd;
+            line-height: 2;
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+
+        .info {
             line-height: 2;
             margin-bottom: 10px;
             font-size: 1.6rem;
@@ -178,54 +184,59 @@
     </style>
 </head>
 <body>
-    <div class='example-frame'>
-        <div class='title'>bind element node</div>
-        <button id='btn1'>upload_pic</button>
+    <div class="example-frame">
+        <div class="title">library info</div>
+        <div class="info"></div>
     </div>
-    <div class='example-frame'>
-        <div class='title'>choose file and click upload button</div>
-        <button id='btn2'>＋</button>
-        <button id='upload_btn2'>upload_btn</button>
+    <div class="example-frame">
+        <div class="title">bind element node</div>
+        <button id="btn1">upload_pic</button>
     </div>
-    <div class='example-frame'>
-        <div class='title'>bind input(type='file') element node</div>
-        <input type='file' name='file' id='easyuploader_file'>
+    <div class="example-frame">
+        <div class="title">choose file and click upload button</div>
+        <button id="btn2">＋</button>
+        <button id="upload_btn2">upload_btn</button>
     </div>
-    <div class='example-frame'>
-        <div class='title'>drag upload</div>
-        <div id='drop_area'>drag the file in here</div>
+    <div class="example-frame">
+        <div class="title">bind input(type="file") element node</div>
+        <input type="file" name="file" id="easyuploader_file">
     </div>
-    <div id='file_frame'>
+    <div class="example-frame">
+        <div class="title">drag upload</div>
+        <div id="drop_area">drag the file in here</div>
+    </div>
+    <div id="file_frame">
         <h3>upload result file</h3>
         <hr>
     </div>
-    <div class='clip-frame'>
-        <div class='clip-layer'>
-            <div class='clip-wrapper'>
-                <div class='clip-wrapper-header'>
+    <div class="clip-frame">
+        <div class="clip-layer">
+            <div class="clip-wrapper">
+                <div class="clip-wrapper-header">
                     <h3>Please clip picture</h3>
 
                 </div>
-                <div class='clip-wrapper-body'>
-                    <img src='' alt=''>
-                    <div class='clip-container'>
-                        <div class='clip-box'>
+                <div class="clip-wrapper-body">
+                    <img src="" alt="">
+                    <div class="clip-container">
+                        <div class="clip-box">
 
                         </div>
                     </div>
                 </div>
-                <div class='clip-wrapper-footer'>
+                <div class="clip-wrapper-footer">
                     <button>save and upload</button>
                 </div>
             </div>
         </div>
     </div>
-    <script src='../dist/easyuploader.js'></script>
+    <script src="../dist/easyuploader.js"></script>
     <script>
         var fileFrameObj = document.querySelector('#file_frame'),
             img = document.createElement('img'),
             div = document.createElement('div'),
-            uploadBtn2 = document.querySelector('#upload_btn2');
+            uploadBtn2 = document.querySelector('#upload_btn2'),
+            infoObj = document.querySelector('.info');
 
         var eu1 = new EasyUploader({
             'el': '#btn1',
@@ -393,6 +404,8 @@
                 console.log(statusCode);
             }
         });
+
+        infoObj.innerHTML = 'name: ' + eu1.classPrefix + '<br>version: v' + eu1.version + '<br>github: <a href="https://github.com/hillpy/EasyUploader" target="_blank">https://github.com/hillpy/EasyUploader</a>';
     </script>
 </body>
 </html>

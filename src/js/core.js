@@ -1,6 +1,7 @@
 import defaultOptions from './defaultoptions' // Import the defaultoptions module.
 import tipInfos from './tipinfos' // Import the tipinfos module.
 import common from './common' // Import the common module.
+import { name, version } from '../../package.json'
 
 if (!HTMLCanvasElement.prototype.toBlob) {
   Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
@@ -29,6 +30,8 @@ export default class EasyUploader {
     }
 
     // The common params.
+    this.classPrefix = name.toLowerCase()
+    this.version = version
     this.fileObj = ''
     this.elObj = ''
     this.fileType = ''
@@ -52,7 +55,7 @@ export default class EasyUploader {
    */
   init () {
     let _tipInfos = JSON.parse(JSON.stringify(tipInfos))
-    this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['en']
+    this.tips = _tipInfos.hasOwnProperty(this.options.language) ? _tipInfos[this.options.language] : _tipInfos['cn']
 
     if (this.options.el) {
       this.elObj = document.querySelector(this.options.el)
@@ -72,7 +75,7 @@ export default class EasyUploader {
    * Create the input(type=file).
    */
   createInput () {
-    this.options.id || (this.options.id = 'easyuploader_' + common.getNonce())
+    this.options.id || (this.options.id = this.classPrefix + '_' + common.getNonce())
     let input = document.createElement('input')
     input.type = 'file'
     input.name = this.options.name
@@ -292,6 +295,7 @@ export default class EasyUploader {
       return
     }
 
+    _this.formData.has(_this.options.name) && _this.formData.delete(_this.options.name)
     _this.formData.append(_this.options.name, value, _this.fileName)
     let xhr = new XMLHttpRequest()
     xhr.open(_this.options.method, _this.options.url, true)
@@ -323,17 +327,23 @@ export default class EasyUploader {
    * @param {*} text The tip text.
    */
   renderTipDom (text) {
-    let oldTipDiv = document.getElementById('easyuploader_tipdom')
+    let oldTipDiv = document.getElementById(this.classPrefix + '_tipdom')
     oldTipDiv && oldTipDiv.remove()
     let tipDiv = document.createElement('div')
-    tipDiv.id = 'easyuploader_tipdom'
+    tipDiv.id = this.classPrefix + '_tipdom'
     tipDiv.innerHTML = text
     if (this.options.tipClass) {
       tipDiv.className = this.options.tipClass
     } else {
-      tipDiv.setAttribute('style', 'max-width: 100%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(-50%, -50%);-webkit-transform: translate(-50%, -50%);text-align: center;background: #000;word-wrap: break-word;word-break: break-all;')
+      tipDiv.setAttribute('style', 'max-width: 100%;padding: 16px 20px;font-size: 14px;color: #fff;box-sizing: border-box;border-radius: 2px;filter: Alpha(opacity=80);opacity: 0.8;-moz-opacity: 0.8;user-select: none;position: fixed;top: 50%;left: 50%;z-index: 100000;transform: translate(calc(-50% + 0.5px), calc(-50% + 0.5px));-webkit-transform: translate(calc(-50% + 0.5px), calc(-50% + 0.5px));text-align: center;background: #000;word-wrap: break-word;word-break: break-all;')
     }
     document.querySelector('body').appendChild(tipDiv)
+
+    let tipDurationTime = defaultOptions.tipDurationTime
+    if (typeof this.options.tipDurationTime === 'number' && this.options.tipDurationTime > 0) {
+      tipDurationTime = this.options.tipDurationTime
+    }
+
     setTimeout(() => {
       let opacity = tipDiv.style.opacity
       if (opacity > 0) {
@@ -357,7 +367,7 @@ export default class EasyUploader {
       } else {
         tipDiv.remove()
       }
-    }, 1500)
+    }, tipDurationTime * 1000)
   }
 
   /**
