@@ -1,5 +1,5 @@
 /*
- * EasyUploader v0.0.9
+ * EasyUploader v0.0.10
  * (c) 2018-2019 shinn_lancelot
  * Released under the MIT License.
  */
@@ -211,8 +211,7 @@
      * @param {*} length The nonce length.
      */
   defaultExport.getNonce = function getNonce (length) {
-      if ( length === void 0 ) length = 16;
-
+    length || (length = 16);
     var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
 
     var nonce = '';
@@ -228,9 +227,8 @@
      * @param {*} arr The new string array.
      */
   defaultExport.replacePlaceholders = function replacePlaceholders (str, arr) {
-      if ( str === void 0 ) str = '';
-      if ( arr === void 0 ) arr = [];
-
+    str || (str = '');
+    arr || (arr = []);
     for (var i = 0; i < arr.length; i++) {
       str = str.replace(new RegExp('\\{' + i + '\\}', 'g'), arr[i]);
     }
@@ -261,7 +259,7 @@
   };
 
   var name = "easyuploader";
-  var version = "0.0.9";
+  var version = "0.0.10";
 
   if (!HTMLCanvasElement.prototype.toBlob) {
     Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
@@ -384,17 +382,7 @@
   EasyUploader.prototype.listenFileObjChange = function listenFileObjChange () {
     var _this = this;
     _this.fileObj.addEventListener('change', function () {
-      _this.fileType = _this.fileObj.files[0].type;
-      _this.fileName = _this.fileObj.files[0].name;
-      _this.fileExt = _this.fileName.split('.').pop().toLowerCase();
-      _this.fileSize = _this.fileObj.files[0].size;
-      if (_this.checkFile()) {
-        if (_this.needCanvas()) {
-          _this.drawAndRenderCanvas();
-        } else {
-          _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0]);
-        }
-      }
+      _this.fileIsChosen();
     });
   };
 
@@ -408,6 +396,7 @@
       e.preventDefault();
       _this.options.onDrop && _this.options.onDrop(e);
       _this.fileObj.files = e.dataTransfer.files;
+      _this.fileIsChosen();
     });
     obj.addEventListener('dragover', function (e) {
       e.preventDefault();
@@ -421,6 +410,23 @@
       e.preventDefault();
       _this.options.onDragLeave && _this.options.onDragLeave(e);
     });
+  };
+
+  /**
+   * File is chosen
+   */
+  EasyUploader.prototype.fileIsChosen = function fileIsChosen () {
+    this.fileType = this.fileObj.files[0].type;
+    this.fileName = this.fileObj.files[0].name;
+    this.fileExt = this.fileName.split('.').pop().toLowerCase();
+    this.fileSize = this.fileObj.files[0].size;
+    if (this.checkFile()) {
+      if (this.needCanvas()) {
+        this.drawAndRenderCanvas();
+      } else {
+        this.options.autoUpload && this.uploadFile(this.fileObj.files[0]);
+      }
+    }
   };
 
   /**

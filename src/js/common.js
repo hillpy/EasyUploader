@@ -139,7 +139,8 @@ export default class {
      * Get the random nonce.
      * @param {*} length The nonce length.
      */
-  static getNonce (length = 16) {
+  static getNonce (length) {
+    length || (length = 16)
     let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
 
     let nonce = ''
@@ -154,7 +155,9 @@ export default class {
      * @param {*} str The string.
      * @param {*} arr The new string array.
      */
-  static replacePlaceholders (str = '', arr = []) {
+  static replacePlaceholders (str, arr) {
+    str || (str = '')
+    arr || (arr = [])
     for (let i = 0; i < arr.length; i++) {
       str = str.replace(new RegExp('\\{' + i + '\\}', 'g'), arr[i])
     }

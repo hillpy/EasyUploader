@@ -127,17 +127,7 @@ export default class EasyUploader {
   listenFileObjChange () {
     let _this = this
     _this.fileObj.addEventListener('change', () => {
-      _this.fileType = _this.fileObj.files[0].type
-      _this.fileName = _this.fileObj.files[0].name
-      _this.fileExt = _this.fileName.split('.').pop().toLowerCase()
-      _this.fileSize = _this.fileObj.files[0].size
-      if (_this.checkFile()) {
-        if (_this.needCanvas()) {
-          _this.drawAndRenderCanvas()
-        } else {
-          _this.options.autoUpload && _this.uploadFile(_this.fileObj.files[0])
-        }
-      }
+      _this.fileIsChosen()
     })
   }
 
@@ -151,6 +141,7 @@ export default class EasyUploader {
       e.preventDefault()
       _this.options.onDrop && _this.options.onDrop(e)
       _this.fileObj.files = e.dataTransfer.files
+      _this.fileIsChosen()
     })
     obj.addEventListener('dragover', (e) => {
       e.preventDefault()
@@ -164,6 +155,23 @@ export default class EasyUploader {
       e.preventDefault()
       _this.options.onDragLeave && _this.options.onDragLeave(e)
     })
+  }
+
+  /**
+   * File is chosen
+   */
+  fileIsChosen () {
+    this.fileType = this.fileObj.files[0].type
+    this.fileName = this.fileObj.files[0].name
+    this.fileExt = this.fileName.split('.').pop().toLowerCase()
+    this.fileSize = this.fileObj.files[0].size
+    if (this.checkFile()) {
+      if (this.needCanvas()) {
+        this.drawAndRenderCanvas()
+      } else {
+        this.options.autoUpload && this.uploadFile(this.fileObj.files[0])
+      }
+    }
   }
 
   /**
