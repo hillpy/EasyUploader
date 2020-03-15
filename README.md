@@ -117,9 +117,8 @@ This project is being developed. The release is still a test version for the tim
 
 ### Repository link
 
-[Coding](https://coding.net/u/shinn_lancelot/p/EasyUploader/git "EasyUploader")<br>
-[Gitee](https://gitee.com/hillpy/EasyUploader "EasyUploader")<br>
 [Github](https://github.com/hillpy/EasyUploader "EasyUploader")<br>
+[Gitee](https://gitee.com/hillpy/EasyUploader "EasyUploader")<br>
 
 ### LICENSE
 

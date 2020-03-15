@@ -117,9 +117,8 @@ EasyUploader是一个轻量级的的js文件上传库。它基于HTML5、canvas�
 
 ### 仓库链接
 
-[Coding](https://coding.net/u/shinn_lancelot/p/EasyUploader/git "EasyUploader")<br>
-[Gitee](https://gitee.com/hillpy/EasyUploader "EasyUploader")<br>
 [Github](https://github.com/hillpy/EasyUploader "EasyUploader")<br>
+[Gitee](https://gitee.com/hillpy/EasyUploader "EasyUploader")<br>
 
 ### 协议
 
